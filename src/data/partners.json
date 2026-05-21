@@ -24,6 +24,14 @@
     "useLogo": true
   },
   {
+    "id": "org1",
+    "name": "Asociación Peruana de Primatología",
+    "acronym": "APP",
+    "url": "https://primatologiaperu.org",
+    "logo": "images/aliados/logo_app.png",
+    "useLogo": true
+  },
+  {
     "id": "org3",
     "name": "Universidad Nacional Mayor de San Marcos",
     "acronym": "UNMSM",
