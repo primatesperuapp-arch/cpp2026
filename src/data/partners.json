@@ -54,5 +54,13 @@
     "url": "#",
     "logo": "images/aliados/logo-kawsay.png",
     "useLogo": true
+  },
+  {
+    "id": "org8",
+    "name": "Servicio Nacional Forestal y de Fauna Silvestre",
+    "acronym": "SERFOR",
+    "url": "https://www.gob.pe/serfor",
+    "logo": "images/aliados/logo_serfor.png",
+    "useLogo": true
   }
 ]

@@ -1,5 +1,17 @@
 ---
 import dates from '../../data/important-dates.json';
+import { getDateStatus } from '../../utils/webState';
+
+// Compute build-time initial statuses
+const datesWithStatus = dates.map((item) => {
+  const status = getDateStatus(item.date);
+  return { ...item, status };
+});
+
+// Find the first upcoming or active milestone to highlight it
+const activeIndex = datesWithStatus.findIndex(
+  (item) => item.status === 'upcoming' || item.status === 'active'
+);
 ---
 
 <section class="section dates" id="fechas">
@@ -13,29 +25,126 @@ import dates from '../../data/important-dates.json';
     </div>
 
     <div class="dates__timeline">
-      {dates.map((item, i) => (
-        <div class={`timeline-item reveal reveal-delay-${(i % 4) + 1} ${item.highlight ? 'timeline-item--highlight' : ''}`}>
-          <!-- Connector line -->
-          <div class="timeline-item__line" aria-hidden="true">
-            <div class={`timeline-item__dot timeline-item__dot--${item.type}`} aria-hidden="true">
-              {item.type === 'event' && '🎉'}
-              {item.type === 'deadline' && '⏰'}
-              {item.type === 'open' && '🟢'}
-              {item.type === 'notification' && '📬'}
+      {datesWithStatus.map((item, i) => {
+        const isNextMilestone = i === activeIndex;
+        const itemClass = `timeline-item reveal reveal-delay-${(i % 4) + 1} ` +
+          `${item.highlight ? 'timeline-item--highlight' : ''} ` +
+          `timeline-item--${item.status} ` +
+          `${isNextMilestone ? 'timeline-item--active-milestone' : ''}`;
+
+        return (
+          <div 
+            class={itemClass}
+            data-date={item.date}
+            data-highlight={item.highlight ? 'true' : 'false'}
+            data-index={i}
+          >
+            <!-- Connector line -->
+            <div class="timeline-item__line" aria-hidden="true">
+              <div class={`timeline-item__dot timeline-item__dot--${item.type}`} aria-hidden="true">
+                {item.type === 'event' && '🎉'}
+                {item.type === 'deadline' && '⏰'}
+                {item.type === 'open' && '🟢'}
+                {item.type === 'notification' && '📬'}
+              </div>
+            </div>
+
+            <!-- Content -->
+            <div class="timeline-item__content">
+              <div class="timeline-item__date">
+                {item.label}
+                {isNextMilestone && <span class="active-badge">Próximo Hito</span>}
+              </div>
+              <h3 class="timeline-item__title">{item.title}</h3>
+              <p class="timeline-item__desc">{item.description}</p>
             </div>
           </div>
-
-          <!-- Content -->
-          <div class="timeline-item__content">
-            <div class="timeline-item__date">{item.label}</div>
-            <h3 class="timeline-item__title">{item.title}</h3>
-            <p class="timeline-item__desc">{item.description}</p>
-          </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   </div>
 </section>
+
+<script>
+  import { getDateStatus } from '../../utils/webState';
+
+  function updateTimeline() {
+    const items = document.querySelectorAll('.timeline-item');
+    if (!items.length) return;
+
+    const parsedItems = Array.from(items).map((el) => {
+      const dateStr = el.getAttribute('data-date') || '';
+      const index = parseInt(el.getAttribute('data-index') || '0', 10);
+      const isHighlight = el.getAttribute('data-highlight') === 'true';
+      const status = getDateStatus(dateStr);
+      return { el, dateStr, index, isHighlight, status };
+    });
+
+    // Find the next active or upcoming milestone
+    const activeIndex = parsedItems.findIndex(
+      (item) => item.status === 'active' || item.status === 'upcoming'
+    );
+
+    parsedItems.forEach((item, i) => {
+      const { el, status } = item;
+      const isNextMilestone = i === activeIndex;
+
+      // Reset dynamic classes
+      el.classList.remove(
+        'timeline-item--completed', 
+        'timeline-item--active', 
+        'timeline-item--upcoming',
+        'timeline-item--active-milestone'
+      );
+
+      el.classList.add(`timeline-item--${status}`);
+      if (isNextMilestone) {
+        el.classList.add('timeline-item--active-milestone');
+      }
+
+      // Add badge to dates
+      const dateEl = el.querySelector('.timeline-item__date');
+      if (dateEl) {
+        // Remove existing badge
+        const oldBadge = dateEl.querySelector('.active-badge');
+        if (oldBadge) oldBadge.remove();
+
+        if (isNextMilestone) {
+          const badge = document.createElement('span');
+          badge.className = 'active-badge';
+          badge.innerText = 'Próximo Hito';
+          dateEl.appendChild(badge);
+        }
+      }
+
+      // Handle completed checkmarks in dot
+      const dotEl = el.querySelector('.timeline-item__dot');
+      if (dotEl) {
+        if (status === 'completed') {
+          dotEl.classList.add('timeline-item__dot--completed');
+          if (!dotEl.getAttribute('data-original-html')) {
+            dotEl.setAttribute('data-original-html', dotEl.innerHTML);
+          }
+          // Use checkmark for all non-final events
+          if (item.date !== '2026-07-30') {
+            dotEl.innerHTML = '✓';
+          }
+        } else {
+          dotEl.classList.remove('timeline-item__dot--completed');
+          const original = dotEl.getAttribute('data-original-html');
+          if (original) {
+            dotEl.innerHTML = original;
+          }
+        }
+      }
+    });
+  }
+
+  // Run on startup
+  updateTimeline();
+  // Listen for Astro transitions page load
+  document.addEventListener('astro:page-load', updateTimeline);
+</script>
 
 <style>
   .dates {
@@ -80,6 +189,7 @@ import dates from '../../data/important-dates.json';
     gap: 1.25rem;
     margin-bottom: 2rem;
     align-items: flex-start;
+    transition: opacity 0.4s ease;
   }
 
   @media (min-width: 768px) {
@@ -125,6 +235,7 @@ import dates from '../../data/important-dates.json';
     box-shadow: var(--shadow-sm);
     z-index: 1;
     position: relative;
+    transition: all 0.3s ease;
   }
 
   :global([data-theme="dark"]) .timeline-item__dot {
@@ -149,6 +260,7 @@ import dates from '../../data/important-dates.json';
 
   .timeline-item__content {
     padding-bottom: 1rem;
+    transition: transform 0.3s ease;
   }
 
   .timeline-item__date {
@@ -159,6 +271,9 @@ import dates from '../../data/important-dates.json';
     letter-spacing: 0.06em;
     text-transform: uppercase;
     margin-bottom: 0.35rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
   }
 
   .timeline-item__title {
@@ -192,4 +307,58 @@ import dates from '../../data/important-dates.json';
   }
 
   .timeline-item--highlight .timeline-item__date { color: var(--gold); }
+
+  /* ── Dynamic States ───────────────────────────────── */
+  
+  /* Completed state */
+  .timeline-item--completed {
+    opacity: 0.6;
+  }
+  .timeline-item--completed:hover {
+    opacity: 0.9;
+  }
+  .timeline-item--completed .timeline-item__dot--completed {
+    border-color: var(--forest-leaf);
+    background: rgba(82, 183, 136, 0.15);
+    color: var(--forest-leaf);
+    font-family: var(--font-ui);
+    font-weight: 700;
+    font-size: 1.1rem;
+    box-shadow: 0 0 10px rgba(82, 183, 136, 0.1);
+  }
+
+  /* Active/Next Milestone state */
+  @keyframes active-pulse-ring {
+    0% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.5); }
+    70% { box-shadow: 0 0 0 12px rgba(201, 168, 76, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0); }
+  }
+  
+  .timeline-item--active-milestone .timeline-item__dot {
+    animation: active-pulse-ring 2s cubic-bezier(0.25, 0, 0, 1) infinite;
+    border-color: var(--gold);
+    transform: scale(1.05);
+  }
+
+  .timeline-item--active-milestone .timeline-item__content {
+    transform: translateX(4px);
+  }
+
+  @media (min-width: 768px) {
+    .timeline-item:nth-child(even).timeline-item--active-milestone .timeline-item__content {
+      transform: translateX(-4px);
+    }
+  }
+
+  .active-badge {
+    background: var(--gold);
+    color: #fff;
+    font-size: 0.65rem;
+    font-family: var(--font-ui);
+    padding: 0.15rem 0.5rem;
+    border-radius: 100px;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+  }
 </style>

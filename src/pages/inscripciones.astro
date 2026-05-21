@@ -1,7 +1,10 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
 import pricing from '../data/pricing.json';
+import { getWebState } from '../utils/webState';
 const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL + '/';
+
+const { pricing: pricingTier } = getWebState();
 ---
 
 <PageLayout
@@ -25,10 +28,20 @@ const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL +
   <!-- Early Bird Alert -->
   <section class="section">
     <div class="container">
-      <div class="early-bird-alert reveal">
-        <div class="early-bird-alert__icon">⏰</div>
-        <div>
-          <strong>Inscripciones Early Bird</strong> — Disponibles hasta el 31 de mayo de 2026. ¡Asegura tu participación con el mejor precio!
+      <div class={`early-bird-alert early-bird-alert--${pricingTier} reveal`} id="pricing-alert">
+        <div class="early-bird-alert__icon" id="pricing-alert-icon">
+          {pricingTier === 'early' ? '⏰' : (pricingTier === 'regular' ? '🟢' : '🏢')}
+        </div>
+        <div id="pricing-alert-text">
+          {pricingTier === 'early' && (
+            <><strong>Inscripciones Early Bird</strong> — Disponibles hasta el 31 de mayo de 2026. ¡Asegura tu participación con el mejor precio!</>
+          )}
+          {pricingTier === 'regular' && (
+            <><strong>Tarifa Regular Activa</strong> — La preventa Early Bird finalizó el 31 de mayo de 2026. ¡Registra tu inscripción antes del 15 de julio de 2026!</>
+          )}
+          {pricingTier === 'onsite' && (
+            <><strong>Tarifa En Sede Activa</strong> — La etapa de pre-registro regular finalizó. Inscríbete directamente de manera presencial durante el evento.</>
+          )}
         </div>
       </div>
 
@@ -38,29 +51,29 @@ const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL +
           <thead>
             <tr>
               <th rowspan="2">Categoría</th>
-              <th colspan="2">Early Bird <br /><small>(hasta 31 mayo)</small></th>
-              <th colspan="2">Regular <br /><small>(hasta 15 julio)</small></th>
-              <th colspan="2">En sede <br /><small>(Durante el congreso)</small></th>
+              <th colspan="2" data-tier="early" class={pricingTier === 'early' ? 'active-tier-header' : (pricingTier !== 'early' ? 'completed-tier' : '')}>Early Bird <br /><small>(hasta 31 mayo)</small></th>
+              <th colspan="2" data-tier="regular" class={pricingTier === 'regular' ? 'active-tier-header' : (pricingTier === 'onsite' ? 'completed-tier' : '')}>Regular <br /><small>(hasta 15 julio)</small></th>
+              <th colspan="2" data-tier="onsite" class={pricingTier === 'onsite' ? 'active-tier-header' : ''}>En sede <br /><small>(Durante el congreso)</small></th>
             </tr>
             <tr>
-              <th>Miembro de la Asociación Peruana de Primatología</th>
-              <th>Asistente general</th>
-              <th>Miembro de la Asociación Peruana de Primatología</th>
-              <th>Asistente general</th>
-              <th>Miembro de la Asociación Peruana de Primatología</th>
-              <th>Asistente general</th>
+              <th data-tier="early" class={pricingTier === 'early' ? 'active-tier-header' : (pricingTier !== 'early' ? 'completed-tier' : '')}>Miembro de la APP</th>
+              <th data-tier="early" class={pricingTier === 'early' ? 'active-tier-header' : (pricingTier !== 'early' ? 'completed-tier' : '')}>Asistente general</th>
+              <th data-tier="regular" class={pricingTier === 'regular' ? 'active-tier-header' : (pricingTier === 'onsite' ? 'completed-tier' : '')}>Miembro de la APP</th>
+              <th data-tier="regular" class={pricingTier === 'regular' ? 'active-tier-header' : (pricingTier === 'onsite' ? 'completed-tier' : '')}>Asistente general</th>
+              <th data-tier="onsite" class={pricingTier === 'onsite' ? 'active-tier-header' : ''}>Miembro de la APP</th>
+              <th data-tier="onsite" class={pricingTier === 'onsite' ? 'active-tier-header' : ''}>Asistente general</th>
             </tr>
           </thead>
           <tbody>
             {pricing.map((plan) => (
               <tr>
                 <td><strong>{plan.category}</strong></td>
-                <td class="price-val">S/ {plan.prices.early.app}</td>
-                <td class="price-val">S/ {plan.prices.early.noApp}</td>
-                <td class="price-val">S/ {plan.prices.regular.app}</td>
-                <td class="price-val">S/ {plan.prices.regular.noApp}</td>
-                <td class="price-val">S/ {plan.prices.onsite.app}</td>
-                <td class="price-val">S/ {plan.prices.onsite.noApp}</td>
+                <td class={`price-val ${pricingTier === 'early' ? 'active-tier-cell' : (pricingTier !== 'early' ? 'completed-tier' : '')}`} data-tier="early">S/ {plan.prices.early.app}</td>
+                <td class={`price-val ${pricingTier === 'early' ? 'active-tier-cell' : (pricingTier !== 'early' ? 'completed-tier' : '')}`} data-tier="early">S/ {plan.prices.early.noApp}</td>
+                <td class={`price-val ${pricingTier === 'regular' ? 'active-tier-cell' : (pricingTier === 'onsite' ? 'completed-tier' : '')}`} data-tier="regular">S/ {plan.prices.regular.app}</td>
+                <td class={`price-val ${pricingTier === 'regular' ? 'active-tier-cell' : (pricingTier === 'onsite' ? 'completed-tier' : '')}`} data-tier="regular">S/ {plan.prices.regular.noApp}</td>
+                <td class={`price-val ${pricingTier === 'onsite' ? 'active-tier-cell' : ''}`} data-tier="onsite">S/ {plan.prices.onsite.app}</td>
+                <td class={`price-val ${pricingTier === 'onsite' ? 'active-tier-cell' : ''}`} data-tier="onsite">S/ {plan.prices.onsite.noApp}</td>
               </tr>
             ))}
           </tbody>
@@ -492,4 +505,105 @@ const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL +
   .policy-red   { color: #e05454; font-weight: 700; }
 
   .policy-note { font-size: 0.78rem; color: var(--text-muted); margin-top: 1rem; line-height: 1.6; }
+
+  /* Active Pricing Tier Highlight Styles */
+  .pricing-table [data-tier] {
+    transition: all var(--transition-mid);
+  }
+  
+  .pricing-table th[data-tier].active-tier-header {
+    background: var(--gold) !important;
+    color: #fff !important;
+    box-shadow: inset 0 -4px 0 rgba(255,255,255,0.4);
+  }
+
+  .pricing-table td[data-tier].active-tier-cell {
+    background: rgba(201, 168, 76, 0.08) !important;
+    border-left: 2px solid var(--gold) !important;
+    border-right: 2px solid var(--gold) !important;
+    font-weight: 800;
+  }
+  
+  .pricing-table [data-tier].completed-tier {
+    opacity: 0.4;
+    text-decoration: line-through;
+    filter: grayscale(0.8);
+  }
+
+  /* Early Bird Alert variations */
+  .early-bird-alert--regular {
+    background: linear-gradient(135deg, rgba(82, 183, 136, 0.1), rgba(82, 183, 136, 0.05));
+    border-color: rgba(82, 183, 136, 0.35);
+  }
+  .early-bird-alert--regular strong {
+    color: var(--forest-leaf) !important;
+  }
+  .early-bird-alert--onsite {
+    background: linear-gradient(135deg, rgba(224, 123, 84, 0.12), rgba(224, 123, 84, 0.08));
+    border-color: rgba(224, 123, 84, 0.35);
+  }
+  .early-bird-alert--onsite strong {
+    color: #e07b54 !important;
+  }
 </style>
+
+<script>
+  import { getWebState } from '../utils/webState';
+
+  function updatePricingDetails() {
+    const { pricing: pricingTier } = getWebState();
+
+    // 1. Update the alert message
+    const alertCard = document.getElementById('pricing-alert');
+    const alertIcon = document.getElementById('pricing-alert-icon');
+    const alertText = document.getElementById('pricing-alert-text');
+
+    if (alertCard) {
+      alertCard.className = `early-bird-alert early-bird-alert--${pricingTier} reveal visible`;
+    }
+
+    if (alertIcon) {
+      alertIcon.textContent = pricingTier === 'early' ? '⏰' : (pricingTier === 'regular' ? '🟢' : '🏢');
+    }
+
+    if (alertText) {
+      if (pricingTier === 'early') {
+        alertText.innerHTML = '<strong>Inscripciones Early Bird</strong> — Disponibles hasta el 31 de mayo de 2026. ¡Asegura tu participación con el mejor precio!';
+      } else if (pricingTier === 'regular') {
+        alertText.innerHTML = '<strong>Tarifa Regular Activa</strong> — La preventa Early Bird finalizó el 31 de mayo de 2026. ¡Registra tu inscripción antes del 15 de julio de 2026!';
+      } else if (pricingTier === 'onsite') {
+        alertText.innerHTML = '<strong>Tarifa En Sede Activa</strong> — La etapa de pre-registro regular finalizó. Inscríbete directamente de manera presencial durante el evento.';
+      }
+    }
+
+    // 2. Update the columns styling
+    const allTierElements = document.querySelectorAll('.pricing-table [data-tier]');
+    allTierElements.forEach((el) => {
+      const tier = el.getAttribute('data-tier');
+      el.classList.remove('active-tier-header', 'active-tier-cell', 'completed-tier');
+
+      if (tier === pricingTier) {
+        if (el.tagName === 'TH') {
+          el.classList.add('active-tier-header');
+        } else {
+          el.classList.add('active-tier-cell');
+        }
+      } else {
+        // Classify as completed or not
+        const isEarlyCompleted = pricingTier === 'regular' || pricingTier === 'onsite';
+        const isRegularCompleted = pricingTier === 'onsite';
+
+        if (tier === 'early' && isEarlyCompleted) {
+          el.classList.add('completed-tier');
+        } else if (tier === 'regular' && isRegularCompleted) {
+          el.classList.add('completed-tier');
+        }
+      }
+    });
+  }
+
+  // Run on startup
+  updatePricingDetails();
+  // Listen for Astro transitions page load
+  document.addEventListener('astro:page-load', updatePricingDetails);
+</script>

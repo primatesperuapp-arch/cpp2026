@@ -1,7 +1,34 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
 import axes from '../data/thematic-axes.json';
+import { getWebState } from '../utils/webState';
 const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL + '/';
+
+const { abstracts } = getWebState();
+
+// Build-time logic for buttons
+let resumenHref = "https://forms.gle/Gzcr2ktTmrEnGTTh9";
+let alertBtnLabel = "Enviar Resumen →";
+let ctaBtnLabel = "📋 Enviar Resumen";
+let alertBtnClasses = "btn btn-primary";
+let ctaBtnClasses = "btn btn-primary btn-lg";
+let isTargetBlank = true;
+
+if (abstracts === 'upcoming') {
+  resumenHref = "#";
+  alertBtnLabel = "Próximamente";
+  ctaBtnLabel = "📋 Próximamente";
+  alertBtnClasses = "btn btn-primary btn-muted-cta";
+  ctaBtnClasses = "btn btn-primary btn-lg btn-muted-cta";
+  isTargetBlank = false;
+} else if (abstracts === 'closed') {
+  resumenHref = "#";
+  alertBtnLabel = "Convocatoria Cerrada";
+  ctaBtnLabel = "📋 Envío Cerrado";
+  alertBtnClasses = "btn btn-primary btn-muted-cta";
+  ctaBtnClasses = "btn btn-primary btn-lg btn-muted-cta";
+  isTargetBlank = false;
+}
 
 const faqs = [
   {
@@ -51,16 +78,32 @@ const guidelines = [
     <div class="container">
       <div class="call-intro">
         <div class="deadline-alert reveal">
-          <div class="deadline-alert__icon">📅</div>
+          <div class="deadline-alert__icon" id="call-status-icon">
+            {abstracts === 'upcoming' && '⏰'}
+            {abstracts === 'open' && '🟢'}
+            {abstracts === 'closed' && '🔴'}
+          </div>
           <div class="deadline-alert__text">
-            <strong>Apertura:</strong> 12 de mayo 2026 &nbsp;|&nbsp; <strong>Cierre:</strong> 15 de junio 2026
+            <span class={`status-badge status-badge--${abstracts}`} id="call-status-badge">
+              {abstracts === 'upcoming' && 'Próximamente'}
+              {abstracts === 'open' && 'Convocatoria Abierta'}
+              {abstracts === 'closed' && 'Convocatoria Cerrada'}
+            </span>
+            <br />
+            <strong>Apertura:</strong> 08 de mayo 2026 &nbsp;|&nbsp; <strong>Cierre:</strong> 15 de junio 2026
           </div>
           <div class="deadline-alert__actions" style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
             <a href={`${base}documentos/Modelo_resumen_CPP2026.docx`} download class="btn btn-secondary">
               📥 Plantilla Word
             </a>
-            <a href="https://forms.gle/Gzcr2ktTmrEnGTTh9" target="_blank" rel="noopener" class="btn btn-primary">
-              Enviar Resumen →
+            <a 
+              href={resumenHref} 
+              target={isTargetBlank ? "_blank" : undefined} 
+              rel={isTargetBlank ? "noopener" : undefined} 
+              class={alertBtnClasses} 
+              id="alert-enviar-resumen"
+            >
+              {alertBtnLabel}
             </a>
           </div>
         </div>
@@ -308,8 +351,14 @@ const guidelines = [
         <a href={`${base}documentos/Modelo_resumen_CPP2026.docx`} download class="btn btn-lg" style="background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2);">
           📥 Descargar Plantilla
         </a>
-        <a href="https://forms.gle/Gzcr2ktTmrEnGTTh9" target="_blank" rel="noopener" class="btn btn-primary btn-lg" id="cta-enviar-resumen">
-          📋 Enviar Resumen
+        <a 
+          href={resumenHref} 
+          target={isTargetBlank ? "_blank" : undefined} 
+          rel={isTargetBlank ? "noopener" : undefined} 
+          class={ctaBtnClasses} 
+          id="cta-enviar-resumen"
+        >
+          {ctaBtnLabel}
         </a>
       </div>
     </div>
@@ -569,4 +618,99 @@ const guidelines = [
     .scholarship-box { flex-direction: column; text-align: center; gap: 1.5rem; padding: 2rem; }
     .scholarship-box__icon { font-size: 3rem; order: -1; }
   }
+
+  /* Status Badges */
+  .status-badge {
+    display: inline-block;
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-sm);
+    margin-bottom: 0.5rem;
+  }
+  .status-badge--upcoming {
+    background: rgba(217, 157, 85, 0.15);
+    color: var(--gold);
+    border: 1px solid rgba(217, 157, 85, 0.3);
+  }
+  .status-badge--open {
+    background: rgba(82, 183, 136, 0.15);
+    color: var(--forest-leaf);
+    border: 1px solid rgba(82, 183, 136, 0.3);
+  }
+  .status-badge--closed {
+    background: rgba(220, 53, 69, 0.15);
+    color: #e07b54;
+    border: 1px solid rgba(220, 53, 69, 0.3);
+  }
 </style>
+
+<script>
+  import { getWebState } from '../utils/webState';
+
+  function updateAbstractsState() {
+    const { abstracts } = getWebState();
+
+    // 1. Update icon & badge
+    const statusIconEl = document.getElementById('call-status-icon');
+    const statusBadgeEl = document.getElementById('call-status-badge');
+
+    if (statusIconEl) {
+      statusIconEl.textContent = abstracts === 'upcoming' ? '⏰' : (abstracts === 'open' ? '🟢' : '🔴');
+    }
+
+    if (statusBadgeEl) {
+      statusBadgeEl.textContent = abstracts === 'upcoming' ? 'Próximamente' : (abstracts === 'open' ? 'Convocatoria Abierta' : 'Convocatoria Cerrada');
+      statusBadgeEl.className = 'status-badge status-badge--' + abstracts;
+    }
+
+    // 2. Update buttons
+    const alertBtn = document.getElementById('alert-enviar-resumen');
+    const ctaBtn = document.getElementById('cta-enviar-resumen');
+
+    [alertBtn, ctaBtn].forEach((btn) => {
+      if (!btn) return;
+      
+      btn.classList.remove('btn-muted-cta');
+      
+      if (abstracts === 'upcoming') {
+        btn.setAttribute('href', '#');
+        btn.removeAttribute('target');
+        btn.removeAttribute('rel');
+        btn.classList.add('btn-muted-cta');
+        if (btn.id === 'alert-enviar-resumen') {
+          btn.textContent = 'Próximamente';
+        } else {
+          btn.textContent = '📋 Próximamente';
+        }
+      } else if (abstracts === 'closed') {
+        btn.setAttribute('href', '#');
+        btn.removeAttribute('target');
+        btn.removeAttribute('rel');
+        btn.classList.add('btn-muted-cta');
+        if (btn.id === 'alert-enviar-resumen') {
+          btn.textContent = 'Convocatoria Cerrada';
+        } else {
+          btn.textContent = '📋 Envío Cerrado';
+        }
+      } else {
+        btn.setAttribute('href', 'https://forms.gle/Gzcr2ktTmrEnGTTh9');
+        btn.setAttribute('target', '_blank');
+        btn.setAttribute('rel', 'noopener');
+        if (btn.id === 'alert-enviar-resumen') {
+          btn.textContent = 'Enviar Resumen →';
+        } else {
+          btn.textContent = '📋 Enviar Resumen';
+        }
+      }
+    });
+  }
+
+  // Run on startup
+  updateAbstractsState();
+  // Listen for Astro transitions page load
+  document.addEventListener('astro:page-load', updateAbstractsState);
+</script>

@@ -1,6 +1,24 @@
 ---
 import site from '../../data/site.json';
+import { getWebState } from '../../utils/webState';
+
 const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL + '/';
+const { abstracts } = getWebState();
+
+// Initial values for build time
+let resumenHref = `${base}llamado-de-resumenes`;
+let resumenLabel = "Enviar Resumen";
+let resumenClasses = "btn btn-primary btn-lg";
+
+if (abstracts === 'upcoming') {
+  resumenHref = "#";
+  resumenLabel = "Próximamente: Resúmenes";
+  resumenClasses = "btn btn-primary btn-lg btn-muted-cta";
+} else if (abstracts === 'closed') {
+  resumenHref = "#";
+  resumenLabel = "Envío Cerrado";
+  resumenClasses = "btn btn-primary btn-lg btn-muted-cta";
+}
 ---
 
 <section class="hero" aria-label="Presentación del congreso">
@@ -42,9 +60,9 @@ const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL +
 
       <!-- CTA Buttons -->
       <div class="hero__ctas animate-fade-up" style="animation-delay: 0.5s">
-        <a href={`${base}llamado-de-resumenes`} class="btn btn-primary btn-lg">
+        <a href={resumenHref} class={resumenClasses} id="hero-cta-resumen" data-base={base}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          Enviar Resumen
+          <span class="btn-text">{resumenLabel}</span>
         </a>
         <a href={`${base}inscripciones`} class="btn btn-gold btn-lg">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
@@ -464,6 +482,8 @@ const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL +
 </style>
 
 <script>
+  import { getWebState } from '../../utils/webState';
+
   function initCountdown() {
     // Target: July 30, 2026, 9:00 AM
     const targetDate = new Date('2026-07-30T09:00:00').getTime();
@@ -500,7 +520,36 @@ const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL +
     update();
   }
 
+  function updateHeroCTA() {
+    const btn = document.getElementById('hero-cta-resumen');
+    if (!btn) return;
+
+    const base = btn.getAttribute('data-base') || '/';
+    const { abstracts } = getWebState();
+    const textEl = btn.querySelector('.btn-text');
+
+    // Reset styles
+    btn.classList.remove('btn-muted-cta');
+
+    if (abstracts === 'upcoming') {
+      btn.setAttribute('href', '#');
+      btn.classList.add('btn-muted-cta');
+      if (textEl) textEl.textContent = 'Próximamente: Resúmenes';
+    } else if (abstracts === 'closed') {
+      btn.setAttribute('href', '#');
+      btn.classList.add('btn-muted-cta');
+      if (textEl) textEl.textContent = 'Envío Cerrado';
+    } else {
+      btn.setAttribute('href', `${base}llamado-de-resumenes`);
+      if (textEl) textEl.textContent = 'Enviar Resumen';
+    }
+  }
+
   // Initialize on load and on view change (Astro transitions if enabled)
   initCountdown();
-  document.addEventListener('astro:page-load', initCountdown);
+  updateHeroCTA();
+  document.addEventListener('astro:page-load', () => {
+    initCountdown();
+    updateHeroCTA();
+  });
 </script>

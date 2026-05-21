@@ -239,6 +239,29 @@ h4, h5, h6 {
   font-size: 1.05rem;
 }
 
+.btn-disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+  filter: grayscale(1);
+}
+
+.btn-muted-cta {
+  background: rgba(89, 52, 20, 0.15) !important;
+  color: var(--text-muted) !important;
+  border-color: rgba(89, 52, 20, 0.25) !important;
+  pointer-events: none;
+  cursor: not-allowed;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+[data-theme="dark"] .btn-muted-cta {
+  background: rgba(242, 235, 223, 0.1) !important;
+  color: rgba(242, 235, 223, 0.4) !important;
+  border-color: rgba(242, 235, 223, 0.2) !important;
+}
+
 /* =====================================================
    COMPONENT — CARDS
    ===================================================== */
