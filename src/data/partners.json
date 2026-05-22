@@ -78,5 +78,13 @@
     "url": "#",
     "logo": "images/aliados/logo_yunkawasi.png",
     "useLogo": true
+  },
+  {
+    "id": "org11",
+    "name": "CIVEFAS",
+    "acronym": "CIVEFAS",
+    "url": "https://www.facebook.com/Civefas/",
+    "logo": "images/aliados/logo_CIVEFAS.png",
+    "useLogo": true
   }
 ]
