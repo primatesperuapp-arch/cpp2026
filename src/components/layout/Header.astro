@@ -1,6 +1,9 @@
 ---
 import site from '../../data/site.json';
+import { getWebState } from '../../utils/webState';
 const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL + '/';
+
+const { abstracts } = getWebState();
 
 const navLinks = [
   { href: `${base}`, label: 'Inicio' },
@@ -16,6 +19,21 @@ const currentPath = Astro.url.pathname;
 ---
 
 <header class="header nav-sticky" id="site-header">
+  <!-- Banner de Anuncio de Extensión de Resúmenes -->
+  {abstracts === 'open' && (
+    <div class="announcement-banner">
+      <div class="announcement-banner__content container">
+        <span class="announcement-banner__badge">📢 Ampliación de Plazo</span>
+        <p class="announcement-banner__text">
+          ¡Convocatoria extendida! Envío de resúmenes disponible hasta el <strong>30 de junio de 2026</strong>.
+        </p>
+        <a href={`${base}llamado-de-resumenes`} class="announcement-banner__link">
+          Enviar Resumen →
+        </a>
+      </div>
+    </div>
+  )}
+
   <div class="header__inner container">
 
     <!-- Logo / Brand -->
@@ -317,4 +335,63 @@ const currentPath = Astro.url.pathname;
   }
 
   .mobile-nav__cta { margin-top: 0.75rem; }
+
+  /* ── Announcement Banner ─────────────────────────── */
+  .announcement-banner {
+    background: linear-gradient(90deg, #8C374E 0%, #593414 100%);
+    border-bottom: 1px solid rgba(217, 157, 85, 0.25);
+    padding: 0.5rem 0;
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    color: #fff;
+  }
+  .announcement-banner__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+  .announcement-banner__badge {
+    background: rgba(217, 157, 85, 0.2);
+    color: var(--gold-light);
+    border: 1px solid rgba(217, 157, 85, 0.4);
+    padding: 0.15rem 0.6rem;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .announcement-banner__text {
+    margin: 0;
+    font-weight: 500;
+  }
+  .announcement-banner__text strong {
+    color: var(--gold-light);
+    font-weight: 700;
+  }
+  .announcement-banner__link {
+    color: #fff;
+    text-decoration: underline;
+    font-weight: 700;
+    transition: color var(--transition-fast), transform var(--transition-fast);
+    display: inline-block;
+  }
+  .announcement-banner__link:hover {
+    color: var(--gold-light);
+    text-decoration: none;
+    transform: translateX(2px);
+  }
+  
+  @media (max-width: 640px) {
+    .announcement-banner {
+      padding: 0.65rem 0;
+    }
+    .announcement-banner__content {
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+  }
 </style>
