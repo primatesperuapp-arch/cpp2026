@@ -5,7 +5,7 @@ export interface WebState {
 
 export const DEADLINES = {
   abstractsOpen: new Date('2026-05-08T00:00:00'),
-  abstractsClose: new Date('2026-06-30T23:59:59'),
+  abstractsClose: new Date('2026-07-04T23:59:59'),
   earlyBirdClose: new Date('2026-06-20T23:59:59'),
   regularClose: new Date('2026-07-15T23:59:59'),
   congressStart: new Date('2026-07-30T09:00:00')
