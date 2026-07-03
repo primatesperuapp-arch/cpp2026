@@ -19,8 +19,8 @@
   },
   {
     "id": 3,
-    "date": "2026-07-10",
-    "label": "10 Julio 2026",
+    "date": "2026-07-14",
+    "label": "14 Julio 2026",
     "title": "Cierre de envío de resúmenes (¡Extendido!)",
     "description": "¡Plazo ampliado! Fecha límite extendida para el envío de todos los resúmenes.",
     "type": "deadline",
@@ -28,8 +28,8 @@
   },
   {
     "id": 4,
-    "date": "2026-07-15",
-    "label": "15 Julio 2026",
+    "date": "2026-07-20",
+    "label": "20 Julio 2026",
     "title": "Notificación de aceptaciones",
     "description": "Los autores recibirán notificación sobre la aceptación de sus resúmenes y formato asignado.",
     "type": "notification",
