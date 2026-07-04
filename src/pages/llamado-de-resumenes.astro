@@ -201,9 +201,26 @@ const guidelines = [
                 <li>El título debe reflejar claramente el <strong>objetivo y la idea principal</strong> del trabajo.</li>
               </ul>
             </div>
-            <a href={`${base}documentos/Modelo_resumen_CPP2026.docx`} download class="btn btn-secondary" style="flex-shrink: 0; display: inline-flex; align-items: center; gap: 0.5rem;">
+            <a href={`${base}documentos/Modelo_resumen_CPP2026.docx`} download class="btn btn-secondary" style="flex-shrink: 0; display: inline-flex; align-items: center; gap: 0.5rem; width: fit-content;">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
               Descargar Plantilla (.docx)
+            </a>
+          </div>
+        </div>
+
+        <div class="requirement-box" style="border-left-color: var(--gold);">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1.5rem;">
+            <div>
+              <h3>🎨 Plantilla de Presentación</h3>
+              <ul>
+                <li>Recomendamos usar la <strong>plantilla oficial del congreso</strong> para tus diapositivas.</li>
+                <li>El diseño está optimizado en <strong>colores, tipografía y legibilidad</strong> para el congreso.</li>
+                <li>Disponible para edición rápida y directa en la plataforma <strong>Canva</strong>.</li>
+              </ul>
+            </div>
+            <a href="https://www.canva.com/design/DAHNl1xuKzo/CwL6m7lT-73vDkCtO8PdbQ/edit" target="_blank" rel="noopener noreferrer" class="btn" style="background: var(--gold); color: white; border: none; flex-shrink: 0; display: inline-flex; align-items: center; gap: 0.5rem; width: fit-content;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              Editar en Canva
             </a>
           </div>
         </div>
@@ -484,7 +501,15 @@ const guidelines = [
   .guideline-card__desc { font-size: 0.83rem; color: var(--text-muted); line-height: 1.6; }
 
   /* New Requirements & Structure Styles */
-  .requirements-grid { margin-bottom: 3rem; }
+  .requirements-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  @media (min-width: 992px) {
+    .requirements-grid { grid-template-columns: 1fr 1fr; }
+  }
   .requirement-box {
     background: rgba(255,255,255,0.9);
     padding: 2rem;
