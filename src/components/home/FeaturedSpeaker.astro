@@ -155,9 +155,9 @@ const featuredSpeakers = [
     if (!track || slides.length === 0) return;
 
     let currentIndex = 0;
-    let intervalId;
+    let intervalId: any;
 
-    function updateSlider(index) {
+    function updateSlider(index: number) {
       slides.forEach(s => s.classList.remove('active'));
       dots.forEach(d => d.classList.remove('active'));
       

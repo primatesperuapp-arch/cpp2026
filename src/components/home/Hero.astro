@@ -559,10 +559,10 @@ if (abstracts === 'upcoming') {
       const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       const s = Math.floor((diff % (1000 * 60)) / 1000);
 
-      daysEl.innerText = d.toString().padStart(2, '0');
-      hoursEl.innerText = h.toString().padStart(2, '0');
-      minutesEl.innerText = m.toString().padStart(2, '0');
-      secondsEl.innerText = s.toString().padStart(2, '0');
+      daysEl!.innerText = d.toString().padStart(2, '0');
+      hoursEl!.innerText = h.toString().padStart(2, '0');
+      minutesEl!.innerText = m.toString().padStart(2, '0');
+      secondsEl!.innerText = s.toString().padStart(2, '0');
     }
 
     setInterval(update, 1000);

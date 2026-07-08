@@ -126,7 +126,7 @@ const activeIndex = datesWithStatus.findIndex(
             dotEl.setAttribute('data-original-html', dotEl.innerHTML);
           }
           // Use checkmark for all non-final events
-          if (item.date !== '2026-07-30') {
+          if (item.dateStr !== '2026-07-30') {
             dotEl.innerHTML = '✓';
           }
         } else {
