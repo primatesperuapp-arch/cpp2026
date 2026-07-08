@@ -28,20 +28,20 @@
   },
   {
     "id": 4,
-    "date": "2026-07-20",
-    "label": "20 Julio 2026",
-    "title": "Notificación de aceptaciones",
-    "description": "Los autores recibirán notificación sobre la aceptación de sus resúmenes y formato asignado.",
-    "type": "notification",
-    "status": "upcoming"
-  },
-  {
-    "id": 5,
     "date": "2026-07-15",
     "label": "15 Julio 2026",
     "title": "Cierre de inscripciones regulares",
     "description": "Fecha límite para inscribirse a tarifa regular. Pasada esta fecha, solo se podrá inscribir en sede durante el congreso.",
     "type": "deadline",
+    "status": "upcoming"
+  },
+  {
+    "id": 5,
+    "date": "2026-07-20",
+    "label": "20 Julio 2026",
+    "title": "Notificación de aceptaciones",
+    "description": "Los autores recibirán notificación sobre la aceptación de sus resúmenes y formato asignado.",
+    "type": "notification",
     "status": "upcoming"
   },
   {
