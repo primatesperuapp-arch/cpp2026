@@ -68,40 +68,49 @@ const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL +
 
       <div class="modal-header">
         <span class="modal-badge">📢 ANUNCIO IMPORTANTE</span>
-        <h3 class="modal-title">¡Guías de Póster y Ponencias Disponibles!</h3>
+        <h3 class="modal-title">¡Últimas Novedades del Congreso!</h3>
       </div>
 
       <div class="modal-body">
-        <p>
-          Queremos informar a toda la comunidad primatológica que el plazo para el <strong>envío de resúmenes</strong> se ha extendido oficialmente hasta el <strong>14 de julio de 2026</strong>.
-        </p>
-        <p>
-          Además, ya puedes descargar las <strong>especificaciones técnicas y recomendaciones oficiales</strong> para la preparación de tu presentación:
+        <!-- Curso Pre-Congreso Callout -->
+        <div class="modal-course-callout">
+          <span class="course-tag">🔥 ¡CUPOS LIMITADOS!</span>
+          <h4>Curso Pre-Congreso — Dr. Filippo Aureli</h4>
+          <p>
+            Asegura tu vacante en el curso intensivo <strong>"Métodos y Conceptos en el Estudio de Relaciones Sociales y Estructura Social en Primates"</strong> dictado por el renombrado investigador internacional Dr. Filippo Aureli.
+          </p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYmscc-GmWwvqwu4VX4rdwrXithNiC1fAwiHKVSEklP40hzw/viewform?usp=dialog" target="_blank" rel="noopener noreferrer" class="btn btn-gold btn-sm" id="modal-course-btn" style="width: 100%; justify-content: center; margin-top: 0.65rem; font-weight: 800; font-size: 0.85rem; padding: 0.5rem 1rem;">
+            ✍️ Inscribirse al Curso Pre-Congreso →
+          </a>
+        </div>
+
+        <p style="margin-top: 0.75rem;">
+          Recuerda también que la fecha límite para el <strong>envío de resúmenes</strong> se extendió hasta el <strong>14 de julio de 2026</strong>. Ya puedes descargar las guías oficiales:
         </p>
         
         <div class="modal-features">
           <div class="modal-feature-item">
             <span class="feature-icon">📌</span>
             <div>
-              <strong>Formato de Póster:</strong>
-              <span>Directrices completas de tamaño A0, materiales y consejos de legibilidad visual.</span>
+              <strong>Guía de Póster A0:</strong>
+              <span>Especificaciones de tamaño, material y recomendaciones visuales.</span>
             </div>
           </div>
           <div class="modal-feature-item">
             <span class="feature-icon">🎤</span>
             <div>
               <strong>Formatos Orales:</strong>
-              <span>Tiempos de presentación, estructura recomendada y plantillas oficiales.</span>
+              <span>Estructura del resumen, tiempos y plantillas oficiales.</span>
             </div>
           </div>
         </div>
       </div>
 
       <div class="modal-footer">
-        <a href={`${base}llamado-de-resumenes#posters-guidelines`} class="btn btn-primary btn-lg" id="modal-action-btn">
-          📖 Ver Instrucciones
+        <a href={`${base}llamado-de-resumenes#posters-guidelines`} class="btn btn-primary" id="modal-action-btn" style="font-size: 0.9rem; padding: 0.6rem 1.2rem;">
+          📖 Ver Guía de Póster
         </a>
-        <button class="btn btn-ghost" id="modal-close-btn">
+        <button class="btn btn-ghost" id="modal-close-btn" style="font-size: 0.9rem; padding: 0.6rem 1.2rem;">
           Cerrar
         </button>
       </div>
@@ -297,6 +306,51 @@ const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL +
   :global([data-theme="dark"]) .modal-features {
     background: rgba(217, 157, 85, 0.03);
   }
+
+  .modal-course-callout {
+    background: linear-gradient(135deg, rgba(217, 157, 85, 0.15) 0%, rgba(82, 183, 136, 0.08) 100%);
+    border: 1.5px solid var(--gold);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    position: relative;
+    box-shadow: var(--shadow-sm);
+    text-align: left;
+  }
+  .modal-course-callout h4 {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    color: var(--forest-dark);
+    margin: 0.5rem 0 0.35rem 0;
+  }
+  :global([data-theme="dark"]) .modal-course-callout h4 {
+    color: var(--forest-canopy);
+  }
+  .modal-course-callout p {
+    font-size: 0.88rem !important;
+    line-height: 1.45 !important;
+    color: var(--text-on-light) !important;
+    margin: 0 !important;
+  }
+  :global([data-theme="dark"]) .modal-course-callout p {
+    color: var(--text-on-dark) !important;
+  }
+  .course-tag {
+    display: inline-block;
+    font-family: var(--font-ui);
+    font-size: 0.68rem;
+    font-weight: 900;
+    color: #fff;
+    background: var(--gold);
+    padding: 0.2rem 0.55rem;
+    border-radius: var(--radius-sm);
+    letter-spacing: 0.05em;
+    animation: pulse 1.8s infinite;
+  }
+  @keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(217, 157, 85, 0.4); }
+    70% { transform: scale(1.03); box-shadow: 0 0 0 6px rgba(217, 157, 85, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(217, 157, 85, 0); }
+  }
   .modal-feature-item {
     display: flex;
     gap: 0.75rem;
@@ -342,7 +396,7 @@ const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL +
     if (!modal) return;
 
     // Check localStorage
-    const hasSeen = localStorage.getItem('cpp2026_poster_guidelines_seen_v1');
+    const hasSeen = localStorage.getItem('cpp2026_announcement_seen_v2');
     if (hasSeen === 'true') return;
 
     // Show after 1 second delay for superior entry feel
@@ -357,12 +411,13 @@ const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL +
     const closeActions = [
       document.getElementById('modal-close-x'),
       document.getElementById('modal-close-btn'),
-      document.getElementById('modal-action-btn')
+      document.getElementById('modal-action-btn'),
+      document.getElementById('modal-course-btn')
     ];
 
     function closeModal() {
       modal.classList.remove('active');
-      localStorage.setItem('cpp2026_poster_guidelines_seen_v1', 'true');
+      localStorage.setItem('cpp2026_announcement_seen_v2', 'true');
       modal.setAttribute('aria-hidden', 'true');
 
       // Wait for opacity transition to finish before display: none

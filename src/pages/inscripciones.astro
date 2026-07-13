@@ -107,6 +107,73 @@ const pricingTier = getWebState().pricing as any;
     </div>
   </section>
 
+  <!-- Curso Pre-Congreso Section -->
+  <section class="section" style="background: var(--cream-warm);" id="curso-pre-congreso">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Capacitación Especial</span>
+        <h2 class="section-title">Curso Intensivo Pre-Congreso</h2>
+        <p class="section-subtitle">
+          Aprovecha esta oportunidad única de capacitarte con un referente mundial en etología y ecología social de primates.
+        </p>
+      </div>
+
+      <div class="course-box-wrapper reveal">
+        <div class="course-detail-card card-glass">
+          <div class="course-detail-card__header">
+            <span class="badge-accent">📚 CURSO EXCLUSIVO</span>
+            <h3>Métodos y Conceptos en el Estudio de Relaciones Sociales y Estructura Social en Primates</h3>
+            <p class="course-teacher"><strong>Docente:</strong> Dr. Filippo Aureli (México / Universidad Veracruzana)</p>
+          </div>
+          
+          <div class="course-detail-card__body">
+            <div class="course-info-grid">
+              <div class="course-info-item">
+                <strong>📅 Fecha y Hora:</strong>
+                <span>Miércoles 29 de julio de 2026<br />09:00 AM - 05:00 PM</span>
+              </div>
+              <div class="course-info-item">
+                <strong>📍 Lugar:</strong>
+                <span>Facultad de Medicina Veterinaria - UNMSM</span>
+              </div>
+              <div class="course-info-item">
+                <strong>🔥 Cupos:</strong>
+                <span>Estrictamente limitados a 20 participantes</span>
+              </div>
+              <div class="course-info-item">
+                <strong>💵 Inversión:</strong>
+                <span>Gratuito para inscritos al congreso principal (requiere pre-registro y confirmación de vacante)</span>
+              </div>
+            </div>
+
+            <div class="course-description-box">
+              <h4>Descripción del Curso</h4>
+              <p>
+                Este curso intensivo proporcionará una visión teórica y metodológica avanzada sobre cómo analizar las relaciones sociales en grupos de primates. Se explorarán conceptos clave como resolución de conflictos, reciprocidad, dinámicas de fisión-fusión y redes de asociación social.
+              </p>
+            </div>
+            
+            <div class="course-cta-container">
+              <div class="course-warning-alert">
+                <span>⚠️</span>
+                <p><strong>¡Atención!</strong> Debido al carácter interactivo y al aforo de la sala, los cupos son limitados y se asignarán por evaluación del perfil básico del solicitante y orden de envío.</p>
+              </div>
+              <a 
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdYmscc-GmWwvqwu4VX4rdwrXithNiC1fAwiHKVSEklP40hzw/viewform?usp=dialog" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="btn btn-primary btn-lg"
+                style="box-shadow: 0 10px 25px rgba(217,157,85,0.25); display: inline-flex; align-items: center; gap: 0.5rem;"
+              >
+                📝 Formulario de Inscripción al Curso →
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Payment Info -->
   <section class="section" id="pago">
     <div class="container">
@@ -650,6 +717,138 @@ const pricingTier = getWebState().pricing as any;
   }
   .early-bird-alert--onsite strong {
     color: #e07b54 !important;
+  }
+
+  /* Course Pre-Congress Section */
+  .course-box-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .course-detail-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: var(--radius-xl);
+    border: 2px solid var(--gold);
+    padding: 3rem;
+    box-shadow: var(--shadow-md);
+  }
+  :global([data-theme="dark"]) .course-detail-card {
+    background: rgba(26, 58, 46, 0.7);
+    border-color: var(--gold-light);
+  }
+  .badge-accent {
+    display: inline-block;
+    font-family: var(--font-ui);
+    font-size: 0.7rem;
+    font-weight: 900;
+    color: #fff;
+    background: var(--forest-leaf);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-sm);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+  }
+  .course-detail-card__header h3 {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+    color: var(--forest-dark);
+    line-height: 1.25;
+    margin-bottom: 0.5rem;
+  }
+  :global([data-theme="dark"]) .course-detail-card__header h3 {
+    color: var(--forest-canopy);
+  }
+  .course-teacher {
+    font-size: 1rem;
+    color: var(--text-on-light);
+    margin-bottom: 1.5rem;
+  }
+  :global([data-theme="dark"]) .course-teacher {
+    color: var(--text-on-dark);
+  }
+  
+  .course-info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    background: rgba(217, 157, 85, 0.08);
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(217, 157, 85, 0.2);
+    margin-bottom: 1.75rem;
+  }
+  @media (min-width: 640px) {
+    .course-info-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .course-info-item strong {
+    display: block;
+    font-size: 0.88rem;
+    color: var(--forest-mid);
+    margin-bottom: 0.15rem;
+  }
+  :global([data-theme="dark"]) .course-info-item strong {
+    color: var(--gold-light);
+  }
+  .course-info-item span {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  .course-description-box {
+    margin-bottom: 2rem;
+  }
+  .course-description-box h4 {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    color: var(--forest-dark);
+    margin-bottom: 0.75rem;
+  }
+  :global([data-theme="dark"]) .course-description-box h4 {
+    color: var(--forest-canopy);
+  }
+  .course-description-box p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    text-align: left;
+  }
+
+  .course-cta-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    padding-top: 2rem;
+  }
+  :global([data-theme="dark"]) .course-cta-container {
+    border-top-color: rgba(255, 255, 255, 0.08);
+  }
+  
+  .course-warning-alert {
+    display: flex;
+    gap: 0.75rem;
+    background: rgba(220, 53, 69, 0.08);
+    border: 1px solid rgba(220, 53, 69, 0.25);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    align-items: flex-start;
+    max-width: 600px;
+    text-align: left;
+  }
+  .course-warning-alert span {
+    font-size: 1.25rem;
+  }
+  .course-warning-alert p {
+    font-size: 0.88rem;
+    line-height: 1.45;
+    color: var(--text-on-light);
+    margin: 0;
+  }
+  :global([data-theme="dark"]) .course-warning-alert p {
+    color: var(--text-on-dark);
   }
 </style>
 
