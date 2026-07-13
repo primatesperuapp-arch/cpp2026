@@ -395,10 +395,6 @@ const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL +
     const modal = document.getElementById('announcement-modal') as HTMLDivElement;
     if (!modal) return;
 
-    // Check localStorage
-    const hasSeen = localStorage.getItem('cpp2026_announcement_seen_v2');
-    if (hasSeen === 'true') return;
-
     // Show after 1 second delay for superior entry feel
     setTimeout(() => {
       modal.style.display = 'flex';
@@ -417,7 +413,6 @@ const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL +
 
     function closeModal() {
       modal.classList.remove('active');
-      localStorage.setItem('cpp2026_announcement_seen_v2', 'true');
       modal.setAttribute('aria-hidden', 'true');
 
       // Wait for opacity transition to finish before display: none
