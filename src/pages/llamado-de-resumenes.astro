@@ -322,6 +322,88 @@ const faqs = [
     </div>
   </section>
 
+  <!-- Lineamientos para Pósters -->
+  <section class="section" id="posters-guidelines">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Presentación en Físico</span>
+        <h2 class="section-title">Instrucciones para la Elaboración de Pósters</h2>
+        <p class="section-subtitle" style="max-width: 800px; margin-left: auto; margin-right: auto;">
+          Si tu trabajo fue aceptado en la modalidad de póster, sigue estas especificaciones técnicas y recomendaciones de diseño para asegurar una presentación óptima durante las sesiones científicas del congreso.
+        </p>
+      </div>
+
+      <div class="poster-instructions-grid reveal">
+        <!-- Especificaciones Técnicas -->
+        <div class="poster-card-tech">
+          <h3>📐 Especificaciones Técnicas</h3>
+          <ul class="poster-list">
+            <li><strong>Orientación:</strong> Vertical (Portrait) únicamente.</li>
+            <li><strong>Dimensiones:</strong> Medida estándar internacional <strong>A0</strong> (841 mm de ancho x 1189 mm de alto).</li>
+            <li><strong>Material de Impresión:</strong> Papel grueso mate (de preferencia 150g o superior) o banner fotográfico con ojales discretos. Evitar papel satinado (brillante) ya que genera reflejos molestos con la iluminación de las salas.</li>
+            <li><strong>Montaje:</strong> El congreso proveerá el material adhesivo (cinta doble contacto) o los soportes correspondientes en el área de exposición.</li>
+          </ul>
+        </div>
+
+        <!-- Estructura Sugerida -->
+        <div class="poster-card-content">
+          <h3>📝 Estructura del Contenido</h3>
+          <p class="poster-card-desc-intro" style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+            Un póster científico efectivo debe poder leerse y entenderse en <strong>menos de 5 minutos</strong>. Sugerimos la siguiente distribución de elementos:
+          </p>
+          <div class="poster-structure-mini-grid">
+            <div class="structure-mini-item">
+              <strong>Encabezado principal:</strong>
+              <span>Título visible a 2 metros, nombres de autores, afiliaciones institucionales, correo de contacto y logos oficiales en la parte superior.</span>
+            </div>
+            <div class="structure-mini-item">
+              <strong>Introducción y Objetivos:</strong>
+              <span>Muy concisos (máximo 150 palabras). Plantea la justificación, pregunta central y las hipótesis de forma directa.</span>
+            </div>
+            <div class="structure-mini-item">
+              <strong>Metodología:</strong>
+              <span>Usa diagramas de flujo, mapas del área de estudio o esquemas ilustrativos. Minimiza el texto descriptivo.</span>
+            </div>
+            <div class="structure-mini-item">
+              <strong>Resultados:</strong>
+              <span>El núcleo del póster. Destaca gráficos estadísticos legibles, fotos de campo de alta calidad o tablas clave con leyendas breves.</span>
+            </div>
+            <div class="structure-mini-item">
+              <strong>Conclusiones y Discusión:</strong>
+              <span>En forma de viñetas claras que respondan al objetivo y enfaticen la relevancia práctica para la conservación.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Consejos de Diseño -->
+      <div class="poster-tips-box reveal">
+        <h3>🎨 Recomendaciones de Diseño y Legibilidad</h3>
+        <div class="poster-tips-grid">
+          <div class="tip-item">
+            <span class="tip-icon">👁️</span>
+            <strong>Regla del 60/40</strong>
+            <p>El póster debe ser 60% visual (gráficos, fotos, mapas) y solo 40% texto corrido. El exceso de letras aburre y disminuye la lectura.</p>
+          </div>
+          <div class="tip-item">
+            <span class="tip-icon">🔤</span>
+            <strong>Tipografías y Tamaños</strong>
+            <p>Usa fuentes Sans-serif legibles a distancia (Outfit, Arial, Helvetica). Título principal &gt;72 pt, subtítulos ~36 pt, y cuerpo ~24-28 pt.</p>
+          </div>
+          <div class="tip-item">
+            <span class="tip-icon">🌈</span>
+            <strong>Contraste cromático</strong>
+            <p>Elige fondos claros (blanco, crema, gris muy suave) con texto en colores oscuros. Limita tu paleta de color a un esquema de 3 o 4 tonos.</p>
+          </div>
+          <div class="tip-item">
+            <span class="tip-icon">📱</span>
+            <strong>Código QR (Opcional)</strong>
+            <p>Te recomendamos incluir un código QR pequeño en una de las esquinas inferiores para que los asistentes descarguen el PDF de tu póster.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- FAQ Acordeón -->
   <section class="section">
@@ -664,6 +746,173 @@ const faqs = [
     background: rgba(220, 53, 69, 0.15);
     color: #e07b54;
     border: 1px solid rgba(220, 53, 69, 0.3);
+  }
+
+  /* Poster Guidelines */
+  .poster-instructions-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+  }
+  @media (min-width: 992px) {
+    .poster-instructions-grid {
+      grid-template-columns: 1.2fr 1.8fr;
+    }
+  }
+
+  .poster-card-tech, .poster-card-content {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(217, 157, 85, 0.15);
+  }
+  :global([data-theme="dark"]) .poster-card-tech, 
+  :global([data-theme="dark"]) .poster-card-content {
+    background: rgba(26, 58, 46, 0.4);
+    border-color: rgba(217, 157, 85, 0.1);
+  }
+
+  .poster-card-tech h3, .poster-card-content h3 {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    color: var(--forest-mid);
+    margin-bottom: 1.25rem;
+    border-bottom: 2px solid var(--gold-light);
+    padding-bottom: 0.5rem;
+  }
+  :global([data-theme="dark"]) .poster-card-tech h3, 
+  :global([data-theme="dark"]) .poster-card-content h3 {
+    color: var(--forest-canopy);
+    border-bottom-color: rgba(217, 157, 85, 0.2);
+  }
+
+  .poster-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .poster-list li {
+    position: relative;
+    padding-left: 1.75rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-on-light);
+  }
+  :global([data-theme="dark"]) .poster-list li {
+    color: var(--text-on-dark);
+  }
+  .poster-list li::before {
+    content: "📌";
+    position: absolute;
+    left: 0;
+    font-size: 1rem;
+  }
+
+  .poster-structure-mini-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 1.25rem;
+  }
+  .structure-mini-item {
+    background: rgba(217, 157, 85, 0.08);
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--gold);
+  }
+  :global([data-theme="dark"]) .structure-mini-item {
+    background: rgba(217, 157, 85, 0.04);
+  }
+  .structure-mini-item strong {
+    display: block;
+    font-size: 0.95rem;
+    color: var(--forest-mid);
+    margin-bottom: 0.25rem;
+  }
+  :global([data-theme="dark"]) .structure-mini-item strong {
+    color: var(--gold-light);
+  }
+  .structure-mini-item span {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    display: block;
+  }
+
+  .poster-tips-box {
+    background: var(--cream-warm);
+    padding: 2.5rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(82, 183, 136, 0.25);
+    margin-top: 2rem;
+  }
+  :global([data-theme="dark"]) .poster-tips-box {
+    background: rgba(26, 58, 46, 0.2);
+    border-color: rgba(82, 183, 136, 0.15);
+  }
+  .poster-tips-box h3 {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: var(--forest-mid);
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  :global([data-theme="dark"]) .poster-tips-box h3 {
+    color: var(--forest-canopy);
+  }
+  .poster-tips-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  @media (min-width: 640px) {
+    .poster-tips-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1024px) {
+    .poster-tips-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  .tip-item {
+    background: rgba(255, 255, 255, 0.7);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-xs);
+    transition: transform var(--transition-mid);
+  }
+  :global([data-theme="dark"]) .tip-item {
+    background: rgba(26, 58, 46, 0.4);
+  }
+  .tip-item:hover {
+    transform: translateY(-3px);
+  }
+  .tip-icon {
+    font-size: 1.75rem;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+  .tip-item strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: var(--forest-mid);
+    margin-bottom: 0.5rem;
+  }
+  :global([data-theme="dark"]) .tip-item strong {
+    color: var(--forest-canopy);
+  }
+  .tip-item p {
+    font-size: 0.83rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0;
   }
 </style>
 
