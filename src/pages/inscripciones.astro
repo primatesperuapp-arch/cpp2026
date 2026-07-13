@@ -168,6 +168,29 @@ const pricingTier = getWebState().pricing as any;
                 📝 Formulario de Inscripción al Curso →
               </a>
             </div>
+
+            <div class="course-venue-info">
+              <div class="course-venue-details">
+                <h4>Sede del Curso: Parque de las Leyendas</h4>
+                <p>
+                  El <strong>Parque de las Leyendas</strong> (sede San Miguel) es el zoológico y centro arqueológico más importante del Perú. Cuenta con una gran variedad de fauna autóctona de las tres regiones (Costa, Sierra y Selva) y es un centro clave para la conservación y el estudio científico de primates en el país.
+                </p>
+                <div class="course-venue-image-wrapper">
+                  <img src={`${base}images/sede/parque-leyendas.jpg`} alt="Parque de las Leyendas" class="course-venue-image" />
+                </div>
+              </div>
+              <div class="course-venue-map">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.621434917409!2d-77.0893041!3d-12.0935515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c96578051773%3A0xd68d71d34f0e9be4!2sParque%20de%20las%20Leyendas!5e0!3m2!1ses!2spe!4v1680000000000!5m2!1ses!2spe" 
+                  width="100%" 
+                  height="100%" 
+                  style="border:0; border-radius: var(--radius-lg); min-height: 280px;" 
+                  allowfullscreen="" 
+                  loading="lazy" 
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -849,6 +872,75 @@ const pricingTier = getWebState().pricing as any;
   }
   :global([data-theme="dark"]) .course-warning-alert p {
     color: var(--text-on-dark);
+  }
+
+  /* Course Venue Info */
+  .course-venue-info {
+    margin-top: 2.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    padding-top: 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  @media (min-width: 768px) {
+    .course-venue-info {
+      grid-template-columns: 1.2fr 1fr;
+    }
+  }
+  :global([data-theme="dark"]) .course-venue-info {
+    border-top-color: rgba(255, 255, 255, 0.08);
+  }
+  
+  .course-venue-details h4 {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    color: var(--forest-dark);
+    margin-bottom: 0.75rem;
+    text-align: left;
+  }
+  :global([data-theme="dark"]) .course-venue-details h4 {
+    color: var(--forest-canopy);
+  }
+  .course-venue-details p {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin-bottom: 1.25rem;
+    text-align: left;
+  }
+  
+  .course-venue-image-wrapper {
+    width: 100%;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0,0,0,0.05);
+  }
+  .course-venue-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+    transition: transform var(--transition-mid);
+  }
+  .course-venue-image:hover {
+    transform: scale(1.03);
+  }
+  
+  .course-venue-map {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0,0,0,0.05);
+    height: 100%;
+  }
+  :global([data-theme="dark"]) .course-venue-image-wrapper,
+  :global([data-theme="dark"]) .course-venue-map {
+    border-color: rgba(255,255,255,0.05);
   }
 </style>
 
