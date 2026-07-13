@@ -56,6 +56,58 @@ const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL +
     </section>
   </main>
 
+  <!-- Modal de Anuncio Importante -->
+  <div id="announcement-modal" class="modal-overlay" aria-hidden="true" style="display: none;">
+    <div class="modal-card card-glass">
+      <button class="modal-close-btn" id="modal-close-x" aria-label="Cerrar anuncio">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div class="modal-header">
+        <span class="modal-badge">📢 ANUNCIO IMPORTANTE</span>
+        <h3 class="modal-title">¡Guías de Póster y Ponencias Disponibles!</h3>
+      </div>
+
+      <div class="modal-body">
+        <p>
+          Queremos informar a toda la comunidad primatológica que el plazo para el <strong>envío de resúmenes</strong> se ha extendido oficialmente hasta el <strong>14 de julio de 2026</strong>.
+        </p>
+        <p>
+          Además, ya puedes descargar las <strong>especificaciones técnicas y recomendaciones oficiales</strong> para la preparación de tu presentación:
+        </p>
+        
+        <div class="modal-features">
+          <div class="modal-feature-item">
+            <span class="feature-icon">📌</span>
+            <div>
+              <strong>Formato de Póster:</strong>
+              <span>Directrices completas de tamaño A0, materiales y consejos de legibilidad visual.</span>
+            </div>
+          </div>
+          <div class="modal-feature-item">
+            <span class="feature-icon">🎤</span>
+            <div>
+              <strong>Formatos Orales:</strong>
+              <span>Tiempos de presentación, estructura recomendada y plantillas oficiales.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <a href={`${base}llamado-de-resumenes#posters-guidelines`} class="btn btn-primary btn-lg" id="modal-action-btn">
+          📖 Ver Instrucciones
+        </a>
+        <button class="btn btn-ghost" id="modal-close-btn">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+
   <Footer />
 </BaseLayout>
 
@@ -121,4 +173,220 @@ const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL +
   @media (min-width: 1024px) {
     .cta-banner__actions { justify-content: flex-start; }
   }
+
+  /* ── Announcement Modal ─────────────────────────── */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(18, 38, 30, 0.75);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .modal-overlay.active {
+    opacity: 1;
+  }
+
+  .modal-card {
+    position: relative;
+    width: 100%;
+    max-width: 540px;
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: var(--radius-xl);
+    border: 1.5px solid rgba(217, 157, 85, 0.35);
+    padding: 2.5rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    transform: translateY(20px) scale(0.95);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  :global([data-theme="dark"]) .modal-card {
+    background: rgba(26, 58, 46, 0.98);
+    border-color: rgba(217, 157, 85, 0.25);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
+  }
+  .modal-overlay.active .modal-card {
+    transform: translateY(0) scale(1);
+  }
+
+  .modal-close-btn {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+  }
+  .modal-close-btn:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--text-on-light);
+  }
+  :global([data-theme="dark"]) .modal-close-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-on-dark);
+  }
+
+  .modal-header {
+    margin-bottom: 1.5rem;
+  }
+  .modal-badge {
+    display: inline-block;
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--forest-mid);
+    background: rgba(82, 183, 136, 0.12);
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.05em;
+  }
+  :global([data-theme="dark"]) .modal-badge {
+    color: var(--gold-light);
+    background: rgba(217, 157, 85, 0.15);
+  }
+  .modal-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+    color: var(--forest-dark);
+    line-height: 1.25;
+    margin: 0;
+  }
+  :global([data-theme="dark"]) .modal-title {
+    color: var(--forest-canopy);
+  }
+
+  .modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .modal-body p {
+    font-size: 0.95rem;
+    color: var(--text-on-light);
+    line-height: 1.6;
+    margin: 0;
+  }
+  :global([data-theme="dark"]) .modal-body p {
+    color: var(--text-on-dark);
+  }
+
+  .modal-features {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 0.75rem;
+    background: rgba(217, 157, 85, 0.06);
+    padding: 1.25rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(217, 157, 85, 0.15);
+  }
+  :global([data-theme="dark"]) .modal-features {
+    background: rgba(217, 157, 85, 0.03);
+  }
+  .modal-feature-item {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+  .feature-icon {
+    font-size: 1.25rem;
+    line-height: 1.2;
+  }
+  .modal-feature-item strong {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--forest-mid);
+    margin-bottom: 0.15rem;
+  }
+  :global([data-theme="dark"]) .modal-feature-item strong {
+    color: var(--gold-light);
+  }
+  .modal-feature-item span {
+    font-size: 0.83rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+    display: block;
+    text-align: left;
+  }
+
+  .modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    padding-top: 1.5rem;
+  }
+  :global([data-theme="dark"]) .modal-footer {
+    border-top-color: rgba(255, 255, 255, 0.08);
+  }
 </style>
+
+<script>
+  function setupAnnouncementModal() {
+    const modal = document.getElementById('announcement-modal') as HTMLDivElement;
+    if (!modal) return;
+
+    // Check localStorage
+    const hasSeen = localStorage.getItem('cpp2026_poster_guidelines_seen_v1');
+    if (hasSeen === 'true') return;
+
+    // Show after 1 second delay for superior entry feel
+    setTimeout(() => {
+      modal.style.display = 'flex';
+      // Trigger browser paint
+      modal.offsetHeight;
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+    }, 1000);
+
+    const closeActions = [
+      document.getElementById('modal-close-x'),
+      document.getElementById('modal-close-btn'),
+      document.getElementById('modal-action-btn')
+    ];
+
+    function closeModal() {
+      modal.classList.remove('active');
+      localStorage.setItem('cpp2026_poster_guidelines_seen_v1', 'true');
+      modal.setAttribute('aria-hidden', 'true');
+
+      // Wait for opacity transition to finish before display: none
+      setTimeout(() => {
+        modal.style.display = 'none';
+      }, 400);
+    }
+
+    closeActions.forEach(btn => {
+      if (btn) {
+        btn.addEventListener('click', closeModal);
+      }
+    });
+
+    // Close on click outside the card
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+  }
+
+  // Run on load
+  setupAnnouncementModal();
+  // Listen for Astro transitions page load
+  document.addEventListener('astro:page-load', setupAnnouncementModal);
+</script>
