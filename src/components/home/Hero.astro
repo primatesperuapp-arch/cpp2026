@@ -59,14 +59,16 @@ if (abstracts === 'upcoming') {
       </p>
 
       <!-- Announcement Extension -->
-      {abstracts === 'open' && (
-        <div class="hero__announcement animate-fade-up" style="animation-delay: 0.42s">
-          <span class="hero__announcement-icon" aria-hidden="true">📢</span>
-          <span class="hero__announcement-text">
-            ¡Plazo ampliado! Envío de resúmenes extendido hasta el <strong>14 de julio</strong>. ¡Te invitamos a seguir enviando!
-          </span>
-        </div>
-      )}
+      <div class="hero__announcement animate-fade-up" style="animation-delay: 0.42s">
+        <span class="hero__announcement-icon" aria-hidden="true">📢</span>
+        <span class="hero__announcement-text">
+          {abstracts === 'open' ? (
+            <span>¡Envío de resúmenes extendido hasta el <strong>14 de julio</strong>! Ya están disponibles las <a href={`${base}llamado-de-resumenes#posters-guidelines`}>guías para pósters y ponencias</a>.</span>
+          ) : (
+            <span>Ya están disponibles las <a href={`${base}llamado-de-resumenes#posters-guidelines`}>guías oficiales para la elaboración de pósters y ponencias</a>.</span>
+          )}
+        </span>
+      </div>
 
       <!-- CTA Buttons -->
       <div class="hero__ctas animate-fade-up" style="animation-delay: 0.5s">
@@ -518,6 +520,15 @@ if (abstracts === 'upcoming') {
   }
   .hero__announcement-text strong {
     color: var(--gold-light);
+  }
+  .hero__announcement-text a {
+    color: var(--gold-light);
+    text-decoration: underline;
+    font-weight: 700;
+    transition: color var(--transition-fast);
+  }
+  .hero__announcement-text a:hover {
+    color: #fff;
   }
   
   @keyframes wiggle {
