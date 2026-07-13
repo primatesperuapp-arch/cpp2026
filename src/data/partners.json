@@ -86,5 +86,21 @@
     "url": "https://www.facebook.com/Civefas/",
     "logo": "images/aliados/logo_civefas.png",
     "useLogo": true
+  },
+  {
+    "id": "org12",
+    "name": "University of Suffolk",
+    "acronym": "Suffolk",
+    "url": "https://www.uos.ac.uk",
+    "logo": "",
+    "useLogo": false
+  },
+  {
+    "id": "org13",
+    "name": "Rainforest Expeditions",
+    "acronym": "Rainforest",
+    "url": "https://www.peruopt.com",
+    "logo": "",
+    "useLogo": false
   }
 ]

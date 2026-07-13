@@ -335,13 +335,25 @@ const base =
               acronym: "Kawsay",
               logo: "images/aliados/logo-kawsay.png",
             },
+            {
+              name: "Universidad de Suffolk",
+              acronym: "Suffolk",
+            },
+            {
+              name: "Rainforest Expeditions",
+              acronym: "Rainforest",
+            },
           ].map((p) => (
             <div class="partner-logo-item" title={p.name}>
-              <img
-                src={`${base}${p.logo}`}
-                alt={`Logo ${p.acronym}`}
-                class="partner-logo-img"
-              />
+              {p.logo ? (
+                <img
+                  src={`${base}${p.logo}`}
+                  alt={`Logo ${p.acronym}`}
+                  class="partner-logo-img"
+                />
+              ) : (
+                <div class="partner-logo-fallback">{p.acronym}</div>
+              )}
               <span class="partner-logo-acronym">{p.acronym}</span>
             </div>
           ))
@@ -573,6 +585,33 @@ const base =
     font-size: 0.8rem;
     font-weight: 700;
     color: var(--text-muted);
+  }
+  .partner-logo-fallback {
+    height: 95px;
+    width: 95px;
+    border-radius: var(--radius-lg);
+    background: rgba(217, 157, 85, 0.12);
+    border: 1.5px dashed rgba(217, 157, 85, 0.35);
+    color: var(--forest-mid);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 700;
+    transition: all var(--transition-mid);
+    text-transform: uppercase;
+    box-shadow: var(--shadow-sm);
+  }
+  :global([data-theme="dark"]) .partner-logo-fallback {
+    color: var(--gold-light);
+    background: rgba(217, 157, 85, 0.08);
+  }
+  .partner-logo-item:hover .partner-logo-fallback {
+    transform: scale(1.05);
+    background: rgba(217, 157, 85, 0.22);
+    border-style: solid;
+    border-color: var(--gold);
   }
 
   /* Join APP Section */
