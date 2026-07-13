@@ -92,15 +92,15 @@
     "name": "University of Suffolk",
     "acronym": "Suffolk",
     "url": "https://www.uos.ac.uk",
-    "logo": "",
-    "useLogo": false
+    "logo": "images/aliados/logo_suffolk.jpg",
+    "useLogo": true
   },
   {
     "id": "org13",
     "name": "Rainforest Expeditions",
     "acronym": "Rainforest",
     "url": "https://www.peruopt.com",
-    "logo": "",
-    "useLogo": false
+    "logo": "images/aliados/logo_rainforest.jpeg",
+    "useLogo": true
   }
 ]
