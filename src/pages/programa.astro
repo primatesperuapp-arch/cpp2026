@@ -353,7 +353,7 @@ const typeConfig: Record<string, { color: string; label: string; icon: string }>
   heroColor="var(--earth-dark)"
 >
   <!-- Nota -->
-  <section class="section">
+  <section class="section" style="padding-bottom: 2rem;">
     <div class="container">
       <div class="program-note reveal">
         <div class="program-note__icon">📌</div>
@@ -374,8 +374,22 @@ const typeConfig: Record<string, { color: string; label: string; icon: string }>
   </section>
 
   <!-- Programa por día con tabs -->
-  <section class="section" style="background: var(--cream-warm); padding-top: 0;">
+  <section class="section" style="background: var(--cream-warm); padding-top: 2rem;">
     <div class="container">
+      
+      <!-- Filtro Interactivo -->
+      <div class="program-filters reveal">
+        <span class="filter-label">Filtrar por:</span>
+        <div class="filter-buttons">
+          <button class="filter-btn active" data-filter="all">✨ Todos</button>
+          <button class="filter-btn" data-filter="conferencia">🎤 Magistrales</button>
+          <button class="filter-btn" data-filter="simposio">🗣️ Simposios</button>
+          <button class="filter-btn" data-filter="ponencias">📢 Orales</button>
+          <button class="filter-btn" data-filter="curso">📖 Cursos</button>
+          <button class="filter-btn" data-filter="taller">🔬 Talleres</button>
+        </div>
+      </div>
+
       <div class="program-tabs" id="program-tabs">
         {Object.entries(schedule).map(([day, data], i) => (
           <button
@@ -407,21 +421,44 @@ const typeConfig: Record<string, { color: string; label: string; icon: string }>
           <div class="schedule-list">
             {data.sessions.map(session => {
               const cfg = typeConfig[session.type] || typeConfig.ponencias;
+              const isBreak = session.type === 'break' || session.type === 'inscripcion';
               return (
-                <div class={`schedule-item ${session.type === 'break' ? 'schedule-item--break' : ''}`} style={`--s-color: ${cfg.color};`}>
+                <div 
+                  class={`schedule-item schedule-item--${session.type} ${isBreak ? 'schedule-item--is-break' : ''} fade-in-up`} 
+                  data-type={session.type} 
+                  style={`--s-color: ${cfg.color};`}
+                >
                   <div class="schedule-item__time">
                     <span class="schedule-item__hour">{session.time}</span>
                     <span class="schedule-item__dur">{session.duration}</span>
                   </div>
                   <div class="schedule-item__bar" aria-hidden="true"></div>
-                  <div class="schedule-item__content">
-                    <div class="schedule-item__type-badge" style={`color: ${cfg.color}; background: ${cfg.color}15; border-color: ${cfg.color}30;`}>
-                      {cfg.icon} {cfg.label}
+                  
+                  {isBreak ? (
+                    <div class="schedule-item__break-card">
+                      <span class="break-icon">{cfg.icon}</span>
+                      <div>
+                        <span class="break-title">{session.title}</span>
+                        {session.location && <span class="break-location"> — 📍 {session.location}</span>}
+                      </div>
                     </div>
-                    <h3 class="schedule-item__title">{session.title}</h3>
-                    {session.speaker && <p class="schedule-item__speaker">👤 {session.speaker}</p>}
-                    {session.location && <p class="schedule-item__location">📍 {session.location}</p>}
-                  </div>
+                  ) : (
+                    <div class="schedule-item__card">
+                      <div class="schedule-item__card-header">
+                        <div class="schedule-item__type-badge" style={`color: ${cfg.color}; background: ${cfg.color}12; border-color: ${cfg.color}25;`}>
+                          {cfg.icon} {cfg.label}
+                        </div>
+                        {session.location && <span class="schedule-item__location-badge">📍 {session.location}</span>}
+                      </div>
+                      <h3 class="schedule-item__title">{session.title}</h3>
+                      {session.speaker && (
+                        <p class="schedule-item__speaker">
+                          <span class="speaker-icon">👤</span> 
+                          <span>{session.speaker}</span>
+                        </p>
+                      )}
+                    </div>
+                  )}
                 </div>
               );
             })}
@@ -435,7 +472,9 @@ const typeConfig: Record<string, { color: string; label: string; icon: string }>
 <script>
   const tabs = document.querySelectorAll('.program-tab');
   const panels = document.querySelectorAll('.program-panel');
+  const filterBtns = document.querySelectorAll('.filter-btn');
 
+  // Handle Tabs Switch
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
       const target = (tab as HTMLElement).dataset.tab;
@@ -443,9 +482,61 @@ const typeConfig: Record<string, { color: string; label: string; icon: string }>
       panels.forEach(p => p.classList.remove('active'));
       tab.classList.add('active');
       tab.setAttribute('aria-selected', 'true');
-      document.getElementById(`panel-${target?.replace(' ','')}`)?.classList.add('active');
+      const targetPanel = document.getElementById(`panel-${target?.replace(' ','')}`);
+      if (targetPanel) {
+        targetPanel.classList.add('active');
+      }
+      
+      // Reset filter button to 'Todos' upon switching day tabs
+      resetFilters();
     });
   });
+
+  // Handle Category Filters
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = (btn as HTMLElement).dataset.filter;
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      filterSessions(filter || 'all');
+    });
+  });
+
+  function resetFilters() {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    const allBtn = document.querySelector('.filter-btn[data-filter="all"]');
+    if (allBtn) allBtn.classList.add('active');
+    filterSessions('all');
+  }
+
+  function filterSessions(filter: string) {
+    const activePanel = document.querySelector('.program-panel.active');
+    if (!activePanel) return;
+
+    const items = activePanel.querySelectorAll('.schedule-item');
+    items.forEach((item, index) => {
+      const itemEl = item as HTMLElement;
+      const type = itemEl.dataset.type;
+
+      // Reset animation
+      itemEl.style.animation = 'none';
+      // Force reflow to restart animation
+      void itemEl.offsetWidth;
+
+      if (filter === 'all') {
+        itemEl.style.display = '';
+        itemEl.style.animation = `fadeInUp 0.3s ease forwards ${index * 0.03}s`;
+      } else {
+        if (type === filter) {
+          itemEl.style.display = '';
+          itemEl.style.animation = 'fadeInUp 0.3s ease forwards';
+        } else {
+          itemEl.style.display = 'none';
+        }
+      }
+    });
+  }
 </script>
 
 <style>
@@ -480,134 +571,365 @@ const typeConfig: Record<string, { color: string; label: string; icon: string }>
     border: 1px solid color-mix(in srgb, var(--lc) 25%, transparent);
   }
 
+  /* Filters */
+  .program-filters {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    background: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 100px;
+    border: 1px solid rgba(217,157,85,0.12);
+    box-shadow: var(--shadow-sm);
+  }
+  :global([data-theme="dark"]) .program-filters {
+    background: var(--forest-dark);
+    border-color: rgba(217,157,85,0.18);
+  }
+  .filter-label {
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+  .filter-buttons {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+  .filter-btn {
+    border: 1px solid rgba(0,0,0,0.04);
+    background: rgba(0,0,0,0.02);
+    padding: 0.35rem 0.9rem;
+    border-radius: 100px;
+    font-family: var(--font-ui);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+  :global([data-theme="dark"]) .filter-btn {
+    border-color: rgba(255,255,255,0.04);
+    background: rgba(255,255,255,0.02);
+  }
+  .filter-btn:hover {
+    background: rgba(217,157,85,0.08);
+    color: var(--forest-leaf);
+  }
+  .filter-btn.active {
+    background: var(--forest-leaf);
+    border-color: var(--forest-leaf);
+    color: white;
+    box-shadow: 0 4px 10px rgba(44, 95, 76, 0.25);
+  }
+
   /* Tabs */
   .program-tabs {
     display: flex;
-    gap: 0.5rem;
-    padding: 1.5rem 0 0;
+    gap: 0.35rem;
+    padding: 1rem 0 0;
     flex-wrap: wrap;
+    border-bottom: 2px solid rgba(217,157,85,0.15);
   }
 
   .program-tab {
     display: flex;
     flex-direction: column;
-    padding: 0.85rem 1.5rem;
-    background: rgba(255,255,255,0.7);
-    border: 1.5px solid rgba(217,157,85,0.15);
+    padding: 0.75rem 1.25rem;
+    background: rgba(255,255,255,0.55);
+    border: 1px solid rgba(217,157,85,0.12);
+    border-bottom: none;
     border-radius: var(--radius-md) var(--radius-md) 0 0;
     cursor: pointer;
     transition: all var(--transition-fast);
     font-family: var(--font-body);
     text-align: left;
+    margin-bottom: -2px;
   }
   :global([data-theme="dark"]) .program-tab {
-    background: rgba(26,58,46,0.4);
-    border-color: rgba(217,157,85,0.2);
+    background: rgba(26,58,46,0.3);
+    border-color: rgba(217,157,85,0.15);
+    border-bottom: none;
   }
 
   .program-tab:hover { background: rgba(217,157,85,0.08); }
   .program-tab.active {
     background: white;
-    border-color: var(--forest-leaf);
-    border-bottom-color: white;
+    border-color: rgba(217,157,85,0.18);
+    border-top: 3px solid var(--forest-leaf);
+    border-bottom: 2px solid white;
+    z-index: 2;
   }
   :global([data-theme="dark"]) .program-tab.active {
     background: var(--forest-dark);
-    border-color: var(--forest-leaf);
-    border-bottom-color: var(--forest-dark);
+    border-color: rgba(217,157,85,0.2);
+    border-top-color: var(--forest-leaf);
+    border-bottom: 2px solid var(--forest-dark);
   }
 
-  .program-tab__day { font-weight: 700; font-size: 0.9rem; color: var(--forest-mid); }
+  .program-tab__day { font-weight: 700; font-size: 0.88rem; color: var(--forest-mid); }
   :global([data-theme="dark"]) .program-tab__day { color: var(--forest-canopy); }
-  .program-tab__theme { font-size: 0.72rem; color: var(--text-muted); margin-top: 0.1rem; }
+  .program-tab__theme { font-size: 0.68rem; color: var(--text-muted); margin-top: 0.15rem; max-width: 140px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
   /* Panel */
   .program-panel { display: none; }
   .program-panel.active { display: block; }
 
   .program-header-day {
-    padding: 1.5rem;
+    padding: 1.25rem 1.5rem;
     background: white;
-    border: 1px solid rgba(217,157,85,0.15);
-    border-top: 3px solid var(--forest-leaf);
-    border-radius: 0 var(--radius-md) 0 0;
-    margin-bottom: 1.25rem;
+    border: 1px solid rgba(217,157,85,0.12);
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    border-top: none;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-sm);
   }
   :global([data-theme="dark"]) .program-header-day {
     background: var(--forest-dark);
-    border-color: rgba(217,157,85,0.2);
+    border-color: rgba(217,157,85,0.18);
+    border-top: none;
   }
-  .program-header-day__title { font-family: var(--font-display); font-size: 1.2rem; color: var(--text-on-light); }
+  .program-header-day__title { font-family: var(--font-display); font-size: 1.25rem; color: var(--text-on-light); }
   :global([data-theme="dark"]) .program-header-day__title { color: var(--text-on-dark); }
-  .program-header-day__theme { font-size: 0.85rem; color: var(--forest-leaf); margin-top: 0.3rem; }
+  .program-header-day__theme { font-size: 0.85rem; color: var(--forest-leaf); margin-top: 0.25rem; font-weight: 600; }
 
-  /* Schedule */
-  .schedule-list { display: flex; flex-direction: column; gap: 0.5rem; }
+  /* Schedule Timeline */
+  .schedule-list {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
 
   .schedule-item {
     display: grid;
-    grid-template-columns: 80px 4px 1fr;
-    gap: 1rem;
+    grid-template-columns: 85px 16px 1fr;
+    gap: 1.25rem;
     align-items: stretch;
-    padding: 0.75rem 0;
+    opacity: 0;
+    transform: translateY(12px);
   }
-
-  .schedule-item--break { opacity: 0.6; }
 
   .schedule-item__time {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    padding-top: 0.25rem;
+    justify-content: flex-start;
+    padding-top: 0.75rem;
   }
   .schedule-item__hour {
     font-family: var(--font-ui);
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--text-on-light);
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--forest-mid);
+    line-height: 1.1;
   }
-  :global([data-theme="dark"]) .schedule-item__hour { color: var(--text-on-dark); }
+  :global([data-theme="dark"]) .schedule-item__hour {
+    color: var(--forest-canopy);
+  }
   .schedule-item__dur {
     font-family: var(--font-ui);
     font-size: 0.7rem;
+    font-weight: 600;
     color: var(--text-muted);
+    margin-top: 0.2rem;
   }
 
   .schedule-item__bar {
-    width: 4px;
-    border-radius: 2px;
+    position: relative;
+    width: 2px;
+    background: rgba(217,157,85,0.15);
+    margin: 0 auto;
+  }
+  :global([data-theme="dark"]) .schedule-item__bar {
+    background: rgba(255,255,255,0.08);
+  }
+  .schedule-item__bar::after {
+    content: '';
+    position: absolute;
+    top: 1.25rem;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
     background: var(--s-color);
-    flex-shrink: 0;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--s-color) 20%, transparent);
+    z-index: 1;
   }
 
-  .schedule-item__content {
-    padding: 0.5rem 0;
+  /* Card Styles */
+  .schedule-item__card {
+    background: white;
+    border: 1px solid rgba(217,157,85,0.1);
+    border-left: 4px solid var(--s-color);
+    border-radius: var(--radius-md);
+    padding: 1.2rem 1.5rem;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  :global([data-theme="dark"]) .schedule-item__card {
+    background: var(--forest-dark);
+    border-color: rgba(217,157,85,0.18);
+    border-left-color: var(--s-color);
+  }
+  .schedule-item__card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: color-mix(in srgb, var(--s-color) 35%, rgba(217,157,85,0.1));
+  }
+
+  .schedule-item__card-header {
     display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
   }
 
   .schedule-item__type-badge {
     font-family: var(--font-ui);
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     font-weight: 700;
-    padding: 0.2rem 0.6rem;
+    padding: 0.25rem 0.6rem;
     border-radius: 100px;
     border: 1px solid;
-    width: fit-content;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .schedule-item__location-badge {
+    font-family: var(--font-ui);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: rgba(0,0,0,0.03);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+  }
+  :global([data-theme="dark"]) .schedule-item__location-badge {
+    background: rgba(255,255,255,0.03);
   }
 
   .schedule-item__title {
-    font-size: 0.95rem;
-    font-weight: 600;
+    font-size: 1.02rem;
+    font-weight: 700;
     color: var(--text-on-light);
-    line-height: 1.35;
+    line-height: 1.38;
   }
-  :global([data-theme="dark"]) .schedule-item__title { color: var(--text-on-dark); }
+  :global([data-theme="dark"]) .schedule-item__title {
+    color: var(--text-on-dark);
+  }
 
-  .schedule-item__speaker,
-  .schedule-item__location {
-    font-size: 0.78rem;
+  .schedule-item__speaker {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.82rem;
     color: var(--text-muted);
+    margin-top: 0.5rem;
+    border-top: 1px dashed rgba(217,157,85,0.12);
+    padding-top: 0.5rem;
+  }
+  :global([data-theme="dark"]) .schedule-item__speaker {
+    border-top-color: rgba(255,255,255,0.08);
+  }
+  .speaker-icon {
+    font-size: 0.95rem;
+    opacity: 0.75;
+  }
+
+  /* Break / Registration Special Styles */
+  .schedule-item--is-break {
+    opacity: 0.9;
+  }
+  .schedule-item__break-card {
+    background: white;
+    border: 1px dashed rgba(217,157,85,0.25);
+    border-left: 4px solid var(--s-color);
+    border-radius: var(--radius-md);
+    padding: 0.85rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    box-shadow: var(--shadow-sm);
+  }
+  :global([data-theme="dark"]) .schedule-item__break-card {
+    background: var(--forest-dark);
+    border-color: rgba(255,255,255,0.08);
+    border-left-color: var(--s-color);
+  }
+  .break-icon {
+    font-size: 1.15rem;
+  }
+  .break-title {
+    font-weight: 700;
+    color: var(--text-on-light);
+  }
+  :global([data-theme="dark"]) .break-title {
+    color: var(--text-on-dark);
+  }
+  .break-location {
+    font-size: 0.78rem;
+    opacity: 0.8;
+  }
+
+  /* Active states & animations */
+  .fade-in-up {
+    animation: fadeInUp 0.35s ease forwards;
+  }
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .program-filters {
+      flex-direction: column;
+      align-items: flex-start;
+      border-radius: var(--radius-md);
+      padding: 1rem 1.25rem;
+      gap: 0.5rem;
+    }
+    .filter-buttons {
+      gap: 0.3rem;
+    }
+    .schedule-item {
+      grid-template-columns: 75px 16px 1fr;
+      gap: 0.75rem;
+    }
+    .schedule-item__hour {
+      font-size: 0.95rem;
+    }
+    .schedule-item__card {
+      padding: 1rem;
+    }
+    .schedule-item__card-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.4rem;
+    }
+    .program-tab {
+      padding: 0.6rem 0.9rem;
+    }
+    .program-tab__day {
+      font-size: 0.8rem;
+    }
   }
 </style>
