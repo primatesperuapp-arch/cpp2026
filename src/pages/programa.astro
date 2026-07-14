@@ -3,63 +3,327 @@ import PageLayout from '../layouts/PageLayout.astro';
 
 const schedule = {
   "Día 1": {
-    date: "30 de Julio | Ciencia y Conocimiento",
-    theme: "Ciencia y Conocimiento",
+    date: "Miércoles 29 de Julio | Pre-Congreso",
+    theme: "Talleres y Cursos Pre-Congreso",
     sessions: [
-      { time: "08:00", duration: "60 min", type: "inscripcion", title: "Registro y acreditación de participantes", location: "Vestíbulo principal", speaker: "" },
-      { time: "09:00", duration: "30 min", type: "apertura", title: "Ceremonia de apertura oficial", location: "Auditorio principal", speaker: "Presidenta del CPP 2026" },
-      { time: "09:30", duration: "60 min", type: "conferencia", title: "Charla Magistral 1", location: "Auditorio principal", speaker: "Por confirmar" },
-      { time: "10:30", duration: "30 min", type: "break", title: "Coffee break", location: "Foyer", speaker: "" },
-      { time: "11:00", duration: "90 min", type: "simposio", title: "Simposio 1", location: "Sala A", speaker: "Moderador/a: Por confirmar" },
-      { time: "11:00", duration: "90 min", type: "simposio", title: "Simposio 2", location: "Sala B", speaker: "Moderador/a: Por confirmar" },
-      { time: "12:30", duration: "90 min", type: "break", title: "Almuerzo", location: "Comedor", speaker: "" },
-      { time: "14:00", duration: "90 min", type: "ponencias", title: "Sesión de Ponencias Orales 1", location: "Auditorio principal", speaker: "" },
-      { time: "15:30", duration: "30 min", type: "break", title: "Coffee break", speaker: "", location: "Foyer" },
-      { time: "16:00", duration: "90 min", type: "posters", title: "Sesión de Pósters 1", location: "Sala de exposición", speaker: "" },
-      { time: "19:00", duration: "120 min", type: "social", title: "Evento de Inauguración", location: "Por confirmar", speaker: "" },
+      {
+        time: "15:30",
+        duration: "120 min",
+        type: "curso",
+        title: "Curso Pre-Congreso — Métodos y Conceptos en el Estudio de Relaciones Sociales y Estructura Social en Primates",
+        location: "Parque de las Leyendas",
+        speaker: "Dr. Filippo Aureli"
+      }
     ]
   },
   "Día 2": {
-    date: "31 de Julio | Comunidades y Conservación",
-    theme: "Comunidades y Conservación",
+    date: "Jueves 30 de Julio | Inauguración",
+    theme: "Planificación y Ceremonia de Apertura",
     sessions: [
-      { time: "09:00", duration: "60 min", type: "conferencia", title: "Charla Magistral 2", location: "Auditorio principal", speaker: "Por confirmar" },
-      { time: "10:00", duration: "30 min", type: "break", title: "Coffee break", location: "Foyer", speaker: "" },
-      { time: "10:30", duration: "90 min", type: "simposio", title: "Simposio 3", location: "Sala A", speaker: "Moderador/a: Por confirmar" },
-      { time: "10:30", duration: "90 min", type: "simposio", title: "Simposio 4", location: "Sala B", speaker: "Moderador/a: Por confirmar" },
-      { time: "12:00", duration: "90 min", type: "break", title: "Almuerzo", location: "Comedor", speaker: "" },
-      { time: "13:30", duration: "90 min", type: "mesa_redonda", title: "Mesa Redonda 1", location: "Auditorio principal", speaker: "Moderador/a: Por confirmar" },
-      { time: "15:00", duration: "30 min", type: "break", title: "Coffee break", location: "Foyer", speaker: "" },
-      { time: "15:30", duration: "90 min", type: "ponencias", title: "Sesión de Ponencias Orales 2", location: "Auditorio principal", speaker: "" },
-      { time: "17:00", duration: "60 min", type: "social", title: "Actividad cultural", location: "Espacio cultural", speaker: "" },
+      {
+        time: "09:00",
+        duration: "240 min",
+        type: "taller",
+        title: "Reunión interna: Plan Nacional de Conservación de Primates",
+        location: "Facultad de Medicina Veterinaria - UNMSM",
+        speaker: "Comité Técnico"
+      },
+      {
+        time: "13:00",
+        duration: "180 min",
+        type: "inscripcion",
+        title: "Inscripción y registro de participantes",
+        location: "Recepción del Auditorio",
+        speaker: ""
+      },
+      {
+        time: "16:00",
+        duration: "30 min",
+        type: "apertura",
+        title: "Inauguración del III Congreso Peruano de Primatología",
+        location: "Auditorio principal",
+        speaker: "Comité Organizador"
+      },
+      {
+        time: "16:30",
+        duration: "60 min",
+        type: "conferencia",
+        title: "Ponencia Magistral 1: Filogeografía y evolución de primates neotropicales",
+        location: "Auditorio principal",
+        speaker: "Dra. Liliana Cortés-Ortiz"
+      },
+      {
+        time: "17:30",
+        duration: "90 min",
+        type: "social",
+        title: "Networking social y presentación de danza",
+        location: "Jardines exteriores del Auditorio",
+        speaker: ""
+      }
     ]
   },
   "Día 3": {
-    date: "01 de Agosto | Ecosistemas y Tecnología",
-    theme: "Ecosistemas y Tecnología",
+    date: "Viernes 31 de Julio | Políticas y Gestión",
+    theme: "Gobernanza, Políticas Públicas y Conservación de Primates",
     sessions: [
-      { time: "09:00", duration: "60 min", type: "taller", title: "Talleres Paralelos 1, 2 y 3", location: "Salas A, B, C", speaker: "" },
-      { time: "10:00", duration: "30 min", type: "break", title: "Coffee break", location: "Foyer", speaker: "" },
-      { time: "10:30", duration: "90 min", type: "simposio", title: "Simposio 5", location: "Sala A", speaker: "Moderador/a: Por confirmar" },
-      { time: "10:30", duration: "90 min", type: "simposio", title: "Simposio 6", location: "Sala B", speaker: "Moderador/a: Por confirmar" },
-      { time: "12:00", duration: "90 min", type: "break", title: "Almuerzo", location: "Comedor", speaker: "" },
-      { time: "13:30", duration: "90 min", type: "ponencias", title: "Sesión de Ponencias Orales 3", location: "Auditorio principal", speaker: "" },
-      { time: "15:00", duration: "30 min", type: "break", title: "Coffee break", location: "Foyer", speaker: "" },
-      { time: "15:30", duration: "90 min", type: "posters", title: "Sesión de Pósters 2", location: "Sala de exposición", speaker: "" },
+      {
+        time: "08:00",
+        duration: "60 min",
+        type: "inscripcion",
+        title: "Inscripción y registro de participantes",
+        location: "Recepción del Auditorio",
+        speaker: ""
+      },
+      {
+        time: "09:00",
+        duration: "60 min",
+        type: "conferencia",
+        title: "Ponencia Magistral 2: Estrategias globales de conservación de primates",
+        location: "Auditorio principal",
+        speaker: "Dr. Leandro Jerusalinsky"
+      },
+      {
+        time: "10:00",
+        duration: "30 min",
+        type: "break",
+        title: "Coffee Break",
+        location: "Foyer del Auditorio",
+        speaker: ""
+      },
+      {
+        time: "10:30",
+        duration: "90 min",
+        type: "simposio",
+        title: "Simposio 1: Políticas públicas, instrumentos de gestión para conservación de primates",
+        location: "Auditorio principal",
+        speaker: "Coordinadora: Dra. Fanny Cornejo. Ponentes: Alan Flores (MINAM), Elizabeth Gonzáles (SERFOR), Gerson Ferrer (Yunkawasi)."
+      },
+      {
+        time: "12:00",
+        duration: "60 min",
+        type: "conferencia",
+        title: "Ponencia Magistral 3: Rol del Estado en la fiscalización forestal y de fauna silvestre",
+        location: "Auditorio principal",
+        speaker: "Dr. Marco Arenas (SERFOR)"
+      },
+      {
+        time: "13:00",
+        duration: "90 min",
+        type: "break",
+        title: "Receso de Almuerzo",
+        location: "Comedor / Zona de Jardines",
+        speaker: ""
+      },
+      {
+        time: "14:30",
+        duration: "60 min",
+        type: "conferencia",
+        title: "Ponencia Magistral 4: Monitoreo ecológico y patógenos en primates silvestres",
+        location: "Auditorio principal",
+        speaker: "Dr. Gideon Erkenswick"
+      },
+      {
+        time: "15:30",
+        duration: "60 min",
+        type: "simposio",
+        title: "Simposio 2 (Bloque I): Gestión territorial para la conservación de los primates",
+        location: "Auditorio principal",
+        speaker: "Coordinadores: Yunkawasi / AMPA / WCS"
+      },
+      {
+        time: "16:30",
+        duration: "30 min",
+        type: "break",
+        title: "Coffee Break",
+        location: "Foyer del Auditorio",
+        speaker: ""
+      },
+      {
+        time: "17:00",
+        duration: "60 min",
+        type: "simposio",
+        title: "Simposio 2 (Bloque II): Gestión territorial para la conservación de los primates",
+        location: "Auditorio principal",
+        speaker: "Coordinadores: Yunkawasi / AMPA / WCS"
+      }
     ]
   },
   "Día 4": {
-    date: "02 de Agosto | Acción y Compromiso",
-    theme: "Acción y Compromiso",
+    date: "Sábado 1 de Agosto | Largo Plazo y Posters",
+    theme: "Investigación a Largo Plazo y Presentaciones de Trabajos",
     sessions: [
-      { time: "09:00", duration: "60 min", type: "conferencia", title: "Mesa Redonda Final", location: "Auditorio principal", speaker: "Invitados especiales" },
-      { time: "10:00", duration: "30 min", type: "break", title: "Coffee break", location: "Foyer", speaker: "" },
-      { time: "10:30", duration: "90 min", type: "ponencias", title: "Sesión Especial de Resultados", location: "Auditorio principal", speaker: "" },
-      { time: "12:00", duration: "90 min", type: "break", title: "Almuerzo", location: "Comedor", speaker: "" },
-      { time: "13:30", duration: "60 min", type: "conferencia", title: "Charla Magistral de Cierre", location: "Auditorio principal", speaker: "Por confirmar" },
-      { time: "14:30", duration: "60 min", type: "mesa_redonda", title: "Asamblea de la Asociación Peruana de Primatología (APP)", location: "Auditorio principal", speaker: "" },
-      { time: "15:30", duration: "30 min", type: "break", title: "Coffee break", location: "Foyer", speaker: "" },
-      { time: "16:00", duration: "60 min", type: "clausura", title: "Ceremonia de clausura y premiación de mejores trabajos", location: "Auditorio principal", speaker: "" },
+      {
+        time: "08:00",
+        duration: "60 min",
+        type: "inscripcion",
+        title: "Inscripción y registro de participantes",
+        location: "Recepción del Auditorio",
+        speaker: ""
+      },
+      {
+        time: "09:00",
+        duration: "60 min",
+        type: "conferencia",
+        title: "Ponencia Magistral 5: Ciencia participativa y ecología en la Amazonía",
+        location: "Auditorio principal",
+        speaker: "Dr. Mark Bowler"
+      },
+      {
+        time: "10:00",
+        duration: "60 min",
+        type: "posters",
+        title: "Exposición de Pósters & Coffee Break",
+        location: "Sala de estudio / Foyer",
+        speaker: "Exposición de trabajos de investigación del congreso"
+      },
+      {
+        time: "11:00",
+        duration: "120 min",
+        type: "simposio",
+        title: "Simposio 3: Estudios e iniciativas de conservación a largo plazo de primates en el Perú",
+        location: "Auditorio principal",
+        speaker: "Moderadora: Dra. Liliana Cortés-Ortiz. Ponentes: Leandro Jerusalinsky, Gabriel García (EPP), Fanny Cornejo (Yunkawasi), Jossy Luna (PMT), Gideon Erkenswick (FPI), Mark Bowler (Wired Amazon), César Flores (Cocha Cashu), Raúl Bello (Kawsay)."
+      },
+      {
+        time: "13:00",
+        duration: "90 min",
+        type: "break",
+        title: "Receso de Almuerzo",
+        location: "Comedor / Zona de Jardines",
+        speaker: ""
+      },
+      {
+        time: "14:30",
+        duration: "60 min",
+        type: "taller",
+        title: "Taller 2: Cómo sacar permisos de investigación dentro y fuera de ANPs",
+        location: "Auditorio principal",
+        speaker: "Facilitadores: Representantes de SERNANP y SERFOR"
+      },
+      {
+        time: "15:30",
+        duration: "60 min",
+        type: "ponencias",
+        title: "Presentaciones Orales (Bloque I)",
+        location: "Auditorio principal",
+        speaker: "Exposición de resúmenes científicos aprobados"
+      },
+      {
+        time: "16:30",
+        duration: "30 min",
+        type: "break",
+        title: "Coffee Break",
+        location: "Foyer del Auditorio",
+        speaker: ""
+      },
+      {
+        time: "17:00",
+        duration: "60 min",
+        type: "mesa_redonda",
+        title: "Asamblea General de la Asociación Peruana de Primatología (APP)",
+        location: "Auditorio principal",
+        speaker: "Exclusivo para miembros y asociados de la APP"
+      }
+    ]
+  },
+  "Día 5": {
+    date: "Domingo 2 de Agosto | Comunidad y Educación",
+    theme: "Conservación Comunitaria y Educación Ambiental",
+    sessions: [
+      {
+        time: "08:00",
+        duration: "60 min",
+        type: "inscripcion",
+        title: "Inscripción y registro de participantes",
+        location: "Recepción del Auditorio",
+        speaker: ""
+      },
+      {
+        time: "09:00",
+        duration: "60 min",
+        type: "conferencia",
+        title: "Ponencia Magistral 6: Biología evolutiva e iniciativas comunitarias en Mesoamérica",
+        location: "Auditorio principal",
+        speaker: "Dra. Citlalli Morelos"
+      },
+      {
+        time: "10:00",
+        duration: "30 min",
+        type: "break",
+        title: "Coffee Break",
+        location: "Foyer del Auditorio",
+        speaker: ""
+      },
+      {
+        time: "10:30",
+        duration: "60 min",
+        type: "simposio",
+        title: "Simposio 4: Conservación comunitaria de primates en el Perú: monitoreo, gobernanza y acción local",
+        location: "Auditorio principal",
+        speaker: "Moderador: Gerson Ferrer. Ponentes: Representante SERNANP, Oso Dorado, Fanny Cornejo (Yunkawasi), EPP, Proyecto Mono Tocón."
+      },
+      {
+        time: "11:30",
+        duration: "90 min",
+        type: "ponencias",
+        title: "Presentaciones Orales (Bloque II)",
+        location: "Auditorio principal",
+        speaker: "Exposición de resúmenes científicos aprobados"
+      },
+      {
+        time: "13:00",
+        duration: "90 min",
+        type: "break",
+        title: "Receso de Almuerzo",
+        location: "Comedor / Zona de Jardines",
+        speaker: ""
+      },
+      {
+        time: "14:30",
+        duration: "60 min",
+        type: "conferencia",
+        title: "Ponencia Magistral 7: Gestión de ONGs y el mono tití cabeciblanco",
+        location: "Auditorio principal",
+        speaker: "Dra. Rosamira Guillén (Fundación Proyecto Tití)"
+      },
+      {
+        time: "15:30",
+        duration: "120 min",
+        type: "simposio",
+        title: "Simposio 5: Educación ambiental para la conservación de primates: experiencias que conectan ciencia y sociedad",
+        location: "Auditorio principal",
+        speaker: "Moderadores: Michela Olaya y Gerson Ferrer. Módulos con SERNANP, MINAM, Yunkawasi, Proyecto Tití, Parque de las Leyendas, Cocha Cashu, Mono Tocón, BPAM, Rainforest Expeditions, EPP."
+      },
+      {
+        time: "17:30",
+        duration: "60 min",
+        type: "clausura",
+        title: "Ceremonia de Clausura y Premiación del Congreso",
+        location: "Auditorio principal",
+        speaker: "Comité Organizador & APP"
+      },
+      {
+        time: "20:00",
+        duration: "180 min",
+        type: "social",
+        title: "After Congress / Cena y Celebración de Cierre",
+        location: "Por confirmar",
+        speaker: ""
+      }
+    ]
+  },
+  "Día 6": {
+    date: "Lunes 3 de Agosto | Post-Congreso",
+    theme: "Cursos y Talleres Post-Congreso",
+    sessions: [
+      {
+        time: "09:30",
+        duration: "180 min",
+        type: "curso",
+        title: "Curso Post-Congreso — Introducción a la Conservación Comunitaria de Primates en el Perú",
+        location: "Facultad de Medicina Veterinaria - UNMSM",
+        speaker: "Especialistas Invitados"
+      }
     ]
   }
 };
@@ -70,13 +334,14 @@ const typeConfig: Record<string, { color: string; label: string; icon: string }>
   simposio:      { color: '#D99D55', label: 'Simposio', icon: '🗣️' },
   ponencias:     { color: '#c9a84c', label: 'Ponencias Orales', icon: '📢' },
   posters:       { color: '#8b5e3c', label: 'Sesión de Pósters', icon: '📌' },
-  taller:        { color: '#74c69d', label: 'Taller', icon: '🔬' },
+  taller:        { color: '#74c69d', label: 'Taller / Reunión', icon: '🔬' },
   mesa_redonda:  { color: '#e07b54', label: 'Mesa Redonda', icon: '🔵' },
   apertura:      { color: '#c9a84c', label: 'Apertura', icon: '🏛️' },
   clausura:      { color: '#c9a84c', label: 'Clausura', icon: '🏆' },
   break:         { color: '#aaa', label: 'Descanso', icon: '☕' },
   social:        { color: '#74c69d', label: 'Actividad Social', icon: '🌿' },
   inscripcion:   { color: '#aaa', label: 'Registro', icon: '📋' },
+  curso:         { color: '#52B788', label: 'Curso Pre/Post-Congreso', icon: '📖' },
 };
 ---
 
@@ -93,7 +358,7 @@ const typeConfig: Record<string, { color: string; label: string; icon: string }>
       <div class="program-note reveal">
         <div class="program-note__icon">📌</div>
         <div class="program-note__text">
-          <strong>Nota:</strong> El programa a continuación es únicamente informativo y no cuenta con la programación final. La programación final será comunicada oficialmente por los canales oficiales en torno al cierre de las inscripciones regulares.
+          <strong>Nota:</strong> Este cronograma presenta la propuesta y distribución de bloques del programa científico del III Congreso Peruano de Primatología 2026. Los detalles específicos y horarios exactos de cada ponencia individual serán publicados próximamente.
         </div>
       </div>
 
