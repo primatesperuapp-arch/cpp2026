@@ -633,8 +633,15 @@ const typeConfig: Record<string, { color: string; label: string; icon: string }>
     display: flex;
     gap: 0.35rem;
     padding: 1rem 0 0;
-    flex-wrap: wrap;
+    overflow-x: auto;
+    white-space: nowrap;
     border-bottom: 2px solid rgba(217,157,85,0.15);
+    /* Hide scrollbar for standard browsers but keep functionality */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+  }
+  .program-tabs::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
   }
 
   .program-tab {
@@ -650,6 +657,7 @@ const typeConfig: Record<string, { color: string; label: string; icon: string }>
     font-family: var(--font-body);
     text-align: left;
     margin-bottom: -2px;
+    flex-shrink: 0;
   }
   :global([data-theme="dark"]) .program-tab {
     background: rgba(26,58,46,0.3);
