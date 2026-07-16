@@ -1,38 +1,99 @@
 ---
 import partners from '../../data/partners.json';
 const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL + '/';
+
+// Filter partners by category
+const coorganizadores = partners.filter(p => p.category === 'coorganizador');
+const aliados = partners.filter(p => p.category === 'aliado');
+const aerolinea = partners.filter(p => p.category === 'aerolinea');
 ---
 
 <section class="section partners" id="aliados">
   <div class="container">
     <div class="section-header reveal">
-      <span class="section-label">Instituciones aliadas</span>
+      <span class="section-label">Soporte y Colaboración</span>
       <h2 class="section-title">Organizadores y Aliados</h2>
       <p class="section-subtitle">
-        El congreso es posible gracias al apoyo de instituciones académicas, gubernamentales y de conservación comprometidas con la primatología latinoamericana.
+        El congreso es posible gracias al apoyo conjunto de instituciones académicas, gubernamentales y de conservación.
       </p>
     </div>
 
-    <div class="partners__grid reveal">
-      {partners.map(partner => (
-        <a
-          href={partner.url.startsWith('/') ? `${base}${partner.url.substring(1)}` : partner.url}
-          target={partner.url !== '#' ? '_blank' : undefined}
-          rel="noopener noreferrer"
-          class="partner-card"
-          title={partner.name}
-        >
-          {partner.useLogo ? (
-            <img src={`${base}${partner.logo}`} alt={`Logo ${partner.name}`} class="partner-card__logo" loading="lazy" />
-          ) : (
-            <div class="partner-card__acronym">{partner.acronym}</div>
-          )}
-          <div class="partner-card__name">{partner.name}</div>
-        </a>
-      ))}
-    </div>
+    <!-- Coorganizadores Category -->
+    {coorganizadores.length > 0 && (
+      <div class="partners__category reveal">
+        <h3 class="partners__category-title">Coorganizadores</h3>
+        <div class="partners__grid">
+          {coorganizadores.map(partner => (
+            <a
+              href={partner.url.startsWith('/') ? `${base}${partner.url.substring(1)}` : partner.url}
+              target={partner.url !== '#' ? '_blank' : undefined}
+              rel="noopener noreferrer"
+              class="partner-card"
+              title={partner.name}
+            >
+              {partner.useLogo ? (
+                <img src={`${base}${partner.logo}`} alt={`Logo ${partner.name}`} class="partner-card__logo" loading="lazy" />
+              ) : (
+                <div class="partner-card__acronym">{partner.acronym}</div>
+              )}
+              <div class="partner-card__name">{partner.name}</div>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
 
-    <p class="partners__note reveal">
+    <!-- Aliados Category -->
+    {aliados.length > 0 && (
+      <div class="partners__category reveal">
+        <h3 class="partners__category-title">Aliados</h3>
+        <div class="partners__grid">
+          {aliados.map(partner => (
+            <a
+              href={partner.url.startsWith('/') ? `${base}${partner.url.substring(1)}` : partner.url}
+              target={partner.url !== '#' ? '_blank' : undefined}
+              rel="noopener noreferrer"
+              class="partner-card"
+              title={partner.name}
+            >
+              {partner.useLogo ? (
+                <img src={`${base}${partner.logo}`} alt={`Logo ${partner.name}`} class="partner-card__logo" loading="lazy" />
+              ) : (
+                <div class="partner-card__acronym">{partner.acronym}</div>
+              )}
+              <div class="partner-card__name">{partner.name}</div>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Aerolínea Oficial Category -->
+    {aerolinea.length > 0 && (
+      <div class="partners__category reveal">
+        <h3 class="partners__category-title">Aerolínea Oficial</h3>
+        <div class="partners__grid partners__grid--center">
+          {aerolinea.map(partner => (
+            <a
+              href={partner.url.startsWith('/') ? `${base}${partner.url.substring(1)}` : partner.url}
+              target={partner.url !== '#' ? '_blank' : undefined}
+              rel="noopener noreferrer"
+              class="partner-card partner-card--single"
+              title={partner.name}
+            >
+              {partner.useLogo ? (
+                <img src={`${base}${partner.logo}`} alt={`Logo ${partner.name}`} class="partner-card__logo" loading="lazy" />
+              ) : (
+                <div class="partner-card__acronym">{partner.acronym}</div>
+              )}
+              <div class="partner-card__name">{partner.name}</div>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <p class="partners__note reveal" style="margin-top: 4rem;">
       ¿Tu institución quiere ser aliada del congreso?
       <a href={`${base}contacto`} class="partners__link">Contáctanos →</a>
     </p>
@@ -48,12 +109,48 @@ const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL +
     background: linear-gradient(180deg, #41240e 0%, #593414 100%);
   }
 
+  .partners__category {
+    margin-bottom: 4rem;
+    position: relative;
+  }
+
+  .partners__category-title {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--forest-dark);
+    text-align: center;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .partners__category-title::before,
+  .partners__category-title::after {
+    content: "";
+    height: 1.5px;
+    background: linear-gradient(90deg, transparent, rgba(217, 157, 85, 0.45), transparent);
+    flex-grow: 1;
+    max-width: 160px;
+  }
+
+  :global([data-theme="dark"]) .partners__category-title {
+    color: var(--forest-canopy);
+  }
+
   .partners__grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1.25rem;
-    margin-bottom: 3rem;
+    gap: 1.5rem;
+  }
+
+  .partners__grid--center {
+    justify-content: center;
   }
 
   .partner-card {
@@ -62,7 +159,7 @@ const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL +
     align-items: center;
     justify-content: center;
     gap: 0.75rem;
-    padding: 1.5rem 1rem;
+    padding: 1.5rem 1.25rem;
     background: rgba(255,255,255,0.85);
     border-radius: var(--radius-md);
     border: 1px solid rgba(217,157,85,0.1);
@@ -70,20 +167,31 @@ const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL +
     text-align: center;
     text-decoration: none;
     transition: all var(--transition-mid);
-    min-height: 160px;
+    min-height: 150px;
     width: 100%;
     max-width: calc(50% - 1rem);
+  }
+
+  .partner-card--single {
+    max-width: 260px;
+    min-height: 130px;
   }
 
   @media (min-width: 640px) {
     .partner-card {
       max-width: calc(33.333% - 1rem);
     }
+    .partner-card--single {
+      max-width: 260px;
+    }
   }
 
   @media (min-width: 1024px) {
     .partner-card {
-      max-width: calc(25% - 1rem);
+      max-width: calc(20% - 1.2rem);
+    }
+    .partner-card--single {
+      max-width: 260px;
     }
   }
 
@@ -95,7 +203,7 @@ const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL +
   .partner-card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-md);
-    border-color: rgba(217,157,85,0.3);
+    border-color: rgba(217, 157, 85, 0.3);
   }
 
   .partner-card__acronym {
@@ -116,9 +224,9 @@ const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL +
 
   .partner-card__name {
     font-family: var(--font-ui);
-    font-size: 0.65rem;
+    font-size: 0.68rem;
     color: var(--text-muted);
-    line-height: 1.3;
+    line-height: 1.35;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -127,7 +235,7 @@ const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL +
 
   .partners__note {
     text-align: center;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: var(--text-muted);
   }
 

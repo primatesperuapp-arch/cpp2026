@@ -1,106 +1,146 @@
 [
   {
-    "id": "org9",
-    "name": "Ministerio del Ambiente",
-    "acronym": "MINAM",
-    "url": "https://www.gob.pe/minam",
-    "logo": "images/aliados/logo_minam.png",
-    "useLogo": true
-  },
-  {
-    "id": "org10",
-    "name": "Servicio Nacional de Áreas Naturales Protegidas por el Estado",
-    "acronym": "SERNANP",
-    "url": "https://www.gob.pe/sernanp",
-    "logo": "images/aliados/logo_SERNANP.png",
-    "useLogo": true
-  },
-  {
-    "id": "org8",
-    "name": "Servicio Nacional Forestal y de Fauna Silvestre",
-    "acronym": "SERFOR",
-    "url": "https://www.gob.pe/serfor",
-    "logo": "images/aliados/logo_serfor.png",
-    "useLogo": true
-  },
-  {
-    "id": "org1",
+    "id": "app",
     "name": "Asociación Peruana de Primatología",
     "acronym": "APP",
     "url": "https://primatologiaperu.org",
     "logo": "images/aliados/logo_app.png",
-    "useLogo": true
+    "useLogo": true,
+    "category": "coorganizador"
   },
   {
-    "id": "org3",
-    "name": "Universidad Nacional Mayor de San Marcos",
-    "acronym": "UNMSM",
-    "url": "https://www.unmsm.edu.pe",
-    "logo": "images/aliados/logo_unmsm.png",
-    "useLogo": true
-  },
-  {
-    "id": "org2",
-    "name": "Facultad de Medicina Veterinaria UNMSM",
-    "acronym": "FMV",
-    "url": "#",
-    "logo": "images/aliados/logo_fmv.png",
-    "useLogo": true
-  },
-  {
-    "id": "org7",
-    "name": "Sección de Fauna Silvestre FMV",
-    "acronym": "SFS-FMV",
-    "url": "#",
-    "logo": "images/aliados/logo_faunasilvestre.jpg",
-    "useLogo": true
-  },
-  {
-    "id": "org6",
-    "name": "Kawsay",
-    "acronym": "Kawsay",
-    "url": "#",
-    "logo": "images/aliados/logo-kawsay.png",
-    "useLogo": true
-  },
-  {
-    "id": "org5",
-    "name": "Asociación Proyecto Mono Tocón",
-    "acronym": "Asociación Proyecto Mono Tocón",
-    "url": "#",
-    "logo": "images/aliados/logo_pmt.png",
-    "useLogo": true
-  },
-  {
-    "id": "org4",
+    "id": "yunkawasi",
     "name": "Yunkawasi",
     "acronym": "Yunkawasi",
     "url": "#",
     "logo": "images/aliados/logo_yunkawasi.png",
-    "useLogo": true
+    "useLogo": true,
+    "category": "coorganizador"
   },
   {
-    "id": "org11",
-    "name": "CIVEFAS",
+    "id": "pmt",
+    "name": "Asociación Proyecto Mono Tocón",
+    "acronym": "PMT",
+    "url": "#",
+    "logo": "images/aliados/logo_pmt.png",
+    "useLogo": true,
+    "category": "coorganizador"
+  },
+  {
+    "id": "kawsay",
+    "name": "Kawsay",
+    "acronym": "Kawsay",
+    "url": "#",
+    "logo": "images/aliados/logo-kawsay.png",
+    "useLogo": true,
+    "category": "coorganizador"
+  },
+  {
+    "id": "minam",
+    "name": "Ministerio del Ambiente",
+    "acronym": "MINAM",
+    "url": "https://www.gob.pe/minam",
+    "logo": "images/aliados/logo_minam.png",
+    "useLogo": true,
+    "category": "coorganizador"
+  },
+  {
+    "id": "sernanp",
+    "name": "Servicio Nacional de Áreas Naturales Protegidas por el Estado",
+    "acronym": "SERNANP",
+    "url": "https://www.gob.pe/sernanp",
+    "logo": "images/aliados/logo_SERNANP.png",
+    "useLogo": true,
+    "category": "coorganizador"
+  },
+  {
+    "id": "serfor",
+    "name": "Servicio Nacional Forestal y de Fauna Silvestre",
+    "acronym": "SERFOR",
+    "url": "https://www.gob.pe/serfor",
+    "logo": "images/aliados/logo_serfor.png",
+    "useLogo": true,
+    "category": "coorganizador"
+  },
+  {
+    "id": "unmsm",
+    "name": "Universidad Nacional Mayor de San Marcos",
+    "acronym": "UNMSM",
+    "url": "https://www.unmsm.edu.pe",
+    "logo": "images/aliados/logo_unmsm.png",
+    "useLogo": true,
+    "category": "coorganizador"
+  },
+  {
+    "id": "fmv",
+    "name": "Facultad de Medicina Veterinaria UNMSM",
+    "acronym": "FMV",
+    "url": "#",
+    "logo": "images/aliados/logo_fmv.png",
+    "useLogo": true,
+    "category": "coorganizador"
+  },
+  {
+    "id": "faunasilvestre",
+    "name": "Sección de Fauna Silvestre FMV",
+    "acronym": "SFS-FMV",
+    "url": "#",
+    "logo": "images/aliados/logo_faunasilvestre.jpg",
+    "useLogo": true,
+    "category": "coorganizador"
+  },
+  {
+    "id": "primateaction",
+    "name": "Primate Action Fund",
+    "acronym": "PAF",
+    "url": "#",
+    "logo": "images/aliados/logo_primateaction1.PNG",
+    "useLogo": true,
+    "category": "aliado"
+  },
+  {
+    "id": "primateconservation",
+    "name": "Primate Conservation Inc",
+    "acronym": "PCI",
+    "url": "#",
+    "logo": "images/aliados/logo_primateconservation.JPG",
+    "useLogo": true,
+    "category": "aliado"
+  },
+  {
+    "id": "parquedelasleyendas",
+    "name": "Parque de Las Leyendas",
+    "acronym": "PATPAL",
+    "url": "#",
+    "logo": "images/aliados/logo_parquedelasleyendas.PNG",
+    "useLogo": true,
+    "category": "aliado"
+  },
+  {
+    "id": "civefas",
+    "name": "Civefas (Círculo de estudios)",
     "acronym": "CIVEFAS",
     "url": "https://www.facebook.com/Civefas/",
     "logo": "images/aliados/logo_civefas.png",
-    "useLogo": true
+    "useLogo": true,
+    "category": "aliado"
   },
   {
-    "id": "org12",
-    "name": "University of Suffolk",
-    "acronym": "Suffolk",
-    "url": "https://www.uos.ac.uk",
-    "logo": "images/aliados/logo_suffolk.jpg",
-    "useLogo": true
+    "id": "aticuy",
+    "name": "Aticuy",
+    "acronym": "Aticuy",
+    "url": "#",
+    "logo": "images/aliados/logo_atiycuy.PNG",
+    "useLogo": true,
+    "category": "aliado"
   },
   {
-    "id": "org13",
-    "name": "Rainforest Expeditions",
-    "acronym": "Rainforest",
-    "url": "https://www.peruopt.com",
-    "logo": "images/aliados/logo_rainforest.jpeg",
-    "useLogo": true
+    "id": "jetsmart",
+    "name": "JetSmart",
+    "acronym": "JetSmart",
+    "url": "#",
+    "logo": "images/aliados/logo_jetsamrt.PNG",
+    "useLogo": true,
+    "category": "aerolinea"
   }
 ]
