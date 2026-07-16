@@ -94,7 +94,10 @@
     "name": "Primate Action Fund",
     "acronym": "PAF",
     "url": "#",
-    "logo": "images/aliados/logo_primateaction1.PNG",
+    "logos": [
+      "images/aliados/logo_primateaction1.PNG",
+      "images/aliados/logo_primateaction2.JPG"
+    ],
     "useLogo": true,
     "category": "aliado"
   },

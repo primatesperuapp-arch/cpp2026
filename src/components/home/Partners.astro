@@ -32,7 +32,15 @@ const aerolinea = partners.filter(p => p.category === 'aerolinea');
               title={partner.name}
             >
               {partner.useLogo ? (
-                <img src={`${base}${partner.logo}`} alt={`Logo ${partner.name}`} class="partner-card__logo" loading="lazy" />
+                partner.logos ? (
+                  <div class="partner-card__logos-container">
+                    {partner.logos.map(logoPath => (
+                      <img src={`${base}${logoPath}`} alt={`Logo ${partner.name}`} class="partner-card__logo" loading="lazy" />
+                    ))}
+                  </div>
+                ) : (
+                  <img src={`${base}${partner.logo}`} alt={`Logo ${partner.name}`} class="partner-card__logo" loading="lazy" />
+                )
               ) : (
                 <div class="partner-card__acronym">{partner.acronym}</div>
               )}
@@ -57,7 +65,15 @@ const aerolinea = partners.filter(p => p.category === 'aerolinea');
               title={partner.name}
             >
               {partner.useLogo ? (
-                <img src={`${base}${partner.logo}`} alt={`Logo ${partner.name}`} class="partner-card__logo" loading="lazy" />
+                partner.logos ? (
+                  <div class="partner-card__logos-container">
+                    {partner.logos.map(logoPath => (
+                      <img src={`${base}${logoPath}`} alt={`Logo ${partner.name}`} class="partner-card__logo" loading="lazy" />
+                    ))}
+                  </div>
+                ) : (
+                  <img src={`${base}${partner.logo}`} alt={`Logo ${partner.name}`} class="partner-card__logo" loading="lazy" />
+                )
               ) : (
                 <div class="partner-card__acronym">{partner.acronym}</div>
               )}
@@ -82,7 +98,15 @@ const aerolinea = partners.filter(p => p.category === 'aerolinea');
               title={partner.name}
             >
               {partner.useLogo ? (
-                <img src={`${base}${partner.logo}`} alt={`Logo ${partner.name}`} class="partner-card__logo" loading="lazy" />
+                partner.logos ? (
+                  <div class="partner-card__logos-container">
+                    {partner.logos.map(logoPath => (
+                      <img src={`${base}${logoPath}`} alt={`Logo ${partner.name}`} class="partner-card__logo" loading="lazy" />
+                    ))}
+                  </div>
+                ) : (
+                  <img src={`${base}${partner.logo}`} alt={`Logo ${partner.name}`} class="partner-card__logo" loading="lazy" />
+                )
               ) : (
                 <div class="partner-card__acronym">{partner.acronym}</div>
               )}
@@ -220,6 +244,22 @@ const aerolinea = partners.filter(p => p.category === 'aerolinea');
     max-height: 95px;
     object-fit: contain;
     margin-bottom: 0.4rem;
+  }
+
+  .partner-card__logos-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 0.4rem;
+    width: 100%;
+  }
+
+  .partner-card__logos-container .partner-card__logo {
+    max-width: 75px;
+    max-height: 75px;
+    object-fit: contain;
+    margin-bottom: 0;
   }
 
   .partner-card__name {
