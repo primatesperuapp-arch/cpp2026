@@ -84,22 +84,25 @@ const faqs = [
               {abstracts === 'closed' && 'Convocatoria Cerrada'}
             </span>
             <br />
-            <strong>Apertura:</strong> 08 de mayo 2026 &nbsp;|&nbsp; <strong>Cierre:</strong> 14 de julio 2026 (¡Extendido!)
+            {abstracts === 'closed' ? (
+              <strong>El plazo de envío de resúmenes ha concluido el 14 de julio de 2026. La convocatoria de resúmenes se encuentra cerrada.</strong>
+            ) : (
+              <span><strong>Apertura:</strong> 08 de mayo 2026 &nbsp;|&nbsp; <strong>Cierre:</strong> 14 de julio 2026 (¡Extendido!)</span>
+            )}
           </div>
-          <div class="deadline-alert__actions" style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-            <a href={`${base}documentos/Modelo_resumen_CPP2026.docx`} download class="btn btn-secondary">
-              📥 Plantilla Word
-            </a>
-            <a 
-              href={resumenHref} 
-              target={isTargetBlank ? "_blank" : undefined} 
-              rel={isTargetBlank ? "noopener" : undefined} 
-              class={alertBtnClasses} 
-              id="alert-enviar-resumen"
-            >
-              {alertBtnLabel}
-            </a>
-          </div>
+          {abstracts !== 'closed' && (
+            <div class="deadline-alert__actions" style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              <a 
+                href={resumenHref} 
+                target={isTargetBlank ? "_blank" : undefined} 
+                rel={isTargetBlank ? "noopener" : undefined} 
+                class={alertBtnClasses} 
+                id="alert-enviar-resumen"
+              >
+                {alertBtnLabel}
+              </a>
+            </div>
+          )}
         </div>
 
         <p class="call-desc reveal">
@@ -108,6 +111,183 @@ const faqs = [
           Alineados con el Plan Nacional de Conservación de Primates Amenazados del Perú (2019-2029) impulsado por el SERFOR, este congreso es una plataforma para articular esfuerzos interdisciplinarios y construir soluciones de manejo colaborativo.
           Hacemos un llamado a investigaciones rigurosas y experiencias de base que exploren la biología evolutiva, el bienestar animal y el rol humano en la persistencia de las especies.
         </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lineamientos de Exposición (Presentaciones Orales y Pósters) -->
+  <section class="section" style="background: var(--cream-warm);">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Para Trabajos Aceptados</span>
+        <h2 class="section-title">Lineamientos de Exposición</h2>
+        <p class="section-subtitle" style="max-width: 800px; margin-left: auto; margin-right: auto;">
+          Si tu propuesta ha sido aceptada para su presentación en el congreso, por favor sigue rigurosamente las siguientes instrucciones técnicas y recomendaciones de diseño según tu modalidad de exposición.
+        </p>
+      </div>
+
+      <!-- Tabs Component -->
+      <div class="presentation-tabs reveal">
+        <div class="tabs-header">
+          <button class="tab-btn active" data-tab="orales">
+            <span class="tab-btn__icon">🎤</span>
+            <span class="tab-btn__text">Presentaciones Orales</span>
+          </button>
+          <button class="tab-btn" data-tab="posters">
+            <span class="tab-btn__icon">📌</span>
+            <span class="tab-btn__text">Pósters Científicos</span>
+          </button>
+        </div>
+
+        <div class="tabs-content">
+          <!-- PANEL: ORALES -->
+          <div class="tab-panel active" id="tab-panel-orales">
+            <div class="poster-instructions-grid">
+              
+              <!-- Especificaciones Técnicas (Orales) -->
+              <div class="poster-card-tech">
+                <h3>📐 Especificaciones Técnicas</h3>
+                <ul class="poster-list">
+                  <li><strong>Modalidades:</strong> Ponencias Orales, Relatos de Experiencia y Charlas Relámpago.</li>
+                  <li><strong>Relación de Aspecto:</strong> Formato horizontal <strong>16:9</strong> (Widescreen).</li>
+                  <li><strong>Formatos de Archivo:</strong> Guardar y entregar en formato <strong>PDF</strong> o <strong>PowerPoint (.pptx)</strong>. Se recomienda fuertemente exportar a PDF para asegurar que las fuentes y diagramas no se desconfiguren.</li>
+                  <li><strong>Tipografías y Tamaños:</strong> Usar fuentes Sans-serif legibles (Outfit, Arial, Helvetica). Se aconseja títulos &gt; 32 pt y texto de contenido &gt; 20 pt.</li>
+                </ul>
+              </div>
+
+              <!-- Duración y Tiempos -->
+              <div class="poster-card-content">
+                <h3>⏱️ Duración y Tiempos de Exposición</h3>
+                <p class="poster-card-desc-intro" style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+                  El respeto a los tiempos asignados es crucial para el correcto flujo del programa. Las sesiones contarán con moderadores estrictos:
+                </p>
+                <div class="poster-structure-mini-grid">
+                  <div class="structure-mini-item">
+                    <strong>Ponencias Orales Académicas:</strong>
+                    <span><strong>15 minutos en total:</strong> 12 minutos para la exposición y 3 minutos para preguntas y discusión.</span>
+                  </div>
+                  <div class="structure-mini-item">
+                    <strong>Relatos de Experiencia (Comunitario/Práctico):</strong>
+                    <span><strong>15 minutos en total:</strong> 12 minutos de presentación narrativa y 3 minutos para preguntas.</span>
+                  </div>
+                  <div class="structure-mini-item">
+                    <strong>Charlas Relámpago (Lightning Talks):</strong>
+                    <span><strong>5 minutos en total:</strong> Presentación ágil y directa. Las preguntas se realizarán al final de toda la sesión.</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Recomendaciones y Canva -->
+            <div class="poster-tips-box">
+              <h3>🎨 Recomendaciones de Diseño y Entrega</h3>
+              <div class="poster-tips-grid">
+                <div class="tip-item">
+                  <span class="tip-icon">⏰</span>
+                  <strong>Recepción de Material</strong>
+                  <p>Entrega tu archivo al equipo de soporte técnico en la mesa de control de la sala asignada con al menos <strong>2 horas de anticipación</strong> a tu exposición, o al inicio del día (8:30 a.m.).</p>
+                </div>
+                <div class="tip-item">
+                  <span class="tip-icon">🎨</span>
+                  <strong>Plantilla Oficial</strong>
+                  <p>Usa la plantilla oficial de Canva diseñada con la paleta de colores y fuentes oficiales para tu comodidad.
+                     <br /><br />
+                     <a href="https://canva.link/d8iliog91u4up88" target="_blank" rel="noopener noreferrer" class="btn btn-sm" style="background: var(--gold); color: white; border: none; display: inline-flex; align-items: center; gap: 0.35rem; width: 100%; justify-content: center;">
+                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                       Editar en Canva
+                     </a>
+                  </p>
+                </div>
+                <div class="tip-item">
+                  <span class="tip-icon">👁️</span>
+                  <strong>Diseño Visual</strong>
+                  <p>Evita el exceso de texto. Las diapositivas deben actuar como apoyo visual: prioriza fotos de campo, mapas, gráficos estadísticos y esquemas.</p>
+                </div>
+                <div class="tip-item">
+                  <span class="tip-icon">🗣️</span>
+                  <strong>Claridad Expositiva</strong>
+                  <p>Habla con claridad, proyecta la voz y modera la velocidad para asegurar que el mensaje llegue a todo el auditorio, incluidos miembros no académicos.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PANEL: POSTERS -->
+          <div class="tab-panel" id="tab-panel-posters">
+            <div class="poster-instructions-grid">
+              
+              <!-- Especificaciones Técnicas (Pósters) -->
+              <div class="poster-card-tech">
+                <h3>📐 Especificaciones Técnicas</h3>
+                <ul class="poster-list">
+                  <li><strong>Orientación:</strong> Vertical (Portrait) únicamente.</li>
+                  <li><strong>Dimensiones:</strong> Medida estándar internacional <strong>A0</strong> (841 mm de ancho x 1189 mm de alto).</li>
+                  <li><strong>Material de Impresión:</strong> Papel grueso mate (de preferencia 150g o superior) o banner fotográfico con ojales discretos. Evitar papel satinado (brillante) ya que genera reflejos molestos con la iluminación de las salas.</li>
+                  <li><strong>Montaje:</strong> El congreso proveerá el material adhesivo (cinta doble contacto) o los soportes correspondientes en el área de exposición.</li>
+                </ul>
+              </div>
+
+              <!-- Estructura Sugerida -->
+              <div class="poster-card-content">
+                <h3>📝 Estructura del Contenido</h3>
+                <p class="poster-card-desc-intro" style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+                  Un póster científico efectivo debe poder leerse y entenderse en <strong>menos de 5 minutos</strong>. Sugerimos la siguiente distribución de elementos:
+                </p>
+                <div class="poster-structure-mini-grid">
+                  <div class="structure-mini-item">
+                    <strong>Encabezado principal:</strong>
+                    <span>Título visible a 2 metros, nombres de autores, afiliaciones institucionales, correo de contacto y logos oficiales en la parte superior.</span>
+                  </div>
+                  <div class="structure-mini-item">
+                    <strong>Introducción y Objetivos:</strong>
+                    <span>Muy concisos (máximo 150 palabras). Plantea la justificación, pregunta central y las hipótesis de forma directa.</span>
+                  </div>
+                  <div class="structure-mini-item">
+                    <strong>Metodología:</strong>
+                    <span>Usa diagramas de flujo, mapas del área de estudio o esquemas ilustrativos. Minimiza el texto descriptivo.</span>
+                  </div>
+                  <div class="structure-mini-item">
+                    <strong>Resultados:</strong>
+                    <span>El núcleo del póster. Destaca gráficos estadísticos legibles, fotos de campo de alta calidad o tablas clave con leyendas breves.</span>
+                  </div>
+                  <div class="structure-mini-item">
+                    <strong>Conclusiones y Discusión:</strong>
+                    <span>En forma de viñetas claras que respondan al objetivo y enfaticen la relevancia práctica para la conservación.</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Consejos de Diseño -->
+            <div class="poster-tips-box" style="margin-top: 2rem;">
+              <h3>🎨 Recomendaciones de Diseño y Legibilidad</h3>
+              <div class="poster-tips-grid">
+                <div class="tip-item">
+                  <span class="tip-icon">👁️</span>
+                  <strong>Regla del 60/40</strong>
+                  <p>El póster debe ser 60% visual (gráficos, fotos, mapas) y solo 40% texto corrido. El exceso de letras aburre y disminuye la lectura.</p>
+                </div>
+                <div class="tip-item">
+                  <span class="tip-icon">🔤</span>
+                  <strong>Tipografías y Tamaños</strong>
+                  <p>Usa fuentes Sans-serif legibles a distancia (Outfit, Arial, Helvetica). Título principal &gt;72 pt, subtítulos ~36 pt, y cuerpo ~24-28 pt.</p>
+                </div>
+                <div class="tip-item">
+                  <span class="tip-icon">🌈</span>
+                  <strong>Contraste cromático</strong>
+                  <p>Elige fondos claros (blanco, crema, gris muy suave) con texto en colores oscuros. Limita tu paleta de color a un esquema de 3 o 4 tonos.</p>
+                </div>
+                <div class="tip-item">
+                  <span class="tip-icon">📱</span>
+                  <strong>Código QR (Opcional)</strong>
+                  <p>Te recomendamos incluir un código QR pequeño en una de las esquinas inferiores para que los asistentes descarguen el PDF de tu póster.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -186,20 +366,12 @@ const faqs = [
 
       <div class="requirements-grid reveal">
         <div class="requirement-box">
-          <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1.5rem;">
-            <div>
-              <h3>📋 Requisitos Generales</h3>
-              <ul>
-                <li>Envío exclusivo a través del <strong>formulario oficial</strong> en línea.</li>
-                <li>Extensión máxima de <strong>300 palabras</strong> para el resumen descriptivo.</li>
-                <li>El título debe reflejar claramente el <strong>objetivo y la idea principal</strong> del trabajo.</li>
-              </ul>
-            </div>
-            <a href={`${base}documentos/Modelo_resumen_CPP2026.docx`} download class="btn btn-secondary" style="flex-shrink: 0; display: inline-flex; align-items: center; gap: 0.5rem; width: fit-content;">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-              Descargar Plantilla (.docx)
-            </a>
-          </div>
+          <h3>📋 Requisitos Generales</h3>
+          <ul>
+            <li>Envío exclusivo a través del <strong>formulario oficial</strong> en línea.</li>
+            <li>Extensión máxima de <strong>300 palabras</strong> para el resumen descriptivo.</li>
+            <li>El título debe reflejar claramente el <strong>objetivo y la idea principal</strong> del trabajo.</li>
+          </ul>
         </div>
 
         <div class="requirement-box" style="border-left-color: var(--gold);">
@@ -322,88 +494,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- Lineamientos para Pósters -->
-  <section class="section" id="posters-guidelines">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-label">Presentación en Físico</span>
-        <h2 class="section-title">Instrucciones para la Elaboración de Pósters</h2>
-        <p class="section-subtitle" style="max-width: 800px; margin-left: auto; margin-right: auto;">
-          Si tu trabajo fue aceptado en la modalidad de póster, sigue estas especificaciones técnicas y recomendaciones de diseño para asegurar una presentación óptima durante las sesiones científicas del congreso.
-        </p>
-      </div>
-
-      <div class="poster-instructions-grid reveal">
-        <!-- Especificaciones Técnicas -->
-        <div class="poster-card-tech">
-          <h3>📐 Especificaciones Técnicas</h3>
-          <ul class="poster-list">
-            <li><strong>Orientación:</strong> Vertical (Portrait) únicamente.</li>
-            <li><strong>Dimensiones:</strong> Medida estándar internacional <strong>A0</strong> (841 mm de ancho x 1189 mm de alto).</li>
-            <li><strong>Material de Impresión:</strong> Papel grueso mate (de preferencia 150g o superior) o banner fotográfico con ojales discretos. Evitar papel satinado (brillante) ya que genera reflejos molestos con la iluminación de las salas.</li>
-            <li><strong>Montaje:</strong> El congreso proveerá el material adhesivo (cinta doble contacto) o los soportes correspondientes en el área de exposición.</li>
-          </ul>
-        </div>
-
-        <!-- Estructura Sugerida -->
-        <div class="poster-card-content">
-          <h3>📝 Estructura del Contenido</h3>
-          <p class="poster-card-desc-intro" style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1.25rem;">
-            Un póster científico efectivo debe poder leerse y entenderse en <strong>menos de 5 minutos</strong>. Sugerimos la siguiente distribución de elementos:
-          </p>
-          <div class="poster-structure-mini-grid">
-            <div class="structure-mini-item">
-              <strong>Encabezado principal:</strong>
-              <span>Título visible a 2 metros, nombres de autores, afiliaciones institucionales, correo de contacto y logos oficiales en la parte superior.</span>
-            </div>
-            <div class="structure-mini-item">
-              <strong>Introducción y Objetivos:</strong>
-              <span>Muy concisos (máximo 150 palabras). Plantea la justificación, pregunta central y las hipótesis de forma directa.</span>
-            </div>
-            <div class="structure-mini-item">
-              <strong>Metodología:</strong>
-              <span>Usa diagramas de flujo, mapas del área de estudio o esquemas ilustrativos. Minimiza el texto descriptivo.</span>
-            </div>
-            <div class="structure-mini-item">
-              <strong>Resultados:</strong>
-              <span>El núcleo del póster. Destaca gráficos estadísticos legibles, fotos de campo de alta calidad o tablas clave con leyendas breves.</span>
-            </div>
-            <div class="structure-mini-item">
-              <strong>Conclusiones y Discusión:</strong>
-              <span>En forma de viñetas claras que respondan al objetivo y enfaticen la relevancia práctica para la conservación.</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Consejos de Diseño -->
-      <div class="poster-tips-box reveal">
-        <h3>🎨 Recomendaciones de Diseño y Legibilidad</h3>
-        <div class="poster-tips-grid">
-          <div class="tip-item">
-            <span class="tip-icon">👁️</span>
-            <strong>Regla del 60/40</strong>
-            <p>El póster debe ser 60% visual (gráficos, fotos, mapas) y solo 40% texto corrido. El exceso de letras aburre y disminuye la lectura.</p>
-          </div>
-          <div class="tip-item">
-            <span class="tip-icon">🔤</span>
-            <strong>Tipografías y Tamaños</strong>
-            <p>Usa fuentes Sans-serif legibles a distancia (Outfit, Arial, Helvetica). Título principal &gt;72 pt, subtítulos ~36 pt, y cuerpo ~24-28 pt.</p>
-          </div>
-          <div class="tip-item">
-            <span class="tip-icon">🌈</span>
-            <strong>Contraste cromático</strong>
-            <p>Elige fondos claros (blanco, crema, gris muy suave) con texto en colores oscuros. Limita tu paleta de color a un esquema de 3 o 4 tonos.</p>
-          </div>
-          <div class="tip-item">
-            <span class="tip-icon">📱</span>
-            <strong>Código QR (Opcional)</strong>
-            <p>Te recomendamos incluir un código QR pequeño en una de las esquinas inferiores para que los asistentes descarguen el PDF de tu póster.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- Lineamientos de Posters antiguo removido de aquí (ahora al principio en pestañas) -->
 
   <!-- FAQ Acordeón -->
   <section class="section">
@@ -435,25 +526,28 @@ const faqs = [
   <section class="section" style="background: var(--forest-dark); text-align:center;">
     <div class="container">
       <h2 style="font-family:var(--font-display); font-size:clamp(1.5rem,3vw,2.2rem); color:#fff; margin-bottom:1rem;">
-        ¿Listo para enviar tu resumen?
+        {abstracts === 'closed' ? 'Convocatoria Cerrada' : '¿Listo para enviar tu resumen?'}
       </h2>
-      <p style="color:rgba(255,255,255,0.7); margin-bottom:2rem; max-width:480px; margin-left:auto; margin-right:auto;">
-        Tienes hasta el <strong style="color:var(--gold);">14 de julio de 2026 (¡Extendido!)</strong> para enviar tu resumen. Notificación de resultados y horario: <strong>20 de julio de 2026</strong>. Trabajemos juntos para diseñar el futuro de la primatología en el Perú.
+      <p style="color:rgba(255,255,255,0.7); margin-bottom:2rem; max-width:580px; margin-left:auto; margin-right:auto;">
+        {abstracts === 'closed' ? (
+          'El envío de resúmenes finalizó el 14 de julio de 2026. Agradecemos a todos los investigadores y participantes que enviaron sus propuestas. Las notificaciones de aceptación se enviarán a partir del 20 de julio de 2026.'
+        ) : (
+          <span>Tienes hasta el <strong style="color:var(--gold);">14 de julio de 2026 (¡Extendido!)</strong> para enviar tu resumen. Notificación de resultados y horario: <strong>20 de julio de 2026</strong>. Trabajemos juntos para diseñar el futuro de la primatología en el Perú.</span>
+        )}
       </p>
-      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-        <a href={`${base}documentos/Modelo_resumen_CPP2026.docx`} download class="btn btn-lg" style="background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2);">
-          📥 Descargar Plantilla
-        </a>
-        <a 
-          href={resumenHref} 
-          target={isTargetBlank ? "_blank" : undefined} 
-          rel={isTargetBlank ? "noopener" : undefined} 
-          class={ctaBtnClasses} 
-          id="cta-enviar-resumen"
-        >
-          {ctaBtnLabel}
-        </a>
-      </div>
+      {abstracts !== 'closed' && (
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a 
+            href={resumenHref} 
+            target={isTargetBlank ? "_blank" : undefined} 
+            rel={isTargetBlank ? "noopener" : undefined} 
+            class={ctaBtnClasses} 
+            id="cta-enviar-resumen"
+          >
+            {ctaBtnLabel}
+          </a>
+        </div>
+      )}
     </div>
   </section>
 </PageLayout>
@@ -914,6 +1008,93 @@ const faqs = [
     line-height: 1.5;
     margin: 0;
   }
+
+  /* ── Pestañas Interactivas (Tabs) ────────────────── */
+  .presentation-tabs {
+    margin-top: 2.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(217, 157, 85, 0.2);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+  }
+  :global([data-theme="dark"]) .presentation-tabs {
+    background: rgba(26, 58, 46, 0.4);
+    border-color: rgba(217, 157, 85, 0.15);
+  }
+
+  .tabs-header {
+    display: flex;
+    background: rgba(217, 157, 85, 0.05);
+    border-bottom: 1px solid rgba(217, 157, 85, 0.2);
+  }
+  :global([data-theme="dark"]) .tabs-header {
+    background: rgba(0, 0, 0, 0.2);
+    border-bottom-color: rgba(217, 157, 85, 0.15);
+  }
+
+  .tab-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1.25rem;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    border-bottom: 3px solid transparent;
+  }
+  .tab-btn:hover {
+    background: rgba(217, 157, 85, 0.08);
+    color: var(--forest-mid);
+  }
+  :global([data-theme="dark"]) .tab-btn:hover {
+    color: var(--forest-canopy);
+  }
+  .tab-btn.active {
+    color: var(--forest-mid);
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom-color: var(--gold);
+  }
+  :global([data-theme="dark"]) .tab-btn.active {
+    color: var(--forest-canopy);
+    background: rgba(26, 58, 46, 0.6);
+  }
+
+  .tabs-content {
+    padding: 2.5rem;
+  }
+
+  .tab-panel {
+    display: none;
+  }
+  .tab-panel.active {
+    display: block;
+    animation: tabFadeIn 0.4s ease;
+  }
+
+  @keyframes tabFadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    .tab-btn {
+      flex-direction: column;
+      padding: 1rem 0.5rem;
+      font-size: 0.95rem;
+      gap: 0.35rem;
+    }
+    .tabs-content {
+      padding: 1.5rem;
+    }
+  }
 </style>
 
 <script>
@@ -955,15 +1136,7 @@ const faqs = [
           btn.textContent = '📋 Próximamente';
         }
       } else if (abstracts === 'closed') {
-        btn.setAttribute('href', '#');
-        btn.removeAttribute('target');
-        btn.removeAttribute('rel');
-        btn.classList.add('btn-muted-cta');
-        if (btn.id === 'alert-enviar-resumen') {
-          btn.textContent = 'Convocatoria Cerrada';
-        } else {
-          btn.textContent = '📋 Envío Cerrado';
-        }
+        btn.style.display = 'none';
       } else {
         btn.setAttribute('href', 'https://forms.gle/Gzcr2ktTmrEnGTTh9');
         btn.setAttribute('target', '_blank');
@@ -977,8 +1150,34 @@ const faqs = [
     });
   }
 
+  // Handle Tabs Navigation
+  function initTabs() {
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+
+    tabBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const targetTab = btn.getAttribute('data-tab');
+        
+        tabBtns.forEach(b => b.classList.remove('active'));
+        tabPanels.forEach(p => p.classList.remove('active'));
+
+        btn.classList.add('active');
+        const activePanel = document.getElementById(`tab-panel-${targetTab}`);
+        if (activePanel) {
+          activePanel.classList.add('active');
+        }
+      });
+    });
+  }
+
   // Run on startup
   updateAbstractsState();
+  initTabs();
+  
   // Listen for Astro transitions page load
-  document.addEventListener('astro:page-load', updateAbstractsState);
+  document.addEventListener('astro:page-load', () => {
+    updateAbstractsState();
+    initTabs();
+  });
 </script>

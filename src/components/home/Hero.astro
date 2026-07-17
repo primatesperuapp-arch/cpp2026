@@ -15,9 +15,9 @@ if (abstracts === 'upcoming') {
   resumenLabel = "Próximamente: Resúmenes";
   resumenClasses = "btn btn-primary btn-lg btn-muted-cta";
 } else if (abstracts === 'closed') {
-  resumenHref = "#";
-  resumenLabel = "Envío Cerrado";
-  resumenClasses = "btn btn-primary btn-lg btn-muted-cta";
+  resumenHref = `${base}llamado-de-resumenes`;
+  resumenLabel = "Lineamientos de Exposición";
+  resumenClasses = "btn btn-primary btn-lg";
 }
 ---
 
@@ -596,9 +596,9 @@ if (abstracts === 'upcoming') {
       btn.classList.add('btn-muted-cta');
       if (textEl) textEl.textContent = 'Próximamente: Resúmenes';
     } else if (abstracts === 'closed') {
-      btn.setAttribute('href', '#');
-      btn.classList.add('btn-muted-cta');
-      if (textEl) textEl.textContent = 'Envío Cerrado';
+      btn.setAttribute('href', `${base}llamado-de-resumenes`);
+      btn.classList.remove('btn-muted-cta');
+      if (textEl) textEl.textContent = 'Lineamientos de Exposición';
     } else {
       btn.setAttribute('href', `${base}llamado-de-resumenes`);
       if (textEl) textEl.textContent = 'Enviar Resumen';
