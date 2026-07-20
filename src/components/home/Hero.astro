@@ -26,8 +26,7 @@ if (abstracts === 'upcoming') {
   <div class="hero__bg">
     <div class="hero__bg-gradient"></div>
     <div class="hero__bg-pattern"></div>
-    <div class="hero__bg-image-mobile" style={`background-image: url(${base}images/animations/hero-branches.png);`} aria-hidden="true"></div>
-    <img class="hero__monkey-mobile" src={`${base}images/animations/spider-monkey-cutout.png`} alt="" aria-hidden="true" />
+    <div class="hero__bg-image-mobile" style={`background-image: url(${base}images/banners/hero-banner.png);`} aria-hidden="true"></div>
     <div class="hero__particles" aria-hidden="true">
       {Array.from({length: 12}).map((_, i) => (
         <div class="hero__particle" style={`--delay: ${i * 0.4}s; --x: ${10 + i * 7}%; --size: ${4 + (i % 4) * 3}px;`}></div>
@@ -128,8 +127,7 @@ if (abstracts === 'upcoming') {
     <!-- Right Column — Visual -->
     <div class="hero__visual animate-fade-up" style="animation-delay: 0.3s">
       <div class="hero__banner-wrapper">
-        <img src={`${base}images/animations/hero-branches.png`} alt="Ramas de árbol en la ilustración del congreso" class="hero__banner-img" />
-        <img src={`${base}images/animations/spider-monkey-cutout.png`} alt="Mono araña ilustrado" class="hero__monkey-img" />
+        <img src={`${base}images/banners/hero-banner.png`} alt="Afiche Oficial del III Congreso Peruano de Primatología" class="hero__banner-img" />
       </div>
     </div>
   </div>
@@ -352,23 +350,11 @@ if (abstracts === 'upcoming') {
     pointer-events: none;
     z-index: 0;
     filter: brightness(0.8) contrast(1.1);
-  }
-
-  .hero__monkey-mobile {
-    display: block;
-    position: absolute;
-    right: 8%;
-    bottom: 12%;
-    width: min(48vw, 300px);
-    z-index: 1;
-    pointer-events: none;
-    filter: drop-shadow(0 14px 18px rgba(0,0,0,0.28));
-    animation: monkey-canopy-mobile 18s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    animation: monkey-canopy-mobile 18s ease-in-out infinite;
   }
 
   @media (min-width: 1024px) {
-    .hero__bg-image-mobile,
-    .hero__monkey-mobile { display: none; }
+    .hero__bg-image-mobile { display: none; }
   }
 
   /* ── Visual Column ───────────────────────────────── */
@@ -404,18 +390,8 @@ if (abstracts === 'upcoming') {
     object-fit: contain;
     /* Efecto sutil para integrarlo mejor con el fondo oscuro */
     filter: brightness(1.05) contrast(1.02);
-  }
-
-  .hero__monkey-img {
-    position: absolute;
-    z-index: 2;
-    top: 23%;
-    left: 26%;
-    width: 56%;
-    height: auto;
     transform-origin: 50% 60%;
     will-change: transform;
-    filter: drop-shadow(0 14px 18px rgba(0,0,0,0.3));
     animation: monkey-canopy-journey 18s cubic-bezier(0.45, 0, 0.55, 1) infinite;
   }
 
@@ -577,14 +553,14 @@ if (abstracts === 'upcoming') {
   }
 
   @keyframes monkey-canopy-mobile {
-    0%, 18%, 100% { transform: translate3d(0, 0, 0) rotate(0); }
-    38% { transform: translate3d(-14%, -5%, 0) rotate(-2deg); }
-    60% { transform: translate3d(-32%, -2%, 0) rotate(2deg); }
-    80% { transform: translate3d(0, 0, 0) rotate(0); }
+    0%, 18%, 100% { background-position: bottom right; }
+    38% { background-position: bottom 3% right 6%; }
+    60% { background-position: bottom 1% right 20%; }
+    80% { background-position: bottom right; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .hero__monkey-img,
+    .hero__banner-img,
     .hero__bg-image-mobile {
       animation: none;
     }
