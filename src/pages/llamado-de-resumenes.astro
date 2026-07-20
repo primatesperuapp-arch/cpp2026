@@ -2,7 +2,6 @@
 import PageLayout from '../layouts/PageLayout.astro';
 import axes from '../data/thematic-axes.json';
 import { getWebState } from '../utils/webState';
-const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL + '/';
 
 const { abstracts } = getWebState();
 
