@@ -1,6 +1,8 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
 
+const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL + '/';
+
 const scientificTaxa: Array<[string, string]> = [
   ['Cacajao calvus ucayalii', '<i class="taxon">Cacajao calvus ucayalii</i>'],
   ['Aotus cf. nancymai', '<i class="taxon">Aotus</i> cf. <i class="taxon">nancymai</i>'],
@@ -583,7 +585,18 @@ const calendarColumns = calendarDayMeta.map(day => {
             <span class="agenda-calendar__eyebrow">Agenda visual</span>
             <h2>Calendario del congreso</h2>
           </div>
-          <p>Selecciona un día y abre cada actividad para consultar ponentes, moderación, afiliaciones y presentaciones.</p>
+          <div class="agenda-calendar__intro-actions">
+            <p>Selecciona un día y abre cada actividad para consultar ponentes, moderación, afiliaciones y presentaciones.</p>
+            <a
+              class="agenda-download"
+              href={`${base}documentos/programa-detallado-cpp-2026.pdf`}
+              download="Programa-detallado-CPP-2026.pdf"
+              aria-label="Descargar programa detallado del congreso en PDF"
+            >
+              <span class="agenda-download__icon" aria-hidden="true">↓</span>
+              <span><strong>Descargar programa detallado</strong><small>PDF · 12 páginas</small></span>
+            </a>
+          </div>
         </div>
 
         <div class="agenda-calendar__days" role="tablist" aria-label="Días del congreso">
@@ -1146,6 +1159,42 @@ const calendarColumns = calendarDayMeta.map(day => {
     font-size: 0.82rem;
     line-height: 1.5;
   }
+  .agenda-calendar__intro-actions {
+    display: grid;
+    justify-items: end;
+    gap: 0.75rem;
+  }
+  .agenda-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.62rem 0.8rem;
+    border: 1px solid rgba(217, 157, 85, 0.5);
+    border-radius: 0.7rem;
+    color: #fff;
+    background: linear-gradient(135deg, var(--forest-darkest), var(--forest-dark));
+    box-shadow: 0 8px 20px rgba(31, 77, 59, 0.16);
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .agenda-download:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(31, 77, 59, 0.22);
+  }
+  .agenda-download__icon {
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    color: var(--forest-darkest);
+    background: var(--gold);
+    font-size: 1.15rem;
+    font-weight: 900;
+  }
+  .agenda-download > span:last-child { display: grid; gap: 0.08rem; }
+  .agenda-download strong { font-size: 0.76rem; line-height: 1.2; }
+  .agenda-download small { color: rgba(255,255,255,0.72); font-size: 0.65rem; }
   .agenda-calendar__eyebrow {
     font-size: 0.68rem;
     font-weight: 800;
@@ -1506,6 +1555,8 @@ const calendarColumns = calendarDayMeta.map(day => {
   @media (max-width: 768px) {
     .agenda-calendar__heading { align-items: flex-start; flex-direction: column; }
     .agenda-calendar__heading p { max-width: none; }
+    .agenda-calendar__intro-actions { width: 100%; justify-items: stretch; }
+    .agenda-download { justify-content: center; }
     .agenda-calendar { margin-inline: -0.4rem; border-radius: var(--radius-md); }
     .agenda-calendar__heading { padding: 1.2rem 1rem 0.95rem; }
     .agenda-calendar__days { padding: 0 1rem 1rem; }
