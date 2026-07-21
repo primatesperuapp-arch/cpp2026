@@ -1,6 +1,47 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
 
+const scientificTaxa: Array<[string, string]> = [
+  ['Cacajao calvus ucayalii', '<i class="taxon">Cacajao calvus ucayalii</i>'],
+  ['Aotus cf. nancymai', '<i class="taxon">Aotus</i> cf. <i class="taxon">nancymai</i>'],
+  ['Klebsiella spp.', '<i class="taxon">Klebsiella</i> spp.'],
+  ['Alouatta seniculus', '<i class="taxon">Alouatta seniculus</i>'],
+  ['Pithecia monachus', '<i class="taxon">Pithecia monachus</i>'],
+  ['Sapajus macrocephalus', '<i class="taxon">Sapajus macrocephalus</i>'],
+  ['Saguinus fuscicollis', '<i class="taxon">Saguinus fuscicollis</i>'],
+  ['Plecturocebus oenanthe', '<i class="taxon">Plecturocebus oenanthe</i>'],
+  ['Trypanosoma minasense', '<i class="taxon">Trypanosoma minasense</i>'],
+  ['Lagothrix lagothricha', '<i class="taxon">Lagothrix lagothricha</i>'],
+  ['Lagothrix flavicauda', '<i class="taxon">Lagothrix flavicauda</i>'],
+  ['Oedipomidas oedipus', '<i class="taxon">Oedipomidas oedipus</i>'],
+  ['Oreonax flavicauda', '<i class="taxon">Oreonax flavicauda</i>'],
+  ['Escherichia coli', '<i class="taxon">Escherichia coli</i>'],
+  ['Cacajao calvus', '<i class="taxon">Cacajao calvus</i>'],
+  ['Ateles chameck', '<i class="taxon">Ateles chameck</i>'],
+  ['Ateles chamek', '<i class="taxon">Ateles chamek</i>'],
+  ['Aotus nancymaae', '<i class="taxon">Aotus nancymaae</i>'],
+  ['Aotus nancymai', '<i class="taxon">Aotus nancymai</i>'],
+  ['Aotus miconax', '<i class="taxon">Aotus miconax</i>'],
+];
+
+const escapeHtml = (text: string) => text
+  .replaceAll('&', '&amp;')
+  .replaceAll('<', '&lt;')
+  .replaceAll('>', '&gt;')
+  .replaceAll('"', '&quot;')
+  .replaceAll("'", '&#039;');
+
+const formatScientificNames = (text: string) => {
+  let formatted = escapeHtml(text);
+  scientificTaxa.forEach(([taxon], index) => {
+    formatted = formatted.replaceAll(taxon, `%%TAXON_${index}%%`);
+  });
+  scientificTaxa.forEach(([, markup], index) => {
+    formatted = formatted.replaceAll(`%%TAXON_${index}%%`, markup);
+  });
+  return formatted;
+};
+
 const schedule = {
   "Pre-Congreso": {
     date: "Miércoles 29 de Julio | Pre-Congreso",
@@ -609,7 +650,7 @@ const calendarColumns = calendarDayMeta.map(day => {
                         <span class="agenda-event__time">{event.time}</span>
                         <span class="agenda-event__body">
                           <span class="agenda-event__meta">{event.code} · {event.duration}</span>
-                          <strong>{event.title}</strong>
+                          <strong set:html={formatScientificNames(event.title)} />
                           {event.speaker && <small>{event.speaker}</small>}
                         </span>
                         <span class="agenda-event__arrow" aria-hidden="true">+</span>
@@ -637,7 +678,7 @@ const calendarColumns = calendarDayMeta.map(day => {
                                 <li>
                                   <span class="symposium-details__time">{item.time}</span>
                                   <span class="symposium-details__content">
-                                    <span>{item.title}</span>
+                                    <span set:html={formatScientificNames(item.title)} />
                                     {item.speaker && <small>{item.speaker}</small>}
                                     {item.track && <span class="agenda-event__track">{item.track}</span>}
                                     {item.affiliation && <em>{item.affiliation}</em>}
@@ -1358,6 +1399,7 @@ const calendarColumns = calendarDayMeta.map(day => {
     line-height: 1.45;
   }
   .agenda-event__program li:last-child { padding-bottom: 0; border-bottom: 0; }
+  :global(.taxon) { font-style: italic; }
   .agenda-event__track {
     width: fit-content;
     padding: 0.14rem 0.42rem;
