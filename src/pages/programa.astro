@@ -95,6 +95,7 @@ const schedule = {
         duration: "90 min",
         type: "simposio",
         title: "Simposio 1: Políticas públicas, instrumentos de gestión para conservación de primates",
+        detailsId: "S1",
         location: "Auditorio principal",
         speaker: "Coordinadora: Dra. Fanny Cornejo. Ponentes: Alan Flores (MINAM), Elizabeth Gonzáles (SERFOR), Gerson Ferrer (Yunkawasi)."
       },
@@ -127,6 +128,7 @@ const schedule = {
         duration: "60 min",
         type: "simposio",
         title: "Simposio 2 (Bloque I): Gestión territorial para la conservación de los primates",
+        detailsId: "S2",
         location: "Auditorio principal",
         speaker: "Coordinadores: Yunkawasi / AMPA / WCS"
       },
@@ -181,6 +183,7 @@ const schedule = {
         duration: "120 min",
         type: "simposio",
         title: "Simposio 3: Estudios e iniciativas de conservación a largo plazo de primates en el Perú",
+        detailsId: "S3",
         location: "Auditorio principal",
         speaker: "Moderadora: Dra. Liliana Cortés-Ortiz. Ponentes: Leandro Jerusalinsky, Gabriel García (EPP), Fanny Cornejo (Yunkawasi), Jossy Luna (PMT), Gideon Erkenswick (FPI), Mark Bowler (Wired Amazon), César Flores (Cocha Cashu), Raúl Bello (Kawsay)."
       },
@@ -299,6 +302,7 @@ const schedule = {
         duration: "60 min",
         type: "simposio",
         title: "Simposio 4: Conservación comunitaria de primates en el Perú: monitoreo, gobernanza y acción local",
+        detailsId: "S4",
         location: "Auditorio principal",
         speaker: "Moderador: Gerson Ferrer. Ponentes: Representante SERNANP, Oso Dorado, Fanny Cornejo (Yunkawasi), EPP, Proyecto Mono Tocón."
       },
@@ -387,6 +391,7 @@ const schedule = {
         duration: "120 min",
         type: "simposio",
         title: "Simposio 5: Educación ambiental para la conservación de primates: experiencias que conectan ciencia y sociedad",
+        detailsId: "S5",
         location: "Auditorio principal",
         speaker: "Moderadores: Michela Olaya y Gerson Ferrer. Módulos con SERNANP, MINAM, Yunkawasi, Proyecto Tití, Parque de las Leyendas, Cocha Cashu, Mono Tocón, BPAM, Rainforest Expeditions, EPP."
       },
@@ -422,6 +427,72 @@ const schedule = {
       }
     ]
   }
+};
+
+const symposiumDetails: Record<string, Array<{ time: string; title: string; speaker?: string }>> = {
+  S1: [
+    { time: '10:30–10:35', title: 'Introducción' },
+    { time: '10:35–10:47', title: 'Estrategia nacional de diversidad biológica y conservación de primates', speaker: 'Alan Flores' },
+    { time: '10:47–10:59', title: 'Planes Nacionales de Conservación de Especies Amenazadas: caso primates', speaker: 'Elizabeth Gonzáles' },
+    { time: '10:59–11:11', title: 'Plan de Acción Regional para la conservación del mono machín y mono coto de Tumbes: implementación descentralizada del Plan Nacional de Conservación de Primates Amenazados del Perú', speaker: 'Fanny Cornejo' },
+    { time: '11:11–11:23', title: 'Ley del mono choro de cola amarilla', speaker: 'Gerson Ferrer' },
+    { time: '11:23–11:35', title: 'Propuesta de Gobernanza para Seguimiento de PNC de Primates', speaker: 'Elizabeth Gonzáles' },
+  ],
+  S2: [
+    { time: '15:30–15:35', title: 'Introducción al simposio', speaker: 'SERNANP' },
+    { time: '15:35–15:43', title: 'Integrando abundancia poblacional y conocimiento ecológico local para evaluar a los primates como indicadores de la funcionalidad ecológica de las Reservas Comunales Airo Pai y Huimeki, Loreto, Perú', speaker: 'Harvey Kuinsy Jonathan' },
+    { time: '15:43–15:51', title: 'Conservación participativa de maquisapa (Ateles chamek) en la Reserva Comunal Purús: integración de conocimientos locales y estrategias institucionales', speaker: 'Gabriela Gabita' },
+    { time: '15:51–15:59', title: 'Monitoreo de maquisapa (Ateles chamek), como elemento de conservación en la Reserva Comunal Amarakaeri', speaker: 'Romel Alejandro' },
+    { time: '15:59–16:07', title: 'Diversidad de primates en el Parque Nacional Sierra del Divisor: resultados del monitoreo biológico durante 2023', speaker: 'Llossy Natiana' },
+    { time: '16:07–16:15', title: 'Monitoreo anual de un ensamble de primates amenazados en el interior del Parque Nacional Sierra del Divisor', speaker: 'Dayanne Amparo' },
+    { time: '16:15–16:23', title: 'Abundancia relativa y densidad poblacional del huapo colorado (Cacajao calvus) en el Parque Nacional Sierra del Divisor', speaker: 'José Fernando Ulises Cotrina Rodríguez' },
+    { time: '16:23–16:31', title: 'Herramientas para el monitoreo de primates amenazados en el Parque Nacional Cerros de Amotape', speaker: 'Milton Marchan' },
+    { time: '16:31–16:39', title: 'Fortalecimiento de la gestión mediante un protocolo de monitoreo para el mono choro de cola amarilla en el Bosque de Protección Alto Mayo', speaker: 'Alexander Amasifuen' },
+    { time: '16:39–16:47', title: 'Vigilancia de fiebre amarilla de primates en ANPs', speaker: 'SERNANP' },
+    { time: '16:47–16:55', title: 'Ponencia por confirmar', speaker: 'Karl Plog' },
+    { time: '16:55–17:03', title: 'Epidemiología y genética de herpesvirus en primates', speaker: 'Leticia Escobar' },
+    { time: '17:03–17:13', title: 'Ronda de preguntas' },
+    { time: '17:13–17:18', title: 'Aprendizajes, conclusiones y cierre' },
+  ],
+  S3: [
+    { time: '11:00–11:05', title: 'Introducción al simposio', speaker: 'Leandro Jerusalinsky' },
+    { time: '11:05–11:15', title: 'De Uchiza a Moyobamba: investigación y conservación de Sapajus macrocephalus, Aotus nancymai y Alouatta seniculus en San Martín', speaker: 'Gabriel García' },
+    { time: '11:15–11:25', title: 'Conservación de primates amenazados en el Perú: aprendizajes de largo plazo desde la experiencia de Yunkawasi', speaker: 'Fanny Cornejo' },
+    { time: '11:25–11:35', title: 'Ponencia por confirmar', speaker: 'Jossy Luna' },
+    { time: '11:35–11:45', title: 'Ponencia por confirmar', speaker: 'Gideon Erkenswick' },
+    { time: '11:45–11:55', title: 'Ponencia por confirmar', speaker: 'Mark Bowler' },
+    { time: '11:55–12:05', title: 'Ponencia por confirmar', speaker: 'César Flores' },
+    { time: '12:05–12:15', title: 'Del cautiverio a la libertad de monos araña reintroducidos y primeras experiencias en el seguimiento de primates', speaker: 'Raúl Bello' },
+    { time: '12:15–12:25', title: 'Preguntas', speaker: 'Liliana Cortés-Ortiz' },
+    { time: '12:25–12:30', title: 'Palabras de cierre', speaker: 'Liliana Cortés-Ortiz' },
+  ],
+  S4: [
+    { time: '10:30–10:34', title: 'Introducción al simposio', speaker: 'Gerson Ferrer' },
+    { time: '10:34–10:42', title: 'Ponencia por confirmar' },
+    { time: '10:42–10:50', title: 'Conservación con rostro local: la experiencia territorial de la Asociación Oso Dorado' },
+    { time: '10:50–10:58', title: 'De la participación a la gobernanza local: aprendizajes de Yunkawasi en la conservación comunitaria de primates', speaker: 'Fanny Cornejo' },
+    { time: '10:58–11:06', title: 'Ponencia por confirmar' },
+    { time: '11:06–11:14', title: 'Ponencia por confirmar' },
+    { time: '11:14–11:22', title: 'Bioacústica y redes comunitarias para el monitoreo y conservación de primates en Tambopata, Perú' },
+    { time: '11:22–11:30', title: 'Preguntas' },
+  ],
+  S5: [
+    { time: '15:30–15:35', title: 'Bienvenida e introducción al simposio' },
+    { time: '15:35–15:43', title: 'Módulo I: ¿Cómo las instituciones crean las condiciones para educar?', speaker: 'SERNANP Central' },
+    { time: '15:43–15:51', title: 'Experiencia institucional por confirmar', speaker: 'DECA–MINAM' },
+    { time: '15:51–15:59', title: 'Experiencia institucional por confirmar', speaker: 'Yunkawasi' },
+    { time: '15:59–16:07', title: 'Experiencia institucional por confirmar', speaker: 'Fundación Proyecto Tití' },
+    { time: '16:07–16:15', title: 'Experiencia institucional por confirmar', speaker: 'Caso SFZ' },
+    { time: '16:15–16:25', title: 'Ronda de preguntas' },
+    { time: '16:25–16:33', title: 'Módulo II: ¿Cómo la educación ambiental genera cambios reales? Experiencias que transforman personas y comunidades', speaker: 'Caso Parque de las Leyendas' },
+    { time: '16:33–16:41', title: 'Experiencia institucional por confirmar', speaker: 'Caso Cocha Cashu' },
+    { time: '16:41–16:49', title: 'Experiencia institucional por confirmar', speaker: 'Caso Mono Tocón' },
+    { time: '16:49–16:57', title: 'Experiencia institucional por confirmar', speaker: 'Caso BPAM' },
+    { time: '16:57–17:05', title: 'Experiencia institucional por confirmar', speaker: 'Caso Rainforest' },
+    { time: '17:05–17:13', title: 'Experiencia institucional por confirmar', speaker: 'Caso EPP' },
+    { time: '17:13–17:23', title: 'Ronda de preguntas' },
+    { time: '17:23–17:33', title: 'Conversatorio: Construyendo el futuro de la educación ambiental para la conservación de primates' },
+  ],
 };
 
 
@@ -518,6 +589,7 @@ const typeConfig: Record<string, { color: string; label: string; icon: string }>
             {data.sessions.map(session => {
               const cfg = typeConfig[session.type] || typeConfig.ponencias;
               const isBreak = session.type === 'break' || session.type === 'inscripcion';
+              const details = session.detailsId ? symposiumDetails[session.detailsId] : null;
               return (
                 <div 
                   class={`schedule-item schedule-item--${session.type} ${isBreak ? 'schedule-item--is-break' : ''} fade-in-up`} 
@@ -552,6 +624,20 @@ const typeConfig: Record<string, { color: string; label: string; icon: string }>
                           <span class="speaker-icon">👤</span> 
                           <span>{session.speaker}</span>
                         </p>
+                      )}
+                      {details && (
+                        <details class="symposium-details">
+                          <summary>Ver programa detallado ({details.length} intervenciones)</summary>
+                          <ol>
+                            {details.map(item => (
+                              <li>
+                                <span class="symposium-details__time">{item.time}</span>
+                                <span>{item.title}</span>
+                                {item.speaker && <small> — {item.speaker}</small>}
+                              </li>
+                            ))}
+                          </ol>
+                        </details>
                       )}
                     </div>
                   )}
@@ -942,6 +1028,38 @@ const typeConfig: Record<string, { color: string; label: string; icon: string }>
     border-top: 1px dashed rgba(217,157,85,0.12);
     padding-top: 0.5rem;
   }
+
+  .symposium-details {
+    margin-top: 1rem;
+    border-top: 1px solid rgba(217,157,85,0.22);
+    padding-top: 0.8rem;
+  }
+  .symposium-details summary {
+    cursor: pointer;
+    color: var(--forest-mid);
+    font-weight: 800;
+    font-size: 0.84rem;
+  }
+  .symposium-details ol {
+    margin: 0.8rem 0 0;
+    padding-left: 1.2rem;
+    display: grid;
+    gap: 0.6rem;
+  }
+  .symposium-details li {
+    color: var(--text-muted);
+    font-size: 0.84rem;
+    line-height: 1.45;
+    padding-left: 0.15rem;
+  }
+  .symposium-details__time {
+    color: var(--forest-leaf);
+    font-weight: 800;
+    white-space: nowrap;
+    margin-right: 0.35rem;
+  }
+  .symposium-details small { color: var(--text-muted); font-size: inherit; }
+  :global([data-theme="dark"]) .symposium-details summary { color: var(--forest-canopy); }
   :global([data-theme="dark"]) .schedule-item__speaker {
     border-top-color: rgba(255,255,255,0.08);
   }
