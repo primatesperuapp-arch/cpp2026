@@ -180,9 +180,11 @@ const schedule = {
         time: "10:00",
         duration: "60 min",
         type: "posters",
-        title: "Exposición de Pósters & Coffee Break",
+        title: "Coffee Break + Evaluación de pósteres (17 trabajos)",
+        detailsId: "PSTR",
+        detailsLabel: "Listado de pósteres aceptados",
         location: "Sala de estudio / Foyer",
-        speaker: "Exposición de trabajos de investigación del congreso"
+        speaker: "17 trabajos organizados por eje temático"
       },
       {
         time: "11:00",
@@ -348,7 +350,7 @@ const schedule = {
   }
 };
 
-const symposiumDetails: Record<string, Array<{ time: string; title: string; speaker?: string; affiliation?: string }>> = {
+const symposiumDetails: Record<string, Array<{ time: string; title: string; speaker?: string; affiliation?: string; track?: string }>> = {
   S1: [
     { time: '10:30–10:33', title: 'Introducción', speaker: 'Marco Arenas', affiliation: 'SERFOR' },
     { time: '10:33–10:41', title: 'Estrategia nacional de diversidad biológica y conservación de primates', speaker: 'Mirbel Alberto Epiquien Rivera', affiliation: 'MINAM' },
@@ -361,32 +363,32 @@ const symposiumDetails: Record<string, Array<{ time: string; title: string; spea
   S2A: [
     { time: '15:30–15:35', title: 'Introducción al simposio', speaker: 'SERNANP', affiliation: 'SERNANP' },
     { time: '15:35–15:43', title: 'Integrando abundancia poblacional y conocimiento ecológico local para evaluar a los primates como indicadores de la funcionalidad ecológica de las Reservas Comunales Airo Pai y Huimeki, Loreto, Perú', speaker: 'Harvey Kuinsy Jonathan', affiliation: 'Reserva Comunal Airo Pai' },
-    { time: '15:43–15:51', title: 'Conservación participativa de maquisapa (Ateles chamek) en la Reserva Comunal Purús: integración de conocimientos locales y estrategias institucionales', speaker: 'Gabriela Gabita', affiliation: 'Reserva Comunal Purús' },
+    { time: '15:43–15:51', title: 'Conservación participativa de maquisapa (Ateles chamek) en la Reserva Comunal Purús: integración de conocimientos locales y estrategias institucionales para la sostenibilidad de los ecosistemas amazónicos', speaker: 'Gabriela Gabita', affiliation: 'Reserva Comunal Purús' },
     { time: '15:51–15:59', title: 'Monitoreo de maquisapa (Ateles chamek), como elemento de conservación en la Reserva Comunal Amarakaeri', speaker: 'Romel Alejandro', affiliation: 'Reserva Comunal Amarakaeri' },
-    { time: '15:59–16:07', title: 'Diversidad de primates en el Parque Nacional Sierra del Divisor: resultados del monitoreo biológico durante 2023', speaker: 'Llossy Natiana', affiliation: 'Parque Nacional Sierra del Divisor' },
-    { time: '16:07–16:15', title: 'Monitoreo anual de un ensamble de primates amenazados en el interior del Parque Nacional Sierra del Divisor', speaker: 'Dayanne Amparo', affiliation: 'Parque Nacional Sierra del Divisor' },
-    { time: '16:15–16:23', title: 'Abundancia relativa y densidad poblacional del huapo colorado (Cacajao calvus) en el Parque Nacional Sierra del Divisor', speaker: 'José Fernando Ulises Cotrina Rodríguez', affiliation: 'Parque Nacional Sierra del Divisor' },
+    { time: '15:59–16:07', title: 'Diversidad de primates en el Parque Nacional Sierra del Divisor, Amazonía peruana: resultados del monitoreo biológico durante 2023', speaker: 'Llossy Natiana', affiliation: 'Parque Nacional Sierra del Divisor' },
+    { time: '16:07–16:15', title: 'Monitoreo anual de un ensamble de primates amenazados en el interior del Parque Nacional Sierra del Divisor, Perú, mediante servicios de vigilancia y control', speaker: 'Dayanne Amparo', affiliation: 'Parque Nacional Sierra del Divisor' },
+    { time: '16:15–16:23', title: 'Abundancia relativa y densidad poblacional del huapo colorado (Cacajao calvus) en el Parque Nacional Sierra del Divisor, Perú', speaker: 'José Fernando Ulises Cotrina Rodríguez', affiliation: 'Parque Nacional Sierra del Divisor' },
     { time: '16:23–16:30', title: 'Ronda de preguntas', speaker: 'Moderador' },
   ],
   S2B: [
-    { time: '17:00–17:08', title: 'Herramientas para el monitoreo de primates amenazados en el Parque Nacional Cerros de Amotape', speaker: 'Milton Marchan', affiliation: 'Parque Nacional Cerros de Amotape' },
+    { time: '17:00–17:08', title: 'Herramientas para el monitoreo de primates amenazados en el Parque Nacional Cerros de Amotape: protocolos participativos de monitoreo', speaker: 'Milton Marchan', affiliation: 'Parque Nacional Cerros de Amotape' },
     { time: '17:08–17:16', title: 'Fortalecimiento de la gestión mediante un protocolo de monitoreo para el mono choro de cola amarilla en el Bosque de Protección Alto Mayo', speaker: 'Alexander Amasifuen', affiliation: 'Bosque de Protección Alto Mayo' },
     { time: '17:16–17:24', title: 'Vigilancia de fiebre amarilla de primates en ANPs', speaker: 'SERNANP', affiliation: 'SERNANP' },
-    { time: '17:24–17:32', title: 'Vigilancia de fiebre amarilla de primates no humanos fuera de ANPs', speaker: 'Karl Plog', affiliation: 'SERFOR' },
-    { time: '17:32–17:40', title: 'Epidemiología y genética de herpesvirus en primates', speaker: 'Leticia Escobar', affiliation: 'Universidad Peruana Cayetano Heredia' },
+    { time: '17:24–17:32', title: 'Vigilancia de la fiebre amarilla en primates no humanos bajo el enfoque Una Salud en el Perú', speaker: 'Karl Plog', affiliation: 'SERFOR' },
+    { time: '17:32–17:40', title: 'Vigilancia molecular de agentes virales en primates neotropicales provenientes del tráfico ilegal en Perú', speaker: 'Leticia Escobar', affiliation: 'Universidad Peruana Cayetano Heredia' },
     { time: '17:40–17:50', title: 'Ronda de preguntas' },
     { time: '17:50–18:00', title: 'Aprendizaje, conclusiones y cierre' },
   ],
   S3: [
     { time: '11:00–11:05', title: 'Introducción al simposio', speaker: 'Leandro Jerusalinsky' },
-    { time: '11:05–11:17', title: 'De Uchiza a Moyobamba: investigación y conservación de Sapajus macrocephalus, Aotus nancymai y Alouatta seniculus en San Martín', speaker: 'Gabriel García', affiliation: 'Asociación Equipo Primatológico' },
+    { time: '11:05–11:17', title: 'De Uchiza a Moyobamba: investigación y conservación de Sapajus macrocephalus, Aotus nancymai y Alouatta seniculus por el EPP en la región de San Martín', speaker: 'Gabriel García', affiliation: 'Asociación Equipo Primatológico' },
     { time: '11:17–11:29', title: 'Conservación de primates amenazados en el Perú: aprendizajes de largo plazo desde la experiencia de Yunkawasi', speaker: 'Fanny Cornejo', affiliation: 'Yunkawasi' },
-    { time: '11:29–11:41', title: 'Aprendizajes de la Asociación PMT para la conservación de primates', speaker: 'Jossy Luna-Amancio', affiliation: 'Asociación Proyecto Mono Tocón' },
-    { time: '11:41–11:53', title: 'De la Ecología a la Genómica: 15 años de investigación y conservación de primates', speaker: 'Jorge Mendoza', affiliation: 'Field Projects International' },
+    { time: '11:29–11:41', title: 'Aprendizajes de la Asociación PMT: adaptándonos para la conservación del mono tocón de San Martín', speaker: 'Jossy Luna-Amancio', affiliation: 'Asociación Proyecto Mono Tocón' },
+    { time: '11:41–11:53', title: 'De la Ecología a la Genómica: 15 años de investigación para la conservación de primates en la Amazonía peruana', speaker: 'Jorge Mendoza', affiliation: 'Field Projects International' },
     { time: '11:53–12:05', title: 'Bioacústica y redes comunitarias para el monitoreo y conservación de primates en Tambopata, Perú', speaker: 'Jackeline Mendoza', affiliation: 'Wired Amazon' },
-    { time: '12:05–12:17', title: 'Investigación y conservación de primates en la Estación Biológica Cocha Cashu', speaker: 'César Flores', affiliation: 'Estación Biológica Cocha Cashu' },
+    { time: '12:05–12:17', title: '“Corre Corre Mono”: ¿a dónde debe ir la primatología de Cocha Cashu en los siguientes 10 años?', speaker: 'César Flores', affiliation: 'Estación Biológica Cocha Cashu' },
     { time: '12:17–12:29', title: 'Del cautiverio a la libertad de monos araña reintroducidos y primeras experiencias en el seguimiento de primates', speaker: 'Raúl Bello', affiliation: 'Estación Biológica Kawsay' },
-    { time: '12:29–12:49', title: 'Conversatorio: desafíos y lecciones para la conservación', speaker: 'Moderador / Panelistas S3' },
+    { time: '12:29–12:49', title: 'Conversatorio: desafíos y lecciones aprendidas en proyectos de investigación y conservación de primates a largo plazo en el Perú', speaker: 'Moderador / Panelistas S3' },
     { time: '12:49–12:55', title: 'Ronda de preguntas', speaker: 'Liliana Cortés-Ortiz' },
     { time: '12:55–13:00', title: 'Palabras de cierre', speaker: 'Liliana Cortés-Ortiz' },
   ],
@@ -415,6 +417,25 @@ const symposiumDetails: Record<string, Array<{ time: string; title: string; spea
     { time: '17:05–17:13', title: 'Conservación de primates en bosques fragmentados: acción ciudadana y custodia voluntaria en la Finca Sarita Colonia, Uchiza', speaker: 'Andrea Zeballos Mora', affiliation: 'Asociación Equipo Primatológico' },
     { time: '17:13–17:23', title: 'Ronda de preguntas' },
     { time: '17:23–17:30', title: 'Conversatorio: construyendo el futuro de la educación ambiental para la conservación de primates', speaker: 'Fanny Cornejo' },
+  ],
+  PSTR: [
+    { time: 'P-001', track: 'Eje 3: Ciencia para la Acción', title: 'Determinación de valores ecocardiográficos en el mono aullador rojo (Alouatta seniculus) en cautiverio bajo inmovilización química', speaker: 'Angel Albert Valdivia Zegarra', affiliation: 'Universidad Peruana Cayetano Heredia' },
+    { time: 'P-002', track: 'Eje 3: Ciencia para la Acción', title: 'Descripción de la anatomía ecográfica de los órganos abdominales del huapo negro (Pithecia monachus), bajo sedación, en cautiverio, Perú', speaker: 'Ricardo Reynaldo Rojas Muñoz', affiliation: 'Universidad Peruana Cayetano Heredia' },
+    { time: 'P-003', track: 'Eje 3: Ciencia para la Acción', title: 'Patrones de actividad y preferencias alimentarias en Ateles chamek: análisis preliminar comparativo entre hembras adultas con y sin cría dependiente en Cocha Cashu, Perú', speaker: 'Leila Liz Escobar Yomona', affiliation: 'Grupo de Investigación en Sistemas Socio-Ecológicos, Universidad Peruana Cayetano Heredia' },
+    { time: 'P-004', track: 'Eje 3: Ciencia para la Acción', title: 'Preferencias de hábitat y estratificación vertical de la comunidad de primates en un bosque en regeneración de la Reserva de Biosfera del Manu, Perú', speaker: 'Jackeline Aida Mendoza Soto', affiliation: 'Universidad Nacional Agraria La Molina · Crees Foundation for Manu' },
+    { time: 'P-005', track: 'Eje 2: Reducción de la Caza y el Tráfico', title: 'Espectro parasitario de primates en cautiverio del zoológico municipal de la provincia de Ica, Perú: estudio preliminar', speaker: 'Davis Jesus Marquez Guzman', affiliation: 'Departamento de Farmacia y Tecnología Farmacéutica y Parasitología, Universitat de València · CIBERINFEC, Instituto de Salud Carlos III' },
+    { time: 'P-006', track: 'Eje 2: Reducción de la Caza y el Tráfico', title: 'Evento de mortalidad asociado a infección presuntiva por HSV-1 en Saguinus fuscicollis “mono pichico” en un zoológico peruano', speaker: 'Jose Alberto Pachas Atuncar', affiliation: 'Universidad Nacional San Luis Gonzaga' },
+    { time: 'P-007', track: 'Eje 2: Reducción de la Caza y el Tráfico', title: 'Monitoreo clínico-conductual y estrategias de manejo frente a episodios de auto acicalamiento excesivo y alopecia en una hembra de Pithecia monachus bajo cuidado humano: reporte de caso', speaker: 'Diana Karina Sandoval Alarcon', affiliation: 'Parque de las Leyendas Felipe Benavides Barreda' },
+    { time: 'P-008', track: 'Eje 1: Bosques Conectados', title: 'Diversidad de primates en paisajes forestales productivos de Tahuamanu, Madre de Dios', speaker: 'Mayumi Zavala Chuco', affiliation: 'WWF Perú' },
+    { time: 'P-009', track: 'Eje 2: Reducción de la Caza y el Tráfico', title: 'Diversidad bacteriana en muestras de sangre de primates no humanos semicautivos de IVITA-Iquitos mediante secuenciación del gen ARNr 16S', speaker: 'Thalía Araceli Silvestre Espejo', affiliation: 'UNMSM' },
+    { time: 'P-010', track: 'Eje 3: Ciencia para la Acción', title: 'Evidencia genómica de Escherichia coli productora de BLEE en primates no humanos de la Amazonía peruana', speaker: 'Jhonathan Arturo Bazalar Gonzales', affiliation: 'Universidad Nacional Mayor de San Marcos' },
+    { time: 'P-011', track: 'Eje 2: Reducción de la Caza y el Tráfico', title: 'Del decomiso a la liberación: patrones de tráfico, rehabilitación y gestión posrescate de primates neotropicales en la Amazonía peruana (2020–2024)', speaker: 'Milagros Mariell Junco Ugaz', affiliation: 'Universidad Peruana Cayetano Heredia' },
+    { time: 'P-012', track: 'Eje 1: Bosques Conectados', title: 'El paisaje sonoro como indicador de integridad biológica ante la fragmentación de bosques en el hábitat del mono tocón de San Martín (Plecturocebus oenanthe)', speaker: 'Estrella Andrea Castillo Rodríguez', affiliation: 'Asociación Proyecto Mono Tocón' },
+    { time: 'P-013', track: 'Eje 3: Ciencia para la Acción', title: 'Detección molecular de Trypanosoma minasense en primates no humanos mantenidos en semicautiverio en Loreto, Perú', speaker: 'Ruby Jahaira Gómez Rios', affiliation: 'Universidad Nacional Mayor de San Marcos' },
+    { time: 'P-014', track: 'Eje 2: Reducción de la Caza y el Tráfico', title: 'Impacto de los incendios forestales en poblaciones del mono choro de cola amarilla (Lagothrix flavicauda) en Amazonas, Perú', speaker: 'Akemy Saire Valeriano', affiliation: 'Yunkawasi' },
+    { time: 'P-015', track: 'Eje 3: Ciencia para la Acción', title: 'Registros preliminares de Ateles chamek en los bosques montanos del distrito de Chungui y Oronccoy, Ayacucho, Perú', speaker: 'Ana Rosa Gonzales Vargas', affiliation: 'ONG Yunkawasi' },
+    { time: 'P-016', track: 'Eje 2: Reducción de la Caza y el Tráfico', title: 'Respuesta comportamental de dos individuos de mono tocón de San Martín (Plecturocebus oenanthe) durante la implementación de un programa piloto de enriquecimiento ambiental en un zoológico de Lima, Perú', speaker: 'Alessandra Calderon Palacios', affiliation: 'Facultad de Medicina Veterinaria y Zootecnia, Universidad Científica del Sur' },
+    { time: 'P-017', track: 'Eje 1: Bosques Conectados', title: 'Restauración ecológica del hábitat del mono tocón de San Martín (Plecturocebus oenanthe): lecciones aprendidas en el Morro de Calzada, Región San Martín, Perú', speaker: 'Darlene Valverde', affiliation: 'Proyecto Mono Tocón' },
   ],
   O1: [
     { time: '15:30–15:40', title: 'Osteología radiológica del huapo colorado (Cacajao calvus ucayalii) bajo sedación, en semicautiverio en un centro de rescate, Iquitos, Perú', speaker: 'Ricardo Grandez · Eje 3' },
@@ -618,6 +639,7 @@ const calendarColumns = calendarDayMeta.map(day => {
                                   <span class="symposium-details__content">
                                     <span>{item.title}</span>
                                     {item.speaker && <small>{item.speaker}</small>}
+                                    {item.track && <span class="agenda-event__track">{item.track}</span>}
                                     {item.affiliation && <em>{item.affiliation}</em>}
                                   </span>
                                 </li>
@@ -638,7 +660,7 @@ const calendarColumns = calendarDayMeta.map(day => {
       <div class="program-note reveal">
         <div class="program-note__icon">📌</div>
         <div class="program-note__text">
-          <strong>Actualizado:</strong> Programa sincronizado con el archivo vigente, incluyendo títulos de magistrales y las 13 presentaciones orales aprobadas.
+          <strong>Actualizado:</strong> Programa sincronizado con el archivo vigente, incluyendo títulos de magistrales, 13 presentaciones orales y 17 pósteres aceptados.
         </div>
       </div>
 
@@ -1336,6 +1358,16 @@ const calendarColumns = calendarDayMeta.map(day => {
     line-height: 1.45;
   }
   .agenda-event__program li:last-child { padding-bottom: 0; border-bottom: 0; }
+  .agenda-event__track {
+    width: fit-content;
+    padding: 0.14rem 0.42rem;
+    border: 1px solid color-mix(in srgb, var(--event-color) 18%, transparent);
+    border-radius: 999px;
+    color: var(--forest-darkest);
+    background: color-mix(in srgb, var(--event-color) 7%, white);
+    font-size: 0.65rem;
+    font-weight: 800;
+  }
   .agenda-event__program em {
     width: fit-content;
     padding: 0.14rem 0.42rem;
