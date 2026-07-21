@@ -126,10 +126,30 @@ const schedule = {
       },
       {
         time: "15:30",
-        duration: "150 min · 2 bloques",
+        duration: "60 min",
         type: "simposio",
-        title: "Simposio 2: Gestión territorial para la conservación de los primates",
-        detailsId: "S2",
+        title: "Simposio 2 · Bloque 1: Gestión territorial para la conservación de los primates",
+        detailsId: "S2A",
+        detailsLabel: "Programa del Bloque 1",
+        moderator: "Raúl Bello",
+        location: "Auditorio principal",
+        speaker: "Coordinadores: Yunkawasi / AMPA / WCS"
+      },
+      {
+        time: "16:30",
+        duration: "30 min",
+        type: "break",
+        title: "Coffee Break",
+        location: "Foyer del Auditorio",
+        speaker: ""
+      },
+      {
+        time: "17:00",
+        duration: "60 min",
+        type: "simposio",
+        title: "Simposio 2 · Bloque 2: Gestión territorial para la conservación de los primates",
+        detailsId: "S2B",
+        detailsLabel: "Programa del Bloque 2",
         moderator: "Raúl Bello",
         location: "Auditorio principal",
         speaker: "Coordinadores: Yunkawasi / AMPA / WCS"
@@ -328,7 +348,7 @@ const schedule = {
   }
 };
 
-const symposiumDetails: Record<string, Array<{ time: string; title: string; speaker?: string; affiliation?: string; kind?: 'block' | 'break' }>> = {
+const symposiumDetails: Record<string, Array<{ time: string; title: string; speaker?: string; affiliation?: string }>> = {
   S1: [
     { time: '10:30–10:33', title: 'Introducción', speaker: 'Marco Arenas', affiliation: 'SERFOR' },
     { time: '10:33–10:41', title: 'Estrategia nacional de diversidad biológica y conservación de primates', speaker: 'Mirbel Alberto Epiquien Rivera', affiliation: 'MINAM' },
@@ -338,8 +358,7 @@ const symposiumDetails: Record<string, Array<{ time: string; title: string; spea
     { time: '11:05–11:15', title: 'Planes de acciones regionales y Ley del Mono Choro de Cola Amarilla', speaker: 'Fanny Cornejo', affiliation: 'Yunkawasi' },
     { time: '11:15–11:30', title: 'Propuesta de Gobernanza para Seguimiento de PNC de Primates', speaker: 'Elizabeth Gonzáles', affiliation: 'SERFOR' },
   ],
-  S2: [
-    { time: '15:30–16:30', title: 'Bloque 1 del simposio', kind: 'block' },
+  S2A: [
     { time: '15:30–15:35', title: 'Introducción al simposio', speaker: 'SERNANP', affiliation: 'SERNANP' },
     { time: '15:35–15:43', title: 'Integrando abundancia poblacional y conocimiento ecológico local para evaluar a los primates como indicadores de la funcionalidad ecológica de las Reservas Comunales Airo Pai y Huimeki, Loreto, Perú', speaker: 'Harvey Kuinsy Jonathan', affiliation: 'Reserva Comunal Airo Pai' },
     { time: '15:43–15:51', title: 'Conservación participativa de maquisapa (Ateles chamek) en la Reserva Comunal Purús: integración de conocimientos locales y estrategias institucionales', speaker: 'Gabriela Gabita', affiliation: 'Reserva Comunal Purús' },
@@ -348,8 +367,8 @@ const symposiumDetails: Record<string, Array<{ time: string; title: string; spea
     { time: '16:07–16:15', title: 'Monitoreo anual de un ensamble de primates amenazados en el interior del Parque Nacional Sierra del Divisor', speaker: 'Dayanne Amparo', affiliation: 'Parque Nacional Sierra del Divisor' },
     { time: '16:15–16:23', title: 'Abundancia relativa y densidad poblacional del huapo colorado (Cacajao calvus) en el Parque Nacional Sierra del Divisor', speaker: 'José Fernando Ulises Cotrina Rodríguez', affiliation: 'Parque Nacional Sierra del Divisor' },
     { time: '16:23–16:30', title: 'Ronda de preguntas', speaker: 'Moderador' },
-    { time: '16:30–17:00', title: 'Coffee break · Intermedio entre bloques', kind: 'break' },
-    { time: '17:00–18:00', title: 'Bloque 2 del simposio', kind: 'block' },
+  ],
+  S2B: [
     { time: '17:00–17:08', title: 'Herramientas para el monitoreo de primates amenazados en el Parque Nacional Cerros de Amotape', speaker: 'Milton Marchan', affiliation: 'Parque Nacional Cerros de Amotape' },
     { time: '17:08–17:16', title: 'Fortalecimiento de la gestión mediante un protocolo de monitoreo para el mono choro de cola amarilla en el Bosque de Protección Alto Mayo', speaker: 'Alexander Amasifuen', affiliation: 'Bosque de Protección Alto Mayo' },
     { time: '17:16–17:24', title: 'Vigilancia de fiebre amarilla de primates en ANPs', speaker: 'SERNANP', affiliation: 'SERNANP' },
@@ -548,7 +567,21 @@ const calendarColumns = calendarDayMeta.map(day => {
                 {day.events.map(event => {
                   const cfg = typeConfig[event.type] || typeConfig.ponencias;
                   const details = event.detailsId ? symposiumDetails[event.detailsId] : null;
-                  const interventionCount = details?.filter(item => !item.kind).length || 0;
+                  const interventionCount = details?.length || 0;
+                  if (event.type === 'break') {
+                    return (
+                      <div class={`agenda-event agenda-event--${event.colorKey} agenda-event--simple`}>
+                        <div class="agenda-event__summary">
+                          <span class="agenda-event__time">{event.time}</span>
+                          <span class="agenda-event__body">
+                            <span class="agenda-event__meta">{event.duration}</span>
+                            <strong>{event.title}</strong>
+                          </span>
+                          <span class="agenda-event__arrow" aria-hidden="true">☕</span>
+                        </div>
+                      </div>
+                    );
+                  }
                   return (
                     <details class={`agenda-event agenda-event--${event.colorKey}`}>
                       <summary>
@@ -580,10 +613,10 @@ const calendarColumns = calendarDayMeta.map(day => {
                             <h4>{event.detailsLabel || 'Programa detallado'} · {interventionCount} intervenciones</h4>
                             <ol>
                               {details.map(item => (
-                                <li class={item.kind ? `agenda-program-marker agenda-program-marker--${item.kind}` : undefined}>
+                                <li>
                                   <span class="symposium-details__time">{item.time}</span>
                                   <span class="symposium-details__content">
-                                    <span>{item.kind === 'break' ? '☕ ' : ''}{item.title}</span>
+                                    <span>{item.title}</span>
                                     {item.speaker && <small>{item.speaker}</small>}
                                     {item.affiliation && <em>{item.affiliation}</em>}
                                   </span>
@@ -1191,7 +1224,8 @@ const calendarColumns = calendarDayMeta.map(day => {
     border-color: color-mix(in srgb, var(--event-color) 38%, transparent);
     box-shadow: 0 10px 24px rgba(69,52,28,0.1);
   }
-  .agenda-event summary {
+  .agenda-event summary,
+  .agenda-event__summary {
     display: grid;
     grid-template-columns: 74px minmax(0, 1fr) 24px;
     align-items: center;
@@ -1200,6 +1234,12 @@ const calendarColumns = calendarDayMeta.map(day => {
     cursor: pointer;
     list-style: none;
   }
+  .agenda-event--simple {
+    border-style: dashed;
+    background: color-mix(in srgb, var(--event-color) 5%, white);
+  }
+  .agenda-event--simple:hover { transform: none; box-shadow: none; }
+  .agenda-event--simple .agenda-event__arrow { font-size: 0.95rem; }
   .agenda-event summary::-webkit-details-marker { display: none; }
   .agenda-event summary:focus-visible {
     border-radius: calc(var(--radius-sm) - 2px);
@@ -1296,28 +1336,6 @@ const calendarColumns = calendarDayMeta.map(day => {
     line-height: 1.45;
   }
   .agenda-event__program li:last-child { padding-bottom: 0; border-bottom: 0; }
-  .agenda-event__program .agenda-program-marker {
-    align-items: center;
-    padding: 0.5rem 0.65rem;
-    border: 0;
-    border-radius: 0.5rem;
-    color: var(--forest-darkest);
-    background: color-mix(in srgb, var(--event-color) 12%, white);
-    font-weight: 900;
-  }
-  .agenda-event__program .agenda-program-marker--block {
-    border-left: 4px solid var(--event-color);
-  }
-  .agenda-event__program .agenda-program-marker--break {
-    border: 1px dashed rgba(167,131,36,0.45);
-    color: #795f1b;
-    background: rgba(217,157,85,0.12);
-  }
-  .agenda-program-marker .symposium-details__time { color: inherit; }
-  :global([data-theme="dark"]) .agenda-event__program .agenda-program-marker {
-    color: var(--text-on-dark);
-    background: rgba(255,255,255,0.07);
-  }
   .agenda-event__program em {
     width: fit-content;
     padding: 0.14rem 0.42rem;
@@ -1419,7 +1437,8 @@ const calendarColumns = calendarDayMeta.map(day => {
     .agenda-calendar__days { padding: 0 1rem 1rem; }
     .agenda-calendar__content { padding: 1rem; }
     .agenda-calendar__day-heading { align-items: flex-start; flex-direction: column; gap: 0.3rem; }
-    .agenda-event summary { grid-template-columns: 62px minmax(0, 1fr) 18px; gap: 0.6rem; padding: 0.75rem 0.7rem; }
+    .agenda-event summary,
+    .agenda-event__summary { grid-template-columns: 62px minmax(0, 1fr) 18px; gap: 0.6rem; padding: 0.75rem 0.7rem; }
     .agenda-event__details { padding: 0 0.7rem 0.8rem; }
     .agenda-event__facts { grid-template-columns: 1fr; }
     .agenda-event__program li { grid-template-columns: 1fr; gap: 0.15rem; }
