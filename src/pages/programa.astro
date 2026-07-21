@@ -346,70 +346,70 @@ const schedule = {
   }
 };
 
-const symposiumDetails: Record<string, Array<{ time: string; title: string; speaker?: string }>> = {
+const symposiumDetails: Record<string, Array<{ time: string; title: string; speaker?: string; affiliation?: string }>> = {
   S1: [
-    { time: '10:30–10:33', title: 'Introducción', speaker: 'Marco Arenas' },
-    { time: '10:33–10:41', title: 'Estrategia nacional de diversidad biológica y conservación de primates', speaker: 'Mirbel Alberto Epiquien Rivera' },
-    { time: '10:41–10:49', title: '¿Instrumentos de gestión en primates en las áreas naturales protegidas?', speaker: 'Por confirmar' },
-    { time: '10:49–10:57', title: 'Criterios para aprobar translocación con fines de conservación: primates', speaker: 'Patricia Ríos' },
-    { time: '10:57–11:05', title: 'Planes Nacionales de Conservación de Especies Amenazadas: caso primates', speaker: 'Elizabeth Gonzáles' },
-    { time: '11:05–11:15', title: 'Planes de acciones regionales y Ley del Mono Choro de Cola Amarilla', speaker: 'Fanny Cornejo' },
-    { time: '11:15–11:30', title: 'Propuesta de Gobernanza para Seguimiento de PNC de Primates', speaker: 'Elizabeth Gonzáles' },
+    { time: '10:30–10:33', title: 'Introducción', speaker: 'Marco Arenas', affiliation: 'SERFOR' },
+    { time: '10:33–10:41', title: 'Estrategia nacional de diversidad biológica y conservación de primates', speaker: 'Mirbel Alberto Epiquien Rivera', affiliation: 'MINAM' },
+    { time: '10:41–10:49', title: '¿Instrumentos de gestión en primates en las áreas naturales protegidas?', speaker: 'Por confirmar', affiliation: 'SERNANP' },
+    { time: '10:49–10:57', title: 'Criterios para aprobar translocación con fines de conservación: primates', speaker: 'Patricia Ríos', affiliation: 'SERFOR' },
+    { time: '10:57–11:05', title: 'Planes Nacionales de Conservación de Especies Amenazadas: caso primates', speaker: 'Elizabeth Gonzáles', affiliation: 'SERFOR' },
+    { time: '11:05–11:15', title: 'Planes de acciones regionales y Ley del Mono Choro de Cola Amarilla', speaker: 'Fanny Cornejo', affiliation: 'Yunkawasi' },
+    { time: '11:15–11:30', title: 'Propuesta de Gobernanza para Seguimiento de PNC de Primates', speaker: 'Elizabeth Gonzáles', affiliation: 'SERFOR' },
   ],
   S2: [
-    { time: '15:30–15:35', title: 'Introducción al simposio', speaker: 'SERNANP' },
-    { time: '15:35–15:43', title: 'Integrando abundancia poblacional y conocimiento ecológico local para evaluar a los primates como indicadores de la funcionalidad ecológica de las Reservas Comunales Airo Pai y Huimeki, Loreto, Perú', speaker: 'Harvey Kuinsy Jonathan' },
-    { time: '15:43–15:51', title: 'Conservación participativa de maquisapa (Ateles chamek) en la Reserva Comunal Purús: integración de conocimientos locales y estrategias institucionales', speaker: 'Gabriela Gabita' },
-    { time: '15:51–15:59', title: 'Monitoreo de maquisapa (Ateles chamek), como elemento de conservación en la Reserva Comunal Amarakaeri', speaker: 'Romel Alejandro' },
-    { time: '15:59–16:07', title: 'Diversidad de primates en el Parque Nacional Sierra del Divisor: resultados del monitoreo biológico durante 2023', speaker: 'Llossy Natiana' },
-    { time: '16:07–16:15', title: 'Monitoreo anual de un ensamble de primates amenazados en el interior del Parque Nacional Sierra del Divisor', speaker: 'Dayanne Amparo' },
-    { time: '16:15–16:23', title: 'Abundancia relativa y densidad poblacional del huapo colorado (Cacajao calvus) en el Parque Nacional Sierra del Divisor', speaker: 'José Fernando Ulises Cotrina Rodríguez' },
+    { time: '15:30–15:35', title: 'Introducción al simposio', speaker: 'SERNANP', affiliation: 'SERNANP' },
+    { time: '15:35–15:43', title: 'Integrando abundancia poblacional y conocimiento ecológico local para evaluar a los primates como indicadores de la funcionalidad ecológica de las Reservas Comunales Airo Pai y Huimeki, Loreto, Perú', speaker: 'Harvey Kuinsy Jonathan', affiliation: 'Reserva Comunal Airo Pai' },
+    { time: '15:43–15:51', title: 'Conservación participativa de maquisapa (Ateles chamek) en la Reserva Comunal Purús: integración de conocimientos locales y estrategias institucionales', speaker: 'Gabriela Gabita', affiliation: 'Reserva Comunal Purús' },
+    { time: '15:51–15:59', title: 'Monitoreo de maquisapa (Ateles chamek), como elemento de conservación en la Reserva Comunal Amarakaeri', speaker: 'Romel Alejandro', affiliation: 'Reserva Comunal Amarakaeri' },
+    { time: '15:59–16:07', title: 'Diversidad de primates en el Parque Nacional Sierra del Divisor: resultados del monitoreo biológico durante 2023', speaker: 'Llossy Natiana', affiliation: 'Parque Nacional Sierra del Divisor' },
+    { time: '16:07–16:15', title: 'Monitoreo anual de un ensamble de primates amenazados en el interior del Parque Nacional Sierra del Divisor', speaker: 'Dayanne Amparo', affiliation: 'Parque Nacional Sierra del Divisor' },
+    { time: '16:15–16:23', title: 'Abundancia relativa y densidad poblacional del huapo colorado (Cacajao calvus) en el Parque Nacional Sierra del Divisor', speaker: 'José Fernando Ulises Cotrina Rodríguez', affiliation: 'Parque Nacional Sierra del Divisor' },
     { time: '16:23–16:30', title: 'Ronda de preguntas', speaker: 'Moderador' },
     { time: '16:30–17:00', title: 'Coffee break' },
-    { time: '17:00–17:08', title: 'Herramientas para el monitoreo de primates amenazados en el Parque Nacional Cerros de Amotape', speaker: 'Milton Marchan' },
-    { time: '17:08–17:16', title: 'Fortalecimiento de la gestión mediante un protocolo de monitoreo para el mono choro de cola amarilla en el Bosque de Protección Alto Mayo', speaker: 'Alexander Amasifuen' },
-    { time: '17:16–17:24', title: 'Vigilancia de fiebre amarilla de primates en ANPs', speaker: 'SERNANP' },
-    { time: '17:24–17:32', title: 'Vigilancia de fiebre amarilla de primates no humanos fuera de ANPs', speaker: 'Karl Plog' },
-    { time: '17:32–17:40', title: 'Epidemiología y genética de herpesvirus en primates', speaker: 'Leticia Escobar' },
+    { time: '17:00–17:08', title: 'Herramientas para el monitoreo de primates amenazados en el Parque Nacional Cerros de Amotape', speaker: 'Milton Marchan', affiliation: 'Parque Nacional Cerros de Amotape' },
+    { time: '17:08–17:16', title: 'Fortalecimiento de la gestión mediante un protocolo de monitoreo para el mono choro de cola amarilla en el Bosque de Protección Alto Mayo', speaker: 'Alexander Amasifuen', affiliation: 'Bosque de Protección Alto Mayo' },
+    { time: '17:16–17:24', title: 'Vigilancia de fiebre amarilla de primates en ANPs', speaker: 'SERNANP', affiliation: 'SERNANP' },
+    { time: '17:24–17:32', title: 'Vigilancia de fiebre amarilla de primates no humanos fuera de ANPs', speaker: 'Karl Plog', affiliation: 'SERFOR' },
+    { time: '17:32–17:40', title: 'Epidemiología y genética de herpesvirus en primates', speaker: 'Leticia Escobar', affiliation: 'Universidad Peruana Cayetano Heredia' },
     { time: '17:40–17:50', title: 'Ronda de preguntas' },
     { time: '17:50–18:00', title: 'Aprendizaje, conclusiones y cierre' },
   ],
   S3: [
     { time: '11:00–11:05', title: 'Introducción al simposio', speaker: 'Leandro Jerusalinsky' },
-    { time: '11:05–11:17', title: 'De Uchiza a Moyobamba: investigación y conservación de Sapajus macrocephalus, Aotus nancymai y Alouatta seniculus en San Martín', speaker: 'Gabriel García' },
-    { time: '11:17–11:29', title: 'Conservación de primates amenazados en el Perú: aprendizajes de largo plazo desde la experiencia de Yunkawasi', speaker: 'Fanny Cornejo' },
-    { time: '11:29–11:41', title: 'Aprendizajes de la Asociación PMT para la conservación de primates', speaker: 'Jossy Luna-Amancio' },
-    { time: '11:41–11:53', title: 'De la Ecología a la Genómica: 15 años de investigación y conservación de primates', speaker: 'Jorge Mendoza' },
-    { time: '11:53–12:05', title: 'Bioacústica y redes comunitarias para el monitoreo y conservación de primates en Tambopata, Perú', speaker: 'Jackeline Mendoza' },
-    { time: '12:05–12:17', title: 'Investigación y conservación de primates en la Estación Biológica Cocha Cashu', speaker: 'César Flores' },
-    { time: '12:17–12:29', title: 'Del cautiverio a la libertad de monos araña reintroducidos y primeras experiencias en el seguimiento de primates', speaker: 'Raúl Bello' },
+    { time: '11:05–11:17', title: 'De Uchiza a Moyobamba: investigación y conservación de Sapajus macrocephalus, Aotus nancymai y Alouatta seniculus en San Martín', speaker: 'Gabriel García', affiliation: 'Asociación Equipo Primatológico' },
+    { time: '11:17–11:29', title: 'Conservación de primates amenazados en el Perú: aprendizajes de largo plazo desde la experiencia de Yunkawasi', speaker: 'Fanny Cornejo', affiliation: 'Yunkawasi' },
+    { time: '11:29–11:41', title: 'Aprendizajes de la Asociación PMT para la conservación de primates', speaker: 'Jossy Luna-Amancio', affiliation: 'Asociación Proyecto Mono Tocón' },
+    { time: '11:41–11:53', title: 'De la Ecología a la Genómica: 15 años de investigación y conservación de primates', speaker: 'Jorge Mendoza', affiliation: 'Field Projects International' },
+    { time: '11:53–12:05', title: 'Bioacústica y redes comunitarias para el monitoreo y conservación de primates en Tambopata, Perú', speaker: 'Jackeline Mendoza', affiliation: 'Wired Amazon' },
+    { time: '12:05–12:17', title: 'Investigación y conservación de primates en la Estación Biológica Cocha Cashu', speaker: 'César Flores', affiliation: 'Estación Biológica Cocha Cashu' },
+    { time: '12:17–12:29', title: 'Del cautiverio a la libertad de monos araña reintroducidos y primeras experiencias en el seguimiento de primates', speaker: 'Raúl Bello', affiliation: 'Estación Biológica Kawsay' },
     { time: '12:29–12:49', title: 'Conversatorio: desafíos y lecciones para la conservación', speaker: 'Moderador / Panelistas S3' },
     { time: '12:49–12:55', title: 'Ronda de preguntas', speaker: 'Liliana Cortés-Ortiz' },
     { time: '12:55–13:00', title: 'Palabras de cierre', speaker: 'Liliana Cortés-Ortiz' },
   ],
   S4: [
-    { time: '10:30–10:34', title: 'Introducción al simposio', speaker: 'Gerson Ferrer' },
-    { time: '10:34–10:44', title: 'Oso Dorado: una comunidad organizada para cuidar el bosque y sus primates', speaker: 'Edwar Guivin Fernandez' },
-    { time: '10:44–10:54', title: 'De la participación a la gobernanza local: aprendizajes de Yunkawasi en la conservación comunitaria de primates', speaker: 'Fanny Cornejo' },
-    { time: '10:54–11:04', title: 'El Mono Nocturno como Motor de Conservación Privada: la historia de la Finca Sarita Colonia en Uchiza, San Martín', speaker: 'Gabriel García' },
-    { time: '11:04–11:14', title: 'Conservación del Mono Coto en los Humedales de Moyobamba: la experiencia de la Finca Don Pepito como vecino estratégico de Tingana', speaker: 'Emerson Cabrera' },
-    { time: '11:14–11:24', title: 'Alianzas por el territorio: fortaleciendo la gestión de la ZOCRE Morro de Calzada para la conservación del mono tocón de San Martín (Plecturocebus oenanthe)', speaker: 'Jossy Luna' },
+    { time: '10:30–10:34', title: 'Introducción al simposio', speaker: 'Gerson Ferrer', affiliation: 'Yunkawasi' },
+    { time: '10:34–10:44', title: 'Oso Dorado: una comunidad organizada para cuidar el bosque y sus primates', speaker: 'Edwar Guivin Fernandez', affiliation: 'Asociación de Conservación Oso Dorado' },
+    { time: '10:44–10:54', title: 'De la participación a la gobernanza local: aprendizajes de Yunkawasi en la conservación comunitaria de primates', speaker: 'Fanny Cornejo', affiliation: 'Yunkawasi' },
+    { time: '10:54–11:04', title: 'El Mono Nocturno como Motor de Conservación Privada: la historia de la Finca Sarita Colonia en Uchiza, San Martín', speaker: 'Gabriel García', affiliation: 'Asociación Equipo Primatológico' },
+    { time: '11:04–11:14', title: 'Conservación del Mono Coto en los Humedales de Moyobamba: la experiencia de la Finca Don Pepito como vecino estratégico de Tingana', speaker: 'Emerson Cabrera', affiliation: 'Finca Don Pepito de Tingana' },
+    { time: '11:14–11:24', title: 'Alianzas por el territorio: fortaleciendo la gestión de la ZOCRE Morro de Calzada para la conservación del mono tocón de San Martín (Plecturocebus oenanthe)', speaker: 'Jossy Luna', affiliation: 'Asociación Proyecto Mono Tocón' },
     { time: '11:24–11:30', title: 'Preguntas' },
   ],
   S5: [
     { time: '15:30–15:35', title: 'Bienvenida e introducción al simposio' },
-    { time: '15:35–15:43', title: 'Título por confirmar', speaker: 'Julio Bramón' },
-    { time: '15:43–15:51', title: 'Título por confirmar', speaker: 'Milagros Tazza' },
-    { time: '15:51–15:59', title: 'Escalando la conservación de primates desde los gobiernos locales: el caso del kit “Achórate por el mono choro de cola amarilla”', speaker: 'Michela Olaya' },
-    { time: '15:59–16:07', title: 'Proyecto Tití: creando conexiones significativas para la conservación del tití cabeciblanco', speaker: 'Rosamira Guillen' },
-    { time: '16:07–16:15', title: 'Los programas de educación ambiental implementados por la Sociedad Zoológica de Fráncfort en el sudeste amazónico peruano. Balance y perspectivas (2002–2025)', speaker: 'Enrique Herrera Sarmiento' },
+    { time: '15:35–15:43', title: 'Título por confirmar', speaker: 'Julio Bramón', affiliation: 'SERNANP' },
+    { time: '15:43–15:51', title: 'Título por confirmar', speaker: 'Milagros Tazza', affiliation: 'DECA–MINAM' },
+    { time: '15:51–15:59', title: 'Escalando la conservación de primates desde los gobiernos locales: el caso del kit “Achórate por el mono choro de cola amarilla”', speaker: 'Michela Olaya', affiliation: 'Yunkawasi' },
+    { time: '15:59–16:07', title: 'Proyecto Tití: creando conexiones significativas para la conservación del tití cabeciblanco', speaker: 'Rosamira Guillen', affiliation: 'Fundación Proyecto Tití' },
+    { time: '16:07–16:15', title: 'Los programas de educación ambiental implementados por la Sociedad Zoológica de Fráncfort en el sudeste amazónico peruano. Balance y perspectivas (2002–2025)', speaker: 'Enrique Herrera Sarmiento', affiliation: 'Sociedad Zoológica de Fráncfort' },
     { time: '16:15–16:25', title: 'Ronda de preguntas' },
-    { time: '16:25–16:33', title: 'Educar para conservar: el papel del Parque de las Leyendas en la sensibilización para la conservación de los primates del Perú', speaker: 'Ing. Raul Enrique Valdeiglesias Abarca' },
-    { time: '16:33–16:41', title: 'Título por confirmar', speaker: 'César Flores' },
-    { time: '16:41–16:49', title: 'Título por confirmar', speaker: 'Peter Yarango Sánchez' },
-    { time: '16:49–16:57', title: 'Educación ambiental basada en el monitoreo poblacional del mono choro de cola amarilla como herramienta para la gestión y conservación del Bosque de Protección Alto Mayo', speaker: 'Alexander Amasifuen' },
-    { time: '16:57–17:05', title: 'Caso Rainforest - Moore Foundation', speaker: 'Jannet Benavides' },
-    { time: '17:05–17:13', title: 'Conservación de primates en bosques fragmentados: acción ciudadana y custodia voluntaria en la Finca Sarita Colonia, Uchiza', speaker: 'Andrea Zeballos Mora' },
+    { time: '16:25–16:33', title: 'Educar para conservar: el papel del Parque de las Leyendas en la sensibilización para la conservación de los primates del Perú', speaker: 'Ing. Raul Enrique Valdeiglesias Abarca', affiliation: 'Patronato del Parque de las Leyendas' },
+    { time: '16:33–16:41', title: 'Título por confirmar', speaker: 'César Flores', affiliation: 'Estación Biológica Cocha Cashu · Parque Nacional del Manu' },
+    { time: '16:41–16:49', title: 'Título por confirmar', speaker: 'Peter Yarango Sánchez', affiliation: 'Asociación Proyecto Mono Tocón' },
+    { time: '16:49–16:57', title: 'Educación ambiental basada en el monitoreo poblacional del mono choro de cola amarilla como herramienta para la gestión y conservación del Bosque de Protección Alto Mayo', speaker: 'Alexander Amasifuen', affiliation: 'Bosque de Protección Alto Mayo · SERNANP' },
+    { time: '16:57–17:05', title: 'Caso Rainforest - Moore Foundation', speaker: 'Jannet Benavides', affiliation: 'Rainforest Expeditions' },
+    { time: '17:05–17:13', title: 'Conservación de primates en bosques fragmentados: acción ciudadana y custodia voluntaria en la Finca Sarita Colonia, Uchiza', speaker: 'Andrea Zeballos Mora', affiliation: 'Asociación Equipo Primatológico' },
     { time: '17:13–17:23', title: 'Ronda de preguntas' },
     { time: '17:23–17:30', title: 'Conversatorio: construyendo el futuro de la educación ambiental para la conservación de primates', speaker: 'Fanny Cornejo' },
   ],
@@ -458,22 +458,10 @@ const calendarDayMeta = [
   { key: 'Post-Congreso', weekday: 'Lunes', date: '3 ago' },
 ] as const;
 
-const calendarTimes = Array.from({ length: 25 }, (_, index) => {
-  const minutes = 8 * 60 + index * 30;
-  const hour = Math.floor(minutes / 60);
-  const minute = minutes % 60;
-  return `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
-});
-
 const allDayEvents: Partial<Record<(typeof calendarDayMeta)[number]['key'], string>> = {
   'Día 2': 'Exhibición de pósteres · Sala de estudio',
   'Día 4': 'Exhibición de pósteres · Sala de estudio',
 };
-
-function timeToMinutes(time: string) {
-  const [hours, minutes] = time.split(':').map(Number);
-  return hours * 60 + minutes;
-}
 
 function calendarColorKey(type: string, title: string) {
   const symposium = title.match(/Simposio\s+(\d)/i);
@@ -504,15 +492,10 @@ const calendarColumns = calendarDayMeta.map(day => {
     ...day,
     allDay: allDayEvents[day.key],
     events: daySchedule.sessions.map(session => {
-      const startMinutes = timeToMinutes(session.time);
-      const parsedDuration = Number.parseInt(session.duration, 10);
-      const duration = Number.isFinite(parsedDuration) ? parsedDuration : 30;
       return {
         ...session,
         code: calendarCode(session.type, session.title),
         colorKey: calendarColorKey(session.type, session.title),
-        rowStart: Math.max(1, Math.floor((startMinutes - 8 * 60) / 30) + 1),
-        rowSpan: Math.max(1, Math.ceil(duration / 30)),
       };
     }),
   };
@@ -538,61 +521,58 @@ const calendarColumns = calendarDayMeta.map(day => {
           <p>Selecciona cualquier bloque para abrir el programa detallado de ese día.</p>
         </div>
 
-        <div class="agenda-calendar__scroll" tabindex="0" aria-label="Desplaza horizontalmente para consultar todos los días">
-          <div class="agenda-calendar__grid">
-            <div class="agenda-calendar__corner">Hora</div>
-            {calendarColumns.map((day, index) => (
-              <button
-                type="button"
-                class={`calendar-day calendar-jump ${index === 0 ? 'active' : ''}`}
-                data-calendar-target={day.key}
-              >
-                <span>{day.weekday}</span>
-                <strong>{day.date}</strong>
-              </button>
-            ))}
+        <div class="agenda-calendar__days" role="tablist" aria-label="Días del congreso">
+          {calendarColumns.map((day, index) => (
+            <button
+              type="button"
+              role="tab"
+              aria-selected={index === 0 ? 'true' : 'false'}
+              class={`calendar-day ${index === 0 ? 'active' : ''}`}
+              data-calendar-target={day.key}
+            >
+              <span>{day.weekday}</span>
+              <strong>{day.date}</strong>
+            </button>
+          ))}
+        </div>
 
-            <div class="agenda-calendar__all-label">Todo el día</div>
-            {calendarColumns.map(day => (
-              <div class="agenda-calendar__all-day">
-                {day.allDay && (
-                  <button type="button" class="agenda-all-day__event calendar-jump" data-calendar-target={day.key}>
-                    <span>GEN</span>{day.allDay}
-                  </button>
-                )}
+        <div class="agenda-calendar__content">
+          {calendarColumns.map((day, index) => (
+            <div class={`agenda-calendar__panel ${index === 0 ? 'active' : ''}`} data-calendar-panel={day.key}>
+              <div class="agenda-calendar__day-heading">
+                <div>
+                  <span>{day.weekday}</span>
+                  <h3>{day.date} · {schedule[day.key].theme}</h3>
+                </div>
+                <strong>{day.events.length} {day.events.length === 1 ? 'actividad' : 'actividades'}</strong>
               </div>
-            ))}
 
-            <div class="agenda-calendar__times" aria-hidden="true">
-              {calendarTimes.map(time => <span>{time}</span>)}
-            </div>
-            {calendarColumns.map(day => (
-              <div class="agenda-calendar__day-column">
+              {day.allDay && (
+                <button type="button" class="agenda-all-day__event calendar-jump" data-calendar-target={day.key}>
+                  <span>Todo el día</span>
+                  <strong>{day.allDay}</strong>
+                </button>
+              )}
+
+              <div class="agenda-calendar__events">
                 {day.events.map(event => (
                   <button
                     type="button"
                     class={`agenda-event agenda-event--${event.colorKey} calendar-jump`}
                     data-calendar-target={day.key}
-                    style={`--row-start:${event.rowStart}; --row-span:${event.rowSpan};`}
-                    title={`${event.time} · ${event.title}${event.speaker ? ` · ${event.speaker}` : ''}`}
                   >
-                    <span class="agenda-event__meta">{event.code} · {event.time}</span>
-                    <strong>{event.title}</strong>
+                    <span class="agenda-event__time">{event.time}</span>
+                    <span class="agenda-event__body">
+                      <span class="agenda-event__meta">{event.code} · {event.duration}</span>
+                      <strong>{event.title}</strong>
+                      {event.speaker && <small>{event.speaker}</small>}
+                    </span>
+                    <span class="agenda-event__arrow" aria-hidden="true">→</span>
                   </button>
                 ))}
               </div>
-            ))}
-          </div>
-        </div>
-
-        <div class="agenda-calendar__legend" aria-label="Clave de colores">
-          <span class="legend-s1">S1 · Políticas públicas</span>
-          <span class="legend-s2">S2 · Gestión territorial</span>
-          <span class="legend-s3">S3 · Primates del Perú</span>
-          <span class="legend-s4">S4 · Conservación comunitaria</span>
-          <span class="legend-s5">S5 · Educación ambiental</span>
-          <span class="legend-mg">MG · Magistral</span>
-          <span class="legend-po">PO · Presentación oral</span>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -711,8 +691,11 @@ const calendarColumns = calendarDayMeta.map(day => {
                             {details.map(item => (
                               <li>
                                 <span class="symposium-details__time">{item.time}</span>
-                                <span>{item.title}</span>
-                                {item.speaker && <small> — {item.speaker}</small>}
+                                <span class="symposium-details__content">
+                                  <span>{item.title}</span>
+                                  {item.speaker && <small>{item.speaker}</small>}
+                                  {item.affiliation && <em>{item.affiliation}</em>}
+                                </span>
                               </li>
                             ))}
                           </ol>
@@ -735,7 +718,28 @@ const calendarColumns = calendarDayMeta.map(day => {
   const panels = document.querySelectorAll('.program-panel');
   const filterBtns = document.querySelectorAll('.filter-btn');
   const calendarDays = document.querySelectorAll('.calendar-day');
+  const calendarPanels = document.querySelectorAll('.agenda-calendar__panel');
   const calendarJumps = document.querySelectorAll('.calendar-jump');
+
+  function activateCalendarDay(target: string) {
+    calendarDays.forEach(day => {
+      const isActive = (day as HTMLElement).dataset.calendarTarget === target;
+      day.classList.toggle('active', isActive);
+      day.setAttribute('aria-selected', String(isActive));
+    });
+    calendarPanels.forEach(panel => {
+      panel.classList.toggle('active', (panel as HTMLElement).dataset.calendarPanel === target);
+    });
+  }
+
+  calendarDays.forEach(day => {
+    day.addEventListener('click', () => {
+      const target = (day as HTMLElement).dataset.calendarTarget || '';
+      activateCalendarDay(target);
+      const matchingTab = document.querySelector(`.program-tab[data-tab="${target}"]`) as HTMLButtonElement | null;
+      matchingTab?.click();
+    });
+  });
 
   calendarJumps.forEach(jump => {
     jump.addEventListener('click', () => {
@@ -754,9 +758,7 @@ const calendarColumns = calendarDayMeta.map(day => {
       panels.forEach(p => p.classList.remove('active'));
       tab.classList.add('active');
       tab.setAttribute('aria-selected', 'true');
-      calendarDays.forEach(day => {
-        day.classList.toggle('active', (day as HTMLElement).dataset.calendarTarget === target);
-      });
+      activateCalendarDay(target || '');
       const targetPanel = document.getElementById(`panel-${target?.replace(' ','')}`);
       if (targetPanel) {
         targetPanel.classList.add('active');
@@ -1157,6 +1159,9 @@ const calendarColumns = calendarDayMeta.map(day => {
     gap: 0.6rem;
   }
   .symposium-details li {
+    display: grid;
+    grid-template-columns: 92px minmax(0, 1fr);
+    gap: 0.45rem;
     color: var(--text-muted);
     font-size: 0.84rem;
     line-height: 1.45;
@@ -1166,10 +1171,21 @@ const calendarColumns = calendarDayMeta.map(day => {
     color: var(--forest-leaf);
     font-weight: 800;
     white-space: nowrap;
-    margin-right: 0.35rem;
   }
-  .symposium-details small { color: var(--text-muted); font-size: inherit; }
+  .symposium-details__content { display: grid; gap: 0.18rem; }
+  .symposium-details small { color: var(--text-on-light); font-size: 0.78rem; font-weight: 700; }
+  .symposium-details em {
+    width: fit-content;
+    padding: 0.14rem 0.42rem;
+    border-radius: 999px;
+    color: var(--forest-mid);
+    background: rgba(82,183,136,0.1);
+    font-size: 0.68rem;
+    font-style: normal;
+    font-weight: 700;
+  }
   :global([data-theme="dark"]) .symposium-details summary { color: var(--forest-canopy); }
+  :global([data-theme="dark"]) .symposium-details small { color: var(--text-on-dark); }
   :global([data-theme="dark"]) .schedule-item__speaker {
     border-top-color: rgba(255,255,255,0.08);
   }
@@ -1181,29 +1197,27 @@ const calendarColumns = calendarDayMeta.map(day => {
   .agenda-calendar {
     margin: -0.5rem 0 1.75rem;
     overflow: hidden;
-    border: 1px solid rgba(31, 78, 108, 0.22);
+    border: 1px solid rgba(217, 157, 85, 0.25);
     border-radius: var(--radius-lg);
-    background: white;
-    box-shadow: 0 18px 48px rgba(25, 61, 79, 0.1);
+    background: linear-gradient(145deg, rgba(255,255,255,0.98), rgba(248,241,226,0.92));
+    box-shadow: 0 18px 50px rgba(69, 52, 28, 0.1);
   }
   .agenda-calendar__heading {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-between;
     gap: 1.5rem;
-    padding: 1.25rem 1.4rem;
-    color: white;
-    background: #1f5678;
+    padding: 1.5rem 1.6rem 1.2rem;
   }
   .agenda-calendar__heading h2 {
     margin: 0.15rem 0 0;
-    color: white;
+    color: var(--forest-darkest);
     font-size: clamp(1.25rem, 2.5vw, 1.8rem);
   }
   .agenda-calendar__heading p {
     max-width: 430px;
     margin: 0;
-    color: rgba(255,255,255,0.82);
+    color: var(--text-muted);
     font-size: 0.82rem;
     line-height: 1.5;
   }
@@ -1212,194 +1226,186 @@ const calendarColumns = calendarDayMeta.map(day => {
     font-weight: 800;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #c8e4f4;
+    color: var(--earth-warm);
   }
-  .agenda-calendar__scroll {
+  .agenda-calendar__days {
+    display: flex;
+    gap: 0.55rem;
+    padding: 0 1.6rem 1.15rem;
     overflow-x: auto;
     overscroll-behavior-inline: contain;
-    scrollbar-color: #7ea8bf #edf4f8;
+    scrollbar-width: thin;
   }
-  .agenda-calendar__grid {
-    display: grid;
-    grid-template-columns: 88px repeat(6, minmax(170px, 1fr));
-    min-width: 1110px;
-  }
-  .agenda-calendar__corner,
-  .agenda-calendar__all-label,
   .calendar-day {
-    border: 0;
-    border-right: 1px solid rgba(255,255,255,0.2);
-  }
-  .agenda-calendar__corner,
-  .calendar-day {
+    flex: 1 0 110px;
     min-height: 62px;
-    padding: 0.7rem;
-    color: white;
-    background: #1f5678;
-  }
-  .agenda-calendar__corner {
-    display: grid;
-    place-items: center;
-    font-size: 0.75rem;
-    font-weight: 800;
-  }
-  .calendar-day {
+    padding: 0.7rem 0.85rem;
     cursor: pointer;
-    text-align: center;
-    transition: background 0.18s ease;
+    border: 1px solid rgba(45,106,79,0.15);
+    border-radius: var(--radius-md);
+    color: var(--forest-darkest);
+    background: rgba(255,255,255,0.72);
+    text-align: left;
+    transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
   }
   .calendar-day:hover,
   .calendar-day:focus-visible {
-    background: #2a6b91;
-    outline: none;
+    transform: translateY(-2px);
+    border-color: rgba(45,106,79,0.35);
+    outline: 2px solid rgba(217,157,85,0.45);
+    outline-offset: 2px;
   }
   .calendar-day.active {
-    background: #123f5c;
-    box-shadow: inset 0 -4px 0 #f0c35a;
+    color: white;
+    border-color: var(--forest-darkest);
+    background: linear-gradient(135deg, var(--forest-darkest), var(--forest-dark));
+    box-shadow: 0 8px 20px rgba(26,58,46,0.2), inset 0 -3px 0 var(--gold);
   }
   .calendar-day span,
   .calendar-day strong { display: block; }
   .calendar-day span {
-    font-size: 0.75rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-  .calendar-day strong {
-    margin-top: 0.1rem;
-    color: #c8e4f4;
-    font-size: 0.7rem;
-  }
-  .agenda-calendar__all-label,
-  .agenda-calendar__all-day {
-    min-height: 54px;
-    border-right: 1px solid #d5e1e8;
-    border-bottom: 1px solid #c5d6df;
-    background: #f4f8fa;
-  }
-  .agenda-calendar__all-label {
-    display: grid;
-    place-items: center;
-    color: #294d63;
-    font-size: 0.7rem;
-    font-weight: 800;
-  }
-  .agenda-calendar__all-day { padding: 0.25rem; }
-  .agenda-all-day__event {
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    border: 1px solid #a9b7bf;
-    background: #e7e7e7;
-    color: #244255;
-    text-align: left;
-    font-size: 0.67rem;
-    font-weight: 700;
-    line-height: 1.25;
-  }
-  .agenda-all-day__event span { margin-right: 0.3rem; font-weight: 900; }
-  .agenda-calendar__times,
-  .agenda-calendar__day-column {
-    display: grid;
-    grid-template-rows: repeat(25, 52px);
-    min-height: 1300px;
-  }
-  .agenda-calendar__times {
-    color: #294d63;
-    background: #edf5f9;
-  }
-  .agenda-calendar__times span {
-    display: grid;
-    place-items: start center;
-    padding-top: 0.4rem;
-    border-right: 1px solid #c5d6df;
-    border-bottom: 1px solid #d8e4ea;
     font-size: 0.68rem;
     font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    opacity: 0.72;
   }
-  .agenda-calendar__day-column {
-    position: relative;
-    border-right: 1px solid #d5e1e8;
-    background: repeating-linear-gradient(to bottom, #fff 0, #fff 51px, #dfe8ed 51px, #dfe8ed 52px);
+  .calendar-day strong {
+    margin-top: 0.15rem;
+    color: inherit;
+    font-size: 0.83rem;
+  }
+  .agenda-calendar__content {
+    padding: 1.35rem 1.6rem 1.6rem;
+    border-top: 1px solid rgba(217,157,85,0.18);
+    background: rgba(255,255,255,0.45);
+  }
+  .agenda-calendar__panel { display: none; }
+  .agenda-calendar__panel.active {
+    display: block;
+    animation: calendarFade 0.24s ease;
+  }
+  @keyframes calendarFade {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .agenda-calendar__day-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .agenda-calendar__day-heading span {
+    color: var(--earth-warm);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .agenda-calendar__day-heading h3 {
+    margin: 0.15rem 0 0;
+    color: var(--forest-darkest);
+    font-size: 1.05rem;
+  }
+  .agenda-calendar__day-heading > strong {
+    color: var(--text-muted);
+    font-size: 0.72rem;
+  }
+  .agenda-all-day__event {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    margin-bottom: 0.65rem;
+    padding: 0.7rem 0.9rem;
+    cursor: pointer;
+    border: 1px dashed rgba(45,106,79,0.35);
+    border-radius: var(--radius-sm);
+    background: rgba(116,198,157,0.12);
+    color: var(--forest-darkest);
+    text-align: left;
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+  .agenda-all-day__event span {
+    padding: 0.22rem 0.45rem;
+    border-radius: 999px;
+    color: white;
+    background: var(--forest-mid);
+    font-size: 0.62rem;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+  .agenda-calendar__events {
+    display: grid;
+    gap: 0.55rem;
   }
   .agenda-event {
-    grid-row: var(--row-start) / span var(--row-span);
-    z-index: 1;
-    min-width: 0;
-    margin: 1px;
-    padding: 0.35rem 0.42rem;
-    overflow: hidden;
+    display: grid;
+    grid-template-columns: 74px minmax(0, 1fr) 24px;
+    align-items: center;
+    gap: 0.85rem;
+    width: 100%;
+    padding: 0.85rem 0.9rem;
     cursor: pointer;
-    border: 1px solid var(--event-border, #9babb3);
-    background: var(--event-bg, #e7e7e7);
-    color: #17384b;
+    border: 1px solid rgba(45,106,79,0.12);
+    border-left: 4px solid var(--event-color, var(--earth-warm));
+    border-radius: var(--radius-sm);
+    background: rgba(255,255,255,0.88);
+    color: var(--text-on-light);
     text-align: left;
-    line-height: 1.22;
-    transition: filter 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+    transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
   }
   .agenda-event:hover,
   .agenda-event:focus-visible {
-    z-index: 3;
-    filter: saturate(1.15);
-    transform: scale(1.018);
-    box-shadow: 0 5px 16px rgba(25, 61, 79, 0.22);
-    outline: 2px solid #1f5678;
-    outline-offset: -2px;
+    transform: translateX(3px);
+    border-color: color-mix(in srgb, var(--event-color) 45%, transparent);
+    box-shadow: 0 7px 18px rgba(69,52,28,0.1);
+    outline: none;
   }
+  .agenda-event__time { color: var(--forest-darkest); font-size: 0.77rem; font-weight: 900; }
+  .agenda-event__body { display: grid; gap: 0.12rem; min-width: 0; }
   .agenda-event__meta {
-    display: block;
-    margin-bottom: 0.15rem;
-    font-size: 0.61rem;
+    color: var(--event-color);
+    font-size: 0.62rem;
     font-weight: 900;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
   }
   .agenda-event strong {
-    display: -webkit-box;
-    overflow: hidden;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: calc(var(--row-span) * 2);
-    font-size: 0.66rem;
+    color: var(--forest-darkest);
+    font-size: 0.84rem;
+    line-height: 1.35;
   }
-  .agenda-event--s1 { --event-bg:#d7eafa; --event-border:#65a8d6; }
-  .agenda-event--s2 { --event-bg:#e2efd6; --event-border:#85b66b; }
-  .agenda-event--s3 { --event-bg:#fce5d6; --event-border:#dc8c59; }
-  .agenda-event--s4 { --event-bg:#e8e1ef; --event-border:#9882ad; }
-  .agenda-event--s5 { --event-bg:#d9efef; --event-border:#55aaa9; }
-  .agenda-event--mg { --event-bg:#fff2ca; --event-border:#d8ad2d; }
-  .agenda-event--po { --event-bg:#f6cfd1; --event-border:#d57276; }
-  .agenda-event--registration { --event-bg:#dcecf8; --event-border:#72ace0; }
-  .agenda-event--pause { --event-bg:#fff1c9; --event-border:#d8ad2d; }
-  .agenda-event--course { --event-bg:#e1efd7; --event-border:#7dad61; }
-  .agenda-event--ceremony { --event-bg:#fde4d4; --event-border:#e19260; }
-  .agenda-event--posters { --event-bg:#e2efd7; --event-border:#7dad61; }
-  .agenda-event--assembly { --event-bg:#e8e1ef; --event-border:#9882ad; }
-  .agenda-event--general { --event-bg:#e8e8e8; --event-border:#a5a5a5; }
-  .agenda-calendar__legend {
-    display: grid;
-    grid-template-columns: repeat(7, minmax(120px, 1fr));
-    overflow-x: auto;
-    border-top: 5px solid #1f5678;
-    background: #f7fafb;
-  }
-  .agenda-calendar__legend span {
-    min-width: 135px;
-    padding: 0.65rem 0.55rem;
-    border-right: 1px solid rgba(31,86,120,0.16);
-    color: #244255;
-    text-align: center;
-    font-size: 0.65rem;
-    font-weight: 800;
-  }
-  .agenda-calendar__legend .legend-s1 { background:#d7eafa; }
-  .agenda-calendar__legend .legend-s2 { background:#e2efd6; }
-  .agenda-calendar__legend .legend-s3 { background:#fce5d6; }
-  .agenda-calendar__legend .legend-s4 { background:#e8e1ef; }
-  .agenda-calendar__legend .legend-s5 { background:#d9efef; }
-  .agenda-calendar__legend .legend-mg { background:#fff2ca; }
-  .agenda-calendar__legend .legend-po { background:#f6cfd1; }
+  .agenda-event small { color: var(--text-muted); font-size: 0.72rem; line-height: 1.35; }
+  .agenda-event__arrow { color: var(--event-color); font-size: 1.1rem; font-weight: 800; }
+  .agenda-event--s1 { --event-color:#4f83a1; }
+  .agenda-event--s2 { --event-color:#5b8d63; }
+  .agenda-event--s3 { --event-color:#c47c52; }
+  .agenda-event--s4 { --event-color:#806b8f; }
+  .agenda-event--s5 { --event-color:#4f8f88; }
+  .agenda-event--mg { --event-color:#a78324; }
+  .agenda-event--po { --event-color:#b85f64; }
+  .agenda-event--registration { --event-color:#668da4; }
+  .agenda-event--pause { --event-color:#aa8d55; }
+  .agenda-event--course { --event-color:#4c8a65; }
+  .agenda-event--ceremony { --event-color:#b96f46; }
+  .agenda-event--posters { --event-color:#658b55; }
+  .agenda-event--assembly { --event-color:#806b8f; }
+  .agenda-event--general { --event-color:#7b776d; }
   :global([data-theme="dark"]) .agenda-calendar {
-    border-color: rgba(200,228,244,0.2);
-    background: #153a4d;
+    border-color: rgba(217,157,85,0.2);
+    background: linear-gradient(145deg, rgba(18,45,35,0.98), rgba(32,55,42,0.95));
   }
+  :global([data-theme="dark"]) .agenda-calendar__heading h2,
+  :global([data-theme="dark"]) .agenda-calendar__day-heading h3,
+  :global([data-theme="dark"]) .agenda-event strong,
+  :global([data-theme="dark"]) .agenda-event__time { color: var(--text-on-dark); }
+  :global([data-theme="dark"]) .calendar-day { color: var(--text-on-dark); background: rgba(255,255,255,0.05); }
+  :global([data-theme="dark"]) .calendar-day.active { background: linear-gradient(135deg, #204e3c, #2d6a4f); }
+  :global([data-theme="dark"]) .agenda-calendar__content { background: rgba(0,0,0,0.08); }
+  :global([data-theme="dark"]) .agenda-event { color: var(--text-on-dark); background: rgba(255,255,255,0.06); }
 
   /* Break / Registration Special Styles */
   .schedule-item--is-break {
@@ -1458,6 +1464,14 @@ const calendarColumns = calendarDayMeta.map(day => {
     .agenda-calendar__heading { align-items: flex-start; flex-direction: column; }
     .agenda-calendar__heading p { max-width: none; }
     .agenda-calendar { margin-inline: -0.4rem; border-radius: var(--radius-md); }
+    .agenda-calendar__heading { padding: 1.2rem 1rem 0.95rem; }
+    .agenda-calendar__days { padding: 0 1rem 1rem; }
+    .agenda-calendar__content { padding: 1rem; }
+    .agenda-calendar__day-heading { align-items: flex-start; flex-direction: column; gap: 0.3rem; }
+    .agenda-event { grid-template-columns: 62px minmax(0, 1fr) 18px; gap: 0.6rem; padding: 0.75rem 0.7rem; }
+    .agenda-event strong { font-size: 0.78rem; }
+    .agenda-event small { font-size: 0.68rem; }
+    .symposium-details li { grid-template-columns: 1fr; gap: 0.15rem; }
     .program-filters {
       flex-direction: column;
       align-items: flex-start;
