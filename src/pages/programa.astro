@@ -95,6 +95,7 @@ const schedule = {
         duration: "60 min",
         type: "simposio",
         title: "Simposio 1: Políticas públicas, instrumentos de gestión para conservación de primates",
+        detailsId: "S1",
         location: "Auditorio principal",
         speaker: "Marco Arenas, Mirbel Alberto Epiquien Rivera, Patricia Ríos, Elizabeth Gonzáles y Fanny Cornejo."
       },
@@ -127,6 +128,7 @@ const schedule = {
         duration: "60 min",
         type: "simposio",
         title: "Simposio 2 (Bloque I): Gestión territorial para la conservación de los primates",
+        detailsId: "S2",
         location: "Auditorio principal",
         speaker: "Coordinadores: Yunkawasi / AMPA / WCS"
       },
@@ -181,6 +183,7 @@ const schedule = {
         duration: "120 min",
         type: "simposio",
         title: "Simposio 3: Estudios e iniciativas de conservación a largo plazo de primates en el Perú",
+        detailsId: "S3",
         location: "Auditorio principal",
         speaker: "Leandro Jerusalinsky, Gabriel García, Fanny Cornejo, Jossy Luna-Amancio, Jorge Mendoza, Jackeline Mendoza, César Flores, Raúl Bello y Liliana Cortés-Ortiz."
       },
@@ -259,6 +262,7 @@ const schedule = {
         duration: "60 min",
         type: "simposio",
         title: "Simposio 4: Conservación comunitaria de primates en el Perú: monitoreo, gobernanza y acción local",
+        detailsId: "S4",
         location: "Auditorio principal",
         speaker: "Gerson Ferrer, Edwar Guivin Fernández, Fanny Cornejo, Gabriel García, Emerson Cabrera y Jossy Luna."
       },
@@ -291,6 +295,7 @@ const schedule = {
         duration: "120 min",
         type: "simposio",
         title: "Simposio 5: Educación ambiental para la conservación de primates: experiencias que conectan ciencia y sociedad",
+        detailsId: "S5",
         location: "Auditorio principal",
         speaker: "Julio Bramón, Milagros Tazza, Michela Olaya, Rosamira Guillén, Enrique Herrera, Raúl Valdeiglesias, César Flores, Peter Yarango, Alexander Amasifuen, Jannet Benavides, Andrea Zeballos y Fanny Cornejo."
       },
@@ -330,12 +335,13 @@ const schedule = {
 
 const symposiumDetails: Record<string, Array<{ time: string; title: string; speaker?: string }>> = {
   S1: [
-    { time: '10:30–10:35', title: 'Introducción' },
-    { time: '10:35–10:47', title: 'Estrategia nacional de diversidad biológica y conservación de primates', speaker: 'Alan Flores' },
-    { time: '10:47–10:59', title: 'Planes Nacionales de Conservación de Especies Amenazadas: caso primates', speaker: 'Elizabeth Gonzáles' },
-    { time: '10:59–11:11', title: 'Plan de Acción Regional para la conservación del mono machín y mono coto de Tumbes: implementación descentralizada del Plan Nacional de Conservación de Primates Amenazados del Perú', speaker: 'Fanny Cornejo' },
-    { time: '11:11–11:23', title: 'Ley del mono choro de cola amarilla', speaker: 'Gerson Ferrer' },
-    { time: '11:23–11:35', title: 'Propuesta de Gobernanza para Seguimiento de PNC de Primates', speaker: 'Elizabeth Gonzáles' },
+    { time: '10:30–10:33', title: 'Introducción', speaker: 'Marco Arenas' },
+    { time: '10:33–10:41', title: 'Estrategia nacional de diversidad biológica y conservación de primates', speaker: 'Mirbel Alberto Epiquien Rivera' },
+    { time: '10:41–10:49', title: '¿Instrumentos de gestión en primates en las áreas naturales protegidas?', speaker: 'Por confirmar' },
+    { time: '10:49–10:57', title: 'Criterios para aprobar translocación con fines de conservación: primates', speaker: 'Patricia Ríos' },
+    { time: '10:57–11:05', title: 'Planes Nacionales de Conservación de Especies Amenazadas: caso primates', speaker: 'Elizabeth Gonzáles' },
+    { time: '11:05–11:15', title: 'Planes de acciones regionales y Ley del Mono Choro de Cola Amarilla', speaker: 'Fanny Cornejo' },
+    { time: '11:15–11:30', title: 'Propuesta de Gobernanza para Seguimiento de PNC de Primates', speaker: 'Elizabeth Gonzáles' },
   ],
   S2: [
     { time: '15:30–15:35', title: 'Introducción al simposio', speaker: 'SERNANP' },
@@ -345,52 +351,54 @@ const symposiumDetails: Record<string, Array<{ time: string; title: string; spea
     { time: '15:59–16:07', title: 'Diversidad de primates en el Parque Nacional Sierra del Divisor: resultados del monitoreo biológico durante 2023', speaker: 'Llossy Natiana' },
     { time: '16:07–16:15', title: 'Monitoreo anual de un ensamble de primates amenazados en el interior del Parque Nacional Sierra del Divisor', speaker: 'Dayanne Amparo' },
     { time: '16:15–16:23', title: 'Abundancia relativa y densidad poblacional del huapo colorado (Cacajao calvus) en el Parque Nacional Sierra del Divisor', speaker: 'José Fernando Ulises Cotrina Rodríguez' },
-    { time: '16:23–16:31', title: 'Herramientas para el monitoreo de primates amenazados en el Parque Nacional Cerros de Amotape', speaker: 'Milton Marchan' },
-    { time: '16:31–16:39', title: 'Fortalecimiento de la gestión mediante un protocolo de monitoreo para el mono choro de cola amarilla en el Bosque de Protección Alto Mayo', speaker: 'Alexander Amasifuen' },
-    { time: '16:39–16:47', title: 'Vigilancia de fiebre amarilla de primates en ANPs', speaker: 'SERNANP' },
-    { time: '16:47–16:55', title: 'Ponencia por confirmar', speaker: 'Karl Plog' },
-    { time: '16:55–17:03', title: 'Epidemiología y genética de herpesvirus en primates', speaker: 'Leticia Escobar' },
-    { time: '17:03–17:13', title: 'Ronda de preguntas' },
-    { time: '17:13–17:18', title: 'Aprendizajes, conclusiones y cierre' },
+    { time: '16:23–16:30', title: 'Ronda de preguntas', speaker: 'Moderador' },
+    { time: '16:30–17:00', title: 'Coffee break' },
+    { time: '17:00–17:08', title: 'Herramientas para el monitoreo de primates amenazados en el Parque Nacional Cerros de Amotape', speaker: 'Milton Marchan' },
+    { time: '17:08–17:16', title: 'Fortalecimiento de la gestión mediante un protocolo de monitoreo para el mono choro de cola amarilla en el Bosque de Protección Alto Mayo', speaker: 'Alexander Amasifuen' },
+    { time: '17:16–17:24', title: 'Vigilancia de fiebre amarilla de primates en ANPs', speaker: 'SERNANP' },
+    { time: '17:24–17:32', title: 'Vigilancia de fiebre amarilla de primates no humanos fuera de ANPs', speaker: 'Karl Plog' },
+    { time: '17:32–17:40', title: 'Epidemiología y genética de herpesvirus en primates', speaker: 'Leticia Escobar' },
+    { time: '17:40–17:50', title: 'Ronda de preguntas' },
+    { time: '17:50–18:00', title: 'Aprendizaje, conclusiones y cierre' },
   ],
   S3: [
     { time: '11:00–11:05', title: 'Introducción al simposio', speaker: 'Leandro Jerusalinsky' },
-    { time: '11:05–11:15', title: 'De Uchiza a Moyobamba: investigación y conservación de Sapajus macrocephalus, Aotus nancymai y Alouatta seniculus en San Martín', speaker: 'Gabriel García' },
-    { time: '11:15–11:25', title: 'Conservación de primates amenazados en el Perú: aprendizajes de largo plazo desde la experiencia de Yunkawasi', speaker: 'Fanny Cornejo' },
-    { time: '11:25–11:35', title: 'Ponencia por confirmar', speaker: 'Jossy Luna' },
-    { time: '11:35–11:45', title: 'Ponencia por confirmar', speaker: 'Gideon Erkenswick' },
-    { time: '11:45–11:55', title: 'Ponencia por confirmar', speaker: 'Mark Bowler' },
-    { time: '11:55–12:05', title: 'Ponencia por confirmar', speaker: 'César Flores' },
-    { time: '12:05–12:15', title: 'Del cautiverio a la libertad de monos araña reintroducidos y primeras experiencias en el seguimiento de primates', speaker: 'Raúl Bello' },
-    { time: '12:15–12:25', title: 'Preguntas', speaker: 'Liliana Cortés-Ortiz' },
-    { time: '12:25–12:30', title: 'Palabras de cierre', speaker: 'Liliana Cortés-Ortiz' },
+    { time: '11:05–11:17', title: 'De Uchiza a Moyobamba: investigación y conservación de Sapajus macrocephalus, Aotus nancymai y Alouatta seniculus en San Martín', speaker: 'Gabriel García' },
+    { time: '11:17–11:29', title: 'Conservación de primates amenazados en el Perú: aprendizajes de largo plazo desde la experiencia de Yunkawasi', speaker: 'Fanny Cornejo' },
+    { time: '11:29–11:41', title: 'Aprendizajes de la Asociación PMT para la conservación de primates', speaker: 'Jossy Luna-Amancio' },
+    { time: '11:41–11:53', title: 'De la Ecología a la Genómica: 15 años de investigación y conservación de primates', speaker: 'Jorge Mendoza' },
+    { time: '11:53–12:05', title: 'Bioacústica y redes comunitarias para el monitoreo y conservación de primates en Tambopata, Perú', speaker: 'Jackeline Mendoza' },
+    { time: '12:05–12:17', title: 'Investigación y conservación de primates en la Estación Biológica Cocha Cashu', speaker: 'César Flores' },
+    { time: '12:17–12:29', title: 'Del cautiverio a la libertad de monos araña reintroducidos y primeras experiencias en el seguimiento de primates', speaker: 'Raúl Bello' },
+    { time: '12:29–12:49', title: 'Conversatorio: desafíos y lecciones para la conservación', speaker: 'Moderador / Panelistas S3' },
+    { time: '12:49–12:55', title: 'Ronda de preguntas', speaker: 'Liliana Cortés-Ortiz' },
+    { time: '12:55–13:00', title: 'Palabras de cierre', speaker: 'Liliana Cortés-Ortiz' },
   ],
   S4: [
     { time: '10:30–10:34', title: 'Introducción al simposio', speaker: 'Gerson Ferrer' },
-    { time: '10:34–10:42', title: 'Ponencia por confirmar' },
-    { time: '10:42–10:50', title: 'Conservación con rostro local: la experiencia territorial de la Asociación Oso Dorado' },
-    { time: '10:50–10:58', title: 'De la participación a la gobernanza local: aprendizajes de Yunkawasi en la conservación comunitaria de primates', speaker: 'Fanny Cornejo' },
-    { time: '10:58–11:06', title: 'Ponencia por confirmar' },
-    { time: '11:06–11:14', title: 'Ponencia por confirmar' },
-    { time: '11:14–11:22', title: 'Bioacústica y redes comunitarias para el monitoreo y conservación de primates en Tambopata, Perú' },
-    { time: '11:22–11:30', title: 'Preguntas' },
+    { time: '10:34–10:44', title: 'Oso Dorado: una comunidad organizada para la conservación de primates', speaker: 'Edwar Guivin Fernandez' },
+    { time: '10:44–10:54', title: 'De la participación a la gobernanza local: aprendizajes de Yunkawasi en la conservación comunitaria de primates', speaker: 'Fanny Cornejo' },
+    { time: '10:54–11:04', title: 'El Mono Nocturno como Motor de Conservación Privada: experiencia de la Finca Sarita Colonia', speaker: 'Gabriel García' },
+    { time: '11:04–11:14', title: 'Conservación del Mono Coto: experiencia de la Finca Don Pepito', speaker: 'Emerson Cabrera' },
+    { time: '11:14–11:24', title: 'Alianzas por el territorio: experiencia en la ZOCRE Morro de Calzada', speaker: 'Jossy Luna' },
+    { time: '11:24–11:30', title: 'Preguntas' },
   ],
   S5: [
     { time: '15:30–15:35', title: 'Bienvenida e introducción al simposio' },
-    { time: '15:35–15:43', title: 'Módulo I: ¿Cómo las instituciones crean las condiciones para educar?', speaker: 'SERNANP Central' },
-    { time: '15:43–15:51', title: 'Experiencia institucional por confirmar', speaker: 'DECA–MINAM' },
-    { time: '15:51–15:59', title: 'Experiencia institucional por confirmar', speaker: 'Yunkawasi' },
-    { time: '15:59–16:07', title: 'Experiencia institucional por confirmar', speaker: 'Fundación Proyecto Tití' },
-    { time: '16:07–16:15', title: 'Experiencia institucional por confirmar', speaker: 'Caso SFZ' },
+    { time: '15:35–15:43', title: 'Título por confirmar', speaker: 'Julio Bramón' },
+    { time: '15:43–15:51', title: 'Título por confirmar', speaker: 'Milagros Tazza' },
+    { time: '15:51–15:59', title: 'Escalando la conservación a través del kit “Achórate por los Monos”', speaker: 'Michela Olaya' },
+    { time: '15:59–16:07', title: 'Proyecto Tití: educación para la conservación', speaker: 'Rosamira Guillen' },
+    { time: '16:07–16:15', title: 'Los programas de educación ambiental de la Sociedad Zoológica de Fráncfort', speaker: 'Enrique Herrera Sarmiento' },
     { time: '16:15–16:25', title: 'Ronda de preguntas' },
-    { time: '16:25–16:33', title: 'Módulo II: ¿Cómo la educación ambiental genera cambios reales? Experiencias que transforman personas y comunidades', speaker: 'Caso Parque de las Leyendas' },
-    { time: '16:33–16:41', title: 'Experiencia institucional por confirmar', speaker: 'Caso Cocha Cashu' },
-    { time: '16:41–16:49', title: 'Experiencia institucional por confirmar', speaker: 'Caso Mono Tocón' },
-    { time: '16:49–16:57', title: 'Experiencia institucional por confirmar', speaker: 'Caso BPAM' },
-    { time: '16:57–17:05', title: 'Experiencia institucional por confirmar', speaker: 'Caso Rainforest' },
-    { time: '17:05–17:13', title: 'Experiencia institucional por confirmar', speaker: 'Caso EPP' },
+    { time: '16:25–16:33', title: 'Educar para conservar: experiencia del Parque de las Leyendas', speaker: 'Ing. Raul Enrique Valdeiglesias Abarca' },
+    { time: '16:33–16:41', title: 'Título por confirmar', speaker: 'César Flores' },
+    { time: '16:41–16:49', title: 'Título por confirmar', speaker: 'Peter Yarango Sánchez' },
+    { time: '16:49–16:57', title: 'Educación ambiental basada en el monitoreo de primates en el Bosque de Protección Alto Mayo', speaker: 'Alexander Amasifuen' },
+    { time: '16:57–17:05', title: 'Caso Rainforest – Moore Foundation', speaker: 'Jannet Benavides' },
+    { time: '17:05–17:13', title: 'Conservación de primates en bosques fragmentados: experiencia de Finca Sarita Colonia, Uchiza', speaker: 'Andrea Zeballos Mora' },
     { time: '17:13–17:23', title: 'Ronda de preguntas' },
-    { time: '17:23–17:33', title: 'Conversatorio: Construyendo el futuro de la educación ambiental para la conservación de primates' },
+    { time: '17:23–17:30', title: 'Conversatorio: construyendo el futuro de la educación ambiental para la conservación de primates', speaker: 'Fanny Cornejo' },
   ],
 };
 
@@ -442,6 +450,20 @@ const typeConfig: Record<string, { color: string; label: string; icon: string }>
   <!-- Programa por día con tabs -->
   <section class="section" style="background: var(--cream-warm); padding-top: 2rem;">
     <div class="container">
+      <div class="interactive-calendar reveal" aria-label="Calendario interactivo del congreso">
+        <div class="interactive-calendar__heading">
+          <span>Calendario interactivo</span>
+          <small>Selecciona un día para ver su programación</small>
+        </div>
+        <div class="interactive-calendar__days">
+          {Object.entries(schedule).map(([day, data], i) => (
+            <button class={`calendar-day ${i === 0 ? 'active' : ''}`} data-calendar-target={day}>
+              <strong>{day}</strong>
+              <span>{data.date.split('|')[0].trim()}</span>
+            </button>
+          ))}
+        </div>
+      </div>
       
       <!-- Filtro Interactivo -->
       <div class="program-filters reveal">
@@ -554,6 +576,18 @@ const typeConfig: Record<string, { color: string; label: string; icon: string }>
   const tabs = document.querySelectorAll('.program-tab');
   const panels = document.querySelectorAll('.program-panel');
   const filterBtns = document.querySelectorAll('.filter-btn');
+  const calendarDays = document.querySelectorAll('.calendar-day');
+
+  calendarDays.forEach(day => {
+    day.addEventListener('click', () => {
+      const target = (day as HTMLElement).dataset.calendarTarget;
+      const matchingTab = document.querySelector(`.program-tab[data-tab="${target}"]`) as HTMLButtonElement | null;
+      matchingTab?.click();
+      calendarDays.forEach(item => item.classList.remove('active'));
+      day.classList.add('active');
+      document.querySelector('#program-tabs')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
 
   // Handle Tabs Switch
   tabs.forEach(tab => {
@@ -563,6 +597,9 @@ const typeConfig: Record<string, { color: string; label: string; icon: string }>
       panels.forEach(p => p.classList.remove('active'));
       tab.classList.add('active');
       tab.setAttribute('aria-selected', 'true');
+      calendarDays.forEach(day => {
+        day.classList.toggle('active', (day as HTMLElement).dataset.calendarTarget === target);
+      });
       const targetPanel = document.getElementById(`panel-${target?.replace(' ','')}`);
       if (targetPanel) {
         targetPanel.classList.add('active');
@@ -967,6 +1004,81 @@ const typeConfig: Record<string, { color: string; label: string; icon: string }>
     opacity: 0.75;
   }
 
+  .interactive-calendar {
+    margin-bottom: 1.25rem;
+    padding: 1.1rem 1.2rem;
+    border: 1px solid rgba(217, 157, 85, 0.32);
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, rgba(255,255,255,0.96), rgba(248,242,228,0.92));
+    box-shadow: var(--shadow-sm);
+  }
+  .interactive-calendar__heading {
+    display: flex;
+    gap: 0.75rem;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 0.85rem;
+  }
+  .interactive-calendar__heading h2 {
+    margin: 0;
+    font-size: 1.05rem;
+    color: var(--forest-deep);
+  }
+  .interactive-calendar__heading p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+  .interactive-calendar__days {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 0.55rem;
+  }
+  .calendar-day {
+    cursor: pointer;
+    min-height: 4.7rem;
+    padding: 0.65rem;
+    text-align: left;
+    color: var(--text-on-light);
+    background: rgba(255,255,255,0.78);
+    border: 1px solid rgba(140,55,78,0.14);
+    border-radius: 0.65rem;
+    transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+  }
+  .calendar-day:hover,
+  .calendar-day:focus-visible {
+    transform: translateY(-2px);
+    border-color: var(--earth-warm);
+    outline: none;
+  }
+  .calendar-day.active {
+    color: white;
+    background: var(--forest-mid);
+    border-color: var(--forest-mid);
+  }
+  .calendar-day__day,
+  .calendar-day__date {
+    display: block;
+  }
+  .calendar-day__day {
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.045em;
+  }
+  .calendar-day__date {
+    margin-top: 0.28rem;
+    font-size: 0.88rem;
+    font-weight: 700;
+  }
+  :global([data-theme="dark"]) .interactive-calendar {
+    background: linear-gradient(135deg, rgba(22, 55, 43, 0.96), rgba(37, 72, 58, 0.96));
+    border-color: rgba(217, 157, 85, 0.36);
+  }
+  :global([data-theme="dark"]) .interactive-calendar__heading h2,
+  :global([data-theme="dark"]) .calendar-day { color: var(--text-on-dark); }
+  :global([data-theme="dark"]) .calendar-day { background: rgba(255,255,255,0.05); }
+
   /* Break / Registration Special Styles */
   .schedule-item--is-break {
     opacity: 0.9;
@@ -1021,6 +1133,8 @@ const typeConfig: Record<string, { color: string; label: string; icon: string }>
 
   /* Responsive Adjustments */
   @media (max-width: 768px) {
+    .interactive-calendar__heading { align-items: flex-start; flex-direction: column; }
+    .interactive-calendar__days { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .program-filters {
       flex-direction: column;
       align-items: flex-start;
