@@ -96,6 +96,7 @@ const schedule = {
         type: "simposio",
         title: "Simposio 1: Políticas públicas, instrumentos de gestión para conservación de primates",
         detailsId: "S1",
+        moderator: "Por confirmar",
         location: "Auditorio principal",
         speaker: "Marco Arenas, Mirbel Alberto Epiquien Rivera, Patricia Ríos, Elizabeth Gonzáles y Fanny Cornejo."
       },
@@ -129,6 +130,7 @@ const schedule = {
         type: "simposio",
         title: "Simposio 2 (Bloque I): Gestión territorial para la conservación de los primates",
         detailsId: "S2",
+        moderator: "Raúl Bello",
         location: "Auditorio principal",
         speaker: "Coordinadores: Yunkawasi / AMPA / WCS"
       },
@@ -145,6 +147,8 @@ const schedule = {
         duration: "60 min",
         type: "simposio",
         title: "Simposio 2 (Bloque II): Gestión territorial para la conservación de los primates",
+        detailsId: "S2",
+        moderator: "Raúl Bello",
         location: "Auditorio principal",
         speaker: "Coordinadores: Yunkawasi / AMPA / WCS"
       }
@@ -184,6 +188,7 @@ const schedule = {
         type: "simposio",
         title: "Simposio 3: Estudios e iniciativas de conservación a largo plazo de primates en el Perú",
         detailsId: "S3",
+        moderator: "Liliana Cortés-Ortiz",
         location: "Auditorio principal",
         speaker: "Leandro Jerusalinsky, Gabriel García, Fanny Cornejo, Jossy Luna-Amancio, Jorge Mendoza, Jackeline Mendoza, César Flores, Raúl Bello y Liliana Cortés-Ortiz."
       },
@@ -208,6 +213,9 @@ const schedule = {
         duration: "60 min",
         type: "ponencias",
         title: "Presentaciones Orales (Bloque I)",
+        detailsId: "O1",
+        detailsLabel: "Ver distribución horaria del bloque",
+        moderator: "Por confirmar",
         location: "Auditorio principal",
         speaker: "Pendiente de incorporar: títulos, autorías, afiliaciones y duración de cada presentación"
       },
@@ -263,6 +271,7 @@ const schedule = {
         type: "simposio",
         title: "Simposio 4: Conservación comunitaria de primates en el Perú: monitoreo, gobernanza y acción local",
         detailsId: "S4",
+        moderator: "Gerson Ferrer",
         location: "Auditorio principal",
         speaker: "Gerson Ferrer, Edwar Guivin Fernández, Fanny Cornejo, Gabriel García, Emerson Cabrera y Jossy Luna."
       },
@@ -271,6 +280,9 @@ const schedule = {
         duration: "90 min",
         type: "ponencias",
         title: "Presentaciones Orales (Bloque II)",
+        detailsId: "O2",
+        detailsLabel: "Ver distribución horaria del bloque",
+        moderator: "Por confirmar",
         location: "Auditorio principal",
         speaker: "Pendiente de incorporar: títulos, autorías, afiliaciones y duración de cada presentación"
       },
@@ -296,6 +308,7 @@ const schedule = {
         type: "simposio",
         title: "Simposio 5: Educación ambiental para la conservación de primates: experiencias que conectan ciencia y sociedad",
         detailsId: "S5",
+        moderator: "Michela Olaya / Gerson Ferrer",
         location: "Auditorio principal",
         speaker: "Julio Bramón, Milagros Tazza, Michela Olaya, Rosamira Guillén, Enrique Herrera, Raúl Valdeiglesias, César Flores, Peter Yarango, Alexander Amasifuen, Jannet Benavides, Andrea Zeballos y Fanny Cornejo."
       },
@@ -400,6 +413,25 @@ const symposiumDetails: Record<string, Array<{ time: string; title: string; spea
     { time: '17:13–17:23', title: 'Ronda de preguntas' },
     { time: '17:23–17:30', title: 'Conversatorio: construyendo el futuro de la educación ambiental para la conservación de primates', speaker: 'Fanny Cornejo' },
   ],
+  O1: [
+    { time: '15:30–15:40', title: 'Presentación oral 1 — título, autoría y afiliación por confirmar' },
+    { time: '15:40–15:50', title: 'Presentación oral 2 — título, autoría y afiliación por confirmar' },
+    { time: '15:50–16:00', title: 'Presentación oral 3 — título, autoría y afiliación por confirmar' },
+    { time: '16:00–16:10', title: 'Presentación oral 4 — título, autoría y afiliación por confirmar' },
+    { time: '16:10–16:20', title: 'Presentación oral 5 — título, autoría y afiliación por confirmar' },
+    { time: '16:20–16:30', title: 'Presentación oral 6 — título, autoría y afiliación por confirmar' },
+  ],
+  O2: [
+    { time: '11:30–11:40', title: 'Presentación oral 7 — título, autoría y afiliación por confirmar' },
+    { time: '11:40–11:50', title: 'Presentación oral 8 — título, autoría y afiliación por confirmar' },
+    { time: '11:50–12:00', title: 'Presentación oral 9 — título, autoría y afiliación por confirmar' },
+    { time: '12:00–12:10', title: 'Presentación oral 10 — título, autoría y afiliación por confirmar' },
+    { time: '12:10–12:20', title: 'Presentación oral 11 — título, autoría y afiliación por confirmar' },
+    { time: '12:20–12:30', title: 'Presentación oral 12 — título, autoría y afiliación por confirmar' },
+    { time: '12:30–12:40', title: 'Presentación oral 13 — título, autoría y afiliación por confirmar' },
+    { time: '12:40–12:50', title: 'Presentación oral 14 — título, autoría y afiliación por confirmar' },
+    { time: '12:50–13:00', title: 'Presentación oral 15 — título, autoría y afiliación por confirmar' },
+  ],
 };
 
 
@@ -432,7 +464,7 @@ const typeConfig: Record<string, { color: string; label: string; icon: string }>
       <div class="program-note reveal">
         <div class="program-note__icon">📌</div>
         <div class="program-note__text">
-          <strong>Nota:</strong> Calendario actualizado desde el archivo de programación vigente. Las ponencias orales permanecen como bloques hasta recibir su detalle final.
+          <strong>Nota:</strong> Calendario actualizado desde el archivo de programación vigente. Las ponencias orales muestran su distribución horaria; los títulos, autorías, afiliaciones y moderadores individuales siguen pendientes en el archivo fuente.
         </div>
       </div>
 
@@ -546,9 +578,15 @@ const typeConfig: Record<string, { color: string; label: string; icon: string }>
                           <span>{session.speaker}</span>
                         </p>
                       )}
+                      {session.moderator && (
+                        <p class="schedule-item__moderator">
+                          <span aria-hidden="true">🎙️</span>
+                          <strong>Moderación:</strong> {session.moderator}
+                        </p>
+                      )}
                       {details && (
                         <details class="symposium-details">
-                          <summary>Ver programa detallado ({details.length} intervenciones)</summary>
+                          <summary>{session.detailsLabel || 'Ver programa detallado'} ({details.length} intervenciones)</summary>
                           <ol>
                             {details.map(item => (
                               <li>
@@ -963,6 +1001,23 @@ const typeConfig: Record<string, { color: string; label: string; icon: string }>
     margin-top: 0.5rem;
     border-top: 1px dashed rgba(217,157,85,0.12);
     padding-top: 0.5rem;
+  }
+
+  .schedule-item__moderator {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin: 0.55rem 0 0;
+    padding: 0.48rem 0.65rem;
+    border-radius: 0.45rem;
+    background: rgba(82, 183, 136, 0.1);
+    color: var(--forest-mid);
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+  :global([data-theme="dark"]) .schedule-item__moderator {
+    background: rgba(116, 198, 157, 0.1);
+    color: var(--forest-canopy);
   }
 
   .symposium-details {
