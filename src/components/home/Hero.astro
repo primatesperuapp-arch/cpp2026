@@ -1,24 +1,7 @@
 ---
 import site from '../../data/site.json';
-import { getWebState } from '../../utils/webState';
 
 const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL + '/';
-const { abstracts } = getWebState();
-
-// Initial values for build time
-let resumenHref = `${base}llamado-de-resumenes`;
-let resumenLabel = "Enviar Resumen";
-let resumenClasses = "btn btn-primary btn-lg";
-
-if (abstracts === 'upcoming') {
-  resumenHref = "#";
-  resumenLabel = "Próximamente: Resúmenes";
-  resumenClasses = "btn btn-primary btn-lg btn-muted-cta";
-} else if (abstracts === 'closed') {
-  resumenHref = `${base}llamado-de-resumenes`;
-  resumenLabel = "Lineamientos de Exposición";
-  resumenClasses = "btn btn-primary btn-lg";
-}
 ---
 
 <section class="hero" aria-label="Presentación del congreso">
@@ -58,23 +41,21 @@ if (abstracts === 'upcoming') {
         {site.slogan}
       </p>
 
-      <!-- Announcement Extension -->
-      <div class="hero__announcement animate-fade-up" style="animation-delay: 0.42s">
-        <span class="hero__announcement-icon" aria-hidden="true">📢</span>
+      <!-- Programa disponible -->
+      <a href={`${base}programa`} class="hero__announcement animate-fade-up" style="animation-delay: 0.42s">
+        <span class="hero__announcement-icon" aria-hidden="true">🗓️</span>
         <span class="hero__announcement-text">
-          {abstracts === 'open' ? (
-            <span>¡Plazo extendido al <strong>14 de julio</strong>! Inscríbete al <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYmscc-GmWwvqwu4VX4rdwrXithNiC1fAwiHKVSEklP40hzw/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">Curso Pre-Congreso</a>, descarga las <a href={`${base}llamado-de-resumenes#posters-guidelines`}>guías</a> y usa la <a href="https://canva.link/d8iliog91u4up88" target="_blank" rel="noopener noreferrer">plantilla de Canva</a>.</span>
-          ) : (
-            <span>¡Inscríbete al <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYmscc-GmWwvqwu4VX4rdwrXithNiC1fAwiHKVSEklP40hzw/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">Curso Pre-Congreso</a>! Ya puedes ver las <a href={`${base}llamado-de-resumenes#posters-guidelines`}>guías</a> y la <a href="https://canva.link/d8iliog91u4up88" target="_blank" rel="noopener noreferrer">plantilla de Canva</a>.</span>
-          )}
+          <strong>¡El programa oficial ya está disponible!</strong>
+          <span>Consulta horarios, ponentes, moderadores y cada presentación.</span>
         </span>
-      </div>
+        <span class="hero__announcement-cta">Explorar programa <b aria-hidden="true">→</b></span>
+      </a>
 
       <!-- CTA Buttons -->
       <div class="hero__ctas animate-fade-up" style="animation-delay: 0.5s">
-        <a href={resumenHref} class={resumenClasses} id="hero-cta-resumen" data-base={base}>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          <span class="btn-text">{resumenLabel}</span>
+        <a href={`${base}programa`} class="btn btn-program btn-lg" id="hero-cta-programa">
+          <span aria-hidden="true">✨</span>
+          Ver programa completo
         </a>
         <a href={`${base}inscripciones`} class="btn btn-gold btn-lg">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
@@ -498,18 +479,28 @@ if (abstracts === 'upcoming') {
 
   /* ── Hero Announcement Banner ────────────────────── */
   .hero__announcement {
-    display: inline-flex;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
     align-items: center;
     gap: 0.75rem;
-    padding: 0.75rem 1.25rem;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(217, 157, 85, 0.3);
+    padding: 0.85rem 1rem;
+    background: linear-gradient(105deg, rgba(217,157,85,0.2), rgba(191,38,79,0.18));
+    border: 1.5px solid rgba(242,235,223,0.46);
     border-radius: var(--radius-md);
-    max-width: 550px;
+    width: min(100%, 590px);
     margin-top: 0.25rem;
     margin-bottom: 0.25rem;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 10px 30px rgba(191,38,79,0.16), inset 0 0 24px rgba(217,157,85,0.08);
+    transition: transform var(--transition-mid), border-color var(--transition-mid), box-shadow var(--transition-mid);
+  }
+  .hero__announcement:hover {
+    transform: translateY(-3px);
+    border-color: var(--gold-light);
+    box-shadow: 0 14px 34px rgba(191,38,79,0.25), inset 0 0 26px rgba(217,157,85,0.12);
   }
   .hero__announcement-icon {
     font-size: 1.25rem;
@@ -517,22 +508,42 @@ if (abstracts === 'upcoming') {
     display: inline-block;
   }
   .hero__announcement-text {
+    display: grid;
+    gap: 0.12rem;
     font-size: 0.88rem;
     color: #f2ebdf;
     line-height: 1.4;
     text-align: left;
   }
   .hero__announcement-text strong {
-    color: var(--gold-light);
-  }
-  .hero__announcement-text a {
-    color: var(--gold-light);
-    text-decoration: underline;
-    font-weight: 700;
-    transition: color var(--transition-fast);
-  }
-  .hero__announcement-text a:hover {
     color: #fff;
+    font-size: 1rem;
+  }
+  .hero__announcement-cta {
+    padding: 0.4rem 0.65rem;
+    border-radius: 999px;
+    color: var(--forest-darkest);
+    background: var(--gold-light);
+    font-size: 0.7rem;
+    font-weight: 900;
+    white-space: nowrap;
+  }
+  .btn-program {
+    color: var(--forest-darkest);
+    border: 1px solid #fff0cf;
+    background: linear-gradient(135deg, #fff0cf, var(--gold));
+    box-shadow: 0 10px 24px rgba(217,157,85,0.32);
+    font-weight: 900;
+  }
+  .btn-program:hover {
+    color: var(--forest-darkest);
+    transform: translateY(-3px) scale(1.015);
+    box-shadow: 0 14px 30px rgba(217,157,85,0.42);
+  }
+
+  @media (max-width: 640px) {
+    .hero__announcement { grid-template-columns: auto minmax(0, 1fr); }
+    .hero__announcement-cta { grid-column: 1 / -1; width: 100%; text-align: center; }
   }
   
   @keyframes wiggle {
@@ -568,8 +579,6 @@ if (abstracts === 'upcoming') {
 </style>
 
 <script>
-  import { getWebState } from '../../utils/webState';
-
   function initCountdown() {
     // Target: July 30, 2026, 9:00 AM
     const targetDate = new Date('2026-07-30T09:00:00').getTime();
@@ -606,36 +615,9 @@ if (abstracts === 'upcoming') {
     update();
   }
 
-  function updateHeroCTA() {
-    const btn = document.getElementById('hero-cta-resumen');
-    if (!btn) return;
-
-    const base = btn.getAttribute('data-base') || '/';
-    const { abstracts } = getWebState();
-    const textEl = btn.querySelector('.btn-text');
-
-    // Reset styles
-    btn.classList.remove('btn-muted-cta');
-
-    if (abstracts === 'upcoming') {
-      btn.setAttribute('href', '#');
-      btn.classList.add('btn-muted-cta');
-      if (textEl) textEl.textContent = 'Próximamente: Resúmenes';
-    } else if (abstracts === 'closed') {
-      btn.setAttribute('href', `${base}llamado-de-resumenes`);
-      btn.classList.remove('btn-muted-cta');
-      if (textEl) textEl.textContent = 'Lineamientos de Exposición';
-    } else {
-      btn.setAttribute('href', `${base}llamado-de-resumenes`);
-      if (textEl) textEl.textContent = 'Enviar Resumen';
-    }
-  }
-
   // Initialize on load and on view change (Astro transitions if enabled)
   initCountdown();
-  updateHeroCTA();
   document.addEventListener('astro:page-load', () => {
     initCountdown();
-    updateHeroCTA();
   });
 </script>

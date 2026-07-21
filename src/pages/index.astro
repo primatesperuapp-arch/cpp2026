@@ -67,55 +67,48 @@ const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL +
       </button>
 
       <div class="modal-header">
-        <span class="modal-badge">📢 ANUNCIO IMPORTANTE</span>
-        <h3 class="modal-title">¡Últimas Novedades del Congreso!</h3>
+        <span class="modal-badge">✨ PROGRAMA OFICIAL 2026</span>
+        <h3 class="modal-title">¡Ya puedes explorar el programa del congreso!</h3>
       </div>
 
       <div class="modal-body">
-        <!-- Curso Pre-Congreso Callout -->
         <div class="modal-course-callout">
-          <span class="course-tag">🔥 ¡CUPOS LIMITADOS!</span>
-          <h4>Curso Pre-Congreso — Las dinámicas de fisión-fusión de los monos araña</h4>
+          <span class="program-launch-mark" aria-hidden="true">🗓️</span>
+          <span class="course-tag">¡PROGRAMA DISPONIBLE!</span>
+          <h4>Planifica cada momento del III CPP 2026</h4>
           <p>
-            Asegura tu vacante en el curso intensivo <strong>"Las dinámicas de fisión-fusión de los monos araña: los desafíos y las oportunidades para los monos y los investigadores"</strong> dictado por el renombrado investigador internacional Dr. Filippo Aureli.
+            Consulta la agenda completa por día, abre cada actividad y descubre sus horarios, participantes, moderación y afiliaciones institucionales.
           </p>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdYmscc-GmWwvqwu4VX4rdwrXithNiC1fAwiHKVSEklP40hzw/viewform?usp=dialog" target="_blank" rel="noopener noreferrer" class="btn btn-gold btn-sm" id="modal-course-btn" style="width: 100%; justify-content: center; margin-top: 0.65rem; font-weight: 800; font-size: 0.85rem; padding: 0.5rem 1rem;">
-            ✍️ Inscribirse al Curso Pre-Congreso →
-          </a>
         </div>
-
-        <p style="margin-top: 0.75rem;">
-          El plazo para el <strong>envío de resúmenes</strong> concluyó el 14 de julio de 2026. Agradecemos su participación. Ya puedes consultar las guías oficiales para preparar tu exposición:
-        </p>
         
         <div class="modal-features">
           <div class="modal-feature-item">
-            <span class="feature-icon">📌</span>
+            <span class="feature-icon">6</span>
             <div>
-              <strong>Guía de Póster A0:</strong>
-              <span>Especificaciones de tamaño, material y recomendaciones visuales.</span>
+              <strong>Días de actividades</strong>
+              <span>Precongreso, congreso y postcongreso.</span>
             </div>
           </div>
           <div class="modal-feature-item">
-            <span class="feature-icon">🎨</span>
+            <span class="feature-icon">5</span>
             <div>
-              <strong>Plantilla de Presentación Oral:</strong>
-              <span>Edita y prepara tus diapositivas con el <a href="https://canva.link/d8iliog91u4up88" target="_blank" rel="noopener noreferrer" style="color: var(--gold); text-decoration: underline; font-weight: 700;">diseño oficial en Canva</a>.</span>
+              <strong>Simposios detallados</strong>
+              <span>Cada intervención con hora y afiliación.</span>
             </div>
           </div>
           <div class="modal-feature-item">
-            <span class="feature-icon">🎤</span>
+            <span class="feature-icon">13</span>
             <div>
-              <strong>Formatos Orales:</strong>
-              <span>Estructura del resumen, tiempos de exposición y envío.</span>
+              <strong>Presentaciones orales</strong>
+              <span>Títulos, autores y tiempos de exposición.</span>
             </div>
           </div>
         </div>
       </div>
 
       <div class="modal-footer">
-        <a href={`${base}llamado-de-resumenes`} class="btn btn-primary" id="modal-action-btn" style="font-size: 0.9rem; padding: 0.6rem 1.2rem;">
-          📖 Ver Lineamientos de Exposición
+        <a href={`${base}programa`} class="btn btn-gold modal-program-btn" id="modal-action-btn">
+          ✨ Explorar el programa completo →
         </a>
         <button class="btn btn-ghost" id="modal-close-btn" style="font-size: 0.9rem; padding: 0.6rem 1.2rem;">
           Cerrar
@@ -228,6 +221,14 @@ const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL +
     margin-left: auto;
     margin-right: auto;
     flex-shrink: 0; /* Prevent flex box from shrinking the modal height */
+    overflow: hidden;
+  }
+  .modal-card::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto;
+    height: 6px;
+    background: linear-gradient(90deg, var(--forest-dark), var(--gold), var(--accent-secondary));
   }
   :global([data-theme="dark"]) .modal-card {
     background: rgba(26, 58, 46, 0.98);
@@ -303,8 +304,8 @@ const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL +
     font-family: var(--font-ui);
     font-size: 0.75rem;
     font-weight: 800;
-    color: var(--forest-mid);
-    background: rgba(82, 183, 136, 0.12);
+    color: var(--forest-dark);
+    background: linear-gradient(90deg, rgba(217,157,85,0.16), rgba(191,38,79,0.1));
     padding: 0.25rem 0.75rem;
     border-radius: 50px;
     margin-bottom: 0.75rem;
@@ -316,8 +317,8 @@ const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL +
   }
   .modal-title {
     font-family: var(--font-display);
-    font-size: clamp(1.4rem, 2.5vw, 1.8rem);
-    color: var(--forest-dark);
+    font-size: clamp(1.55rem, 3vw, 2.05rem);
+    color: var(--forest-darkest);
     line-height: 1.25;
     margin: 0;
   }
@@ -342,9 +343,9 @@ const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL +
   }
 
   .modal-features {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.65rem;
     margin-top: 0.75rem;
     background: rgba(217, 157, 85, 0.06);
     padding: 1.25rem;
@@ -356,18 +357,34 @@ const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL +
   }
 
   .modal-course-callout {
-    background: linear-gradient(135deg, rgba(217, 157, 85, 0.15) 0%, rgba(82, 183, 136, 0.08) 100%);
-    border: 1.5px solid var(--gold);
+    background: linear-gradient(135deg, rgba(89,52,20,0.98), rgba(140,55,78,0.96));
+    border: 1.5px solid rgba(217,157,85,0.7);
     border-radius: var(--radius-lg);
-    padding: 1.25rem;
+    padding: 1.35rem 1.35rem 1.35rem 5rem;
     position: relative;
     box-shadow: var(--shadow-sm);
     text-align: left;
+    overflow: hidden;
+  }
+  .program-launch-mark {
+    position: absolute;
+    left: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: grid;
+    place-items: center;
+    width: 2.85rem;
+    height: 2.85rem;
+    border: 1px solid rgba(255,255,255,0.28);
+    border-radius: 50%;
+    background: rgba(255,255,255,0.12);
+    font-size: 1.35rem;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.18);
   }
   .modal-course-callout h4 {
     font-family: var(--font-display);
     font-size: 1.05rem;
-    color: var(--forest-dark);
+    color: #fff;
     margin: 0.5rem 0 0.35rem 0;
   }
   :global([data-theme="dark"]) .modal-course-callout h4 {
@@ -376,7 +393,7 @@ const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL +
   .modal-course-callout p {
     font-size: 0.88rem !important;
     line-height: 1.45 !important;
-    color: var(--text-on-light) !important;
+    color: rgba(255,255,255,0.82) !important;
     margin: 0 !important;
   }
   :global([data-theme="dark"]) .modal-course-callout p {
@@ -387,8 +404,8 @@ const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL +
     font-family: var(--font-ui);
     font-size: 0.68rem;
     font-weight: 900;
-    color: #fff;
-    background: var(--gold);
+    color: var(--forest-darkest);
+    background: var(--gold-light);
     padding: 0.2rem 0.55rem;
     border-radius: var(--radius-sm);
     letter-spacing: 0.05em;
@@ -400,13 +417,21 @@ const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL +
     100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(217, 157, 85, 0); }
   }
   .modal-feature-item {
-    display: flex;
-    gap: 0.75rem;
-    align-items: flex-start;
+    display: grid;
+    gap: 0.35rem;
+    align-content: start;
+    padding: 0.75rem 0.65rem;
+    border: 1px solid rgba(217,157,85,0.15);
+    border-radius: var(--radius-md);
+    background: rgba(255,255,255,0.55);
+    text-align: center;
   }
   .feature-icon {
-    font-size: 1.25rem;
-    line-height: 1.2;
+    color: var(--accent-secondary);
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 900;
+    line-height: 1;
   }
   .modal-feature-item strong {
     display: block;
@@ -422,7 +447,7 @@ const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL +
     color: var(--text-muted);
     line-height: 1.4;
     display: block;
-    text-align: left;
+    text-align: center;
   }
 
   .modal-footer {
@@ -432,6 +457,24 @@ const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL +
     gap: 1rem;
     border-top: 1px solid rgba(0, 0, 0, 0.08);
     padding-top: 1.5rem;
+  }
+  .modal-program-btn {
+    flex: 1;
+    justify-content: center;
+    padding: 0.78rem 1.1rem;
+    color: var(--forest-darkest);
+    font-size: 0.9rem;
+    font-weight: 900;
+    box-shadow: 0 9px 22px rgba(217,157,85,0.24);
+  }
+
+  @media (max-width: 576px) {
+    .modal-features { grid-template-columns: 1fr; }
+    .modal-feature-item { grid-template-columns: auto 1fr; align-items: center; text-align: left; }
+    .modal-feature-item span { text-align: left; }
+    .modal-course-callout { padding: 4.3rem 1rem 1rem; }
+    .program-launch-mark { top: 1rem; left: 1rem; transform: none; width: 2.5rem; height: 2.5rem; }
+    .modal-footer { align-items: stretch; flex-direction: column; }
   }
   :global([data-theme="dark"]) .modal-footer {
     border-top-color: rgba(255, 255, 255, 0.08);
@@ -455,8 +498,7 @@ const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL +
     const closeActions = [
       document.getElementById('modal-close-x'),
       document.getElementById('modal-close-btn'),
-      document.getElementById('modal-action-btn'),
-      document.getElementById('modal-course-btn')
+      document.getElementById('modal-action-btn')
     ];
 
     function closeModal() {
