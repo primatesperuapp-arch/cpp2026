@@ -518,7 +518,7 @@ const calendarColumns = calendarDayMeta.map(day => {
             <span class="agenda-calendar__eyebrow">Agenda visual</span>
             <h2>Calendario del congreso</h2>
           </div>
-          <p>Selecciona cualquier bloque para abrir el programa detallado de ese día.</p>
+          <p>Selecciona un día y abre cada actividad para consultar ponentes, moderación, afiliaciones y presentaciones.</p>
         </div>
 
         <div class="agenda-calendar__days" role="tablist" aria-label="Días del congreso">
@@ -527,6 +527,7 @@ const calendarColumns = calendarDayMeta.map(day => {
               type="button"
               role="tab"
               aria-selected={index === 0 ? 'true' : 'false'}
+              aria-controls={`calendar-panel-${index}`}
               class={`calendar-day ${index === 0 ? 'active' : ''}`}
               data-calendar-target={day.key}
             >
@@ -538,7 +539,12 @@ const calendarColumns = calendarDayMeta.map(day => {
 
         <div class="agenda-calendar__content">
           {calendarColumns.map((day, index) => (
-            <div class={`agenda-calendar__panel ${index === 0 ? 'active' : ''}`} data-calendar-panel={day.key}>
+            <div
+              id={`calendar-panel-${index}`}
+              role="tabpanel"
+              class={`agenda-calendar__panel ${index === 0 ? 'active' : ''}`}
+              data-calendar-panel={day.key}
+            >
               <div class="agenda-calendar__day-heading">
                 <div>
                   <span>{day.weekday}</span>
@@ -548,28 +554,63 @@ const calendarColumns = calendarDayMeta.map(day => {
               </div>
 
               {day.allDay && (
-                <button type="button" class="agenda-all-day__event calendar-jump" data-calendar-target={day.key}>
+                <div class="agenda-all-day__event">
                   <span>Todo el día</span>
                   <strong>{day.allDay}</strong>
-                </button>
+                </div>
               )}
 
               <div class="agenda-calendar__events">
-                {day.events.map(event => (
-                  <button
-                    type="button"
-                    class={`agenda-event agenda-event--${event.colorKey} calendar-jump`}
-                    data-calendar-target={day.key}
-                  >
-                    <span class="agenda-event__time">{event.time}</span>
-                    <span class="agenda-event__body">
-                      <span class="agenda-event__meta">{event.code} · {event.duration}</span>
-                      <strong>{event.title}</strong>
-                      {event.speaker && <small>{event.speaker}</small>}
-                    </span>
-                    <span class="agenda-event__arrow" aria-hidden="true">→</span>
-                  </button>
-                ))}
+                {day.events.map(event => {
+                  const cfg = typeConfig[event.type] || typeConfig.ponencias;
+                  const details = event.detailsId ? symposiumDetails[event.detailsId] : null;
+                  return (
+                    <details class={`agenda-event agenda-event--${event.colorKey}`}>
+                      <summary>
+                        <span class="agenda-event__time">{event.time}</span>
+                        <span class="agenda-event__body">
+                          <span class="agenda-event__meta">{event.code} · {event.duration}</span>
+                          <strong>{event.title}</strong>
+                          {event.speaker && <small>{event.speaker}</small>}
+                        </span>
+                        <span class="agenda-event__arrow" aria-hidden="true">+</span>
+                      </summary>
+
+                      <div class="agenda-event__details">
+                        <div class="agenda-event__facts">
+                          <span><b>{cfg.icon} Tipo</b>{cfg.label}</span>
+                          {event.location && <span><b>📍 Lugar</b>{event.location}</span>}
+                          {event.moderator && <span><b>🎙️ Moderación</b>{event.moderator}</span>}
+                        </div>
+
+                        {event.speaker && (
+                          <p class="agenda-event__speaker-detail">
+                            <b>👤 Ponentes y participantes</b>
+                            <span>{event.speaker}</span>
+                          </p>
+                        )}
+
+                        {details && (
+                          <div class="agenda-event__program">
+                            <h4>{event.detailsLabel || 'Programa detallado'} · {details.length} intervenciones</h4>
+                            <ol>
+                              {details.map(item => (
+                                <li>
+                                  <span class="symposium-details__time">{item.time}</span>
+                                  <span class="symposium-details__content">
+                                    <span>{item.title}</span>
+                                    {item.speaker && <small>{item.speaker}</small>}
+                                    {item.affiliation && <em>{item.affiliation}</em>}
+                                  </span>
+                                </li>
+                              ))}
+                            </ol>
+                          </div>
+                        )}
+                      </div>
+                    </details>
+                  );
+                })}
               </div>
             </div>
           ))}
@@ -594,132 +635,11 @@ const calendarColumns = calendarDayMeta.map(day => {
     </div>
   </section>
 
-  <!-- Programa por día con tabs -->
-  <section class="section" style="background: var(--cream-warm); padding-top: 2rem;">
-    <div class="container">
-      <!-- Filtro Interactivo -->
-      <div class="program-filters reveal">
-        <span class="filter-label">Filtrar por:</span>
-        <div class="filter-buttons">
-          <button class="filter-btn active" data-filter="all">✨ Todos</button>
-          <button class="filter-btn" data-filter="conferencia">🎤 Magistrales</button>
-          <button class="filter-btn" data-filter="simposio">🗣️ Simposios</button>
-          <button class="filter-btn" data-filter="ponencias">📢 Orales</button>
-          <button class="filter-btn" data-filter="curso">📖 Cursos</button>
-          <button class="filter-btn" data-filter="taller">🔬 Talleres</button>
-        </div>
-      </div>
-
-      <div class="program-tabs" id="program-tabs">
-        {Object.entries(schedule).map(([day, data], i) => (
-          <button
-            class={`program-tab ${i === 0 ? 'active' : ''}`}
-            data-tab={day}
-            id={`tab-${day.replace(' ','')}`}
-            aria-controls={`panel-${day.replace(' ','')}`}
-            aria-selected={i === 0 ? 'true' : 'false'}
-            role="tab"
-          >
-            <span class="program-tab__day">{day}</span>
-            <span class="program-tab__theme">{data.theme}</span>
-          </button>
-        ))}
-      </div>
-
-      {Object.entries(schedule).map(([day, data], i) => (
-        <div
-          class={`program-panel ${i === 0 ? 'active' : ''}`}
-          id={`panel-${day.replace(' ','')}`}
-          role="tabpanel"
-          aria-labelledby={`tab-${day.replace(' ','')}`}
-        >
-          <div class="program-header-day">
-            <h2 class="program-header-day__title">{data.date}</h2>
-            <p class="program-header-day__theme">Eje central: {data.theme}</p>
-          </div>
-
-          <div class="schedule-list">
-            {data.sessions.map(session => {
-              const cfg = typeConfig[session.type] || typeConfig.ponencias;
-              const isBreak = session.type === 'break' || session.type === 'inscripcion';
-              const details = session.detailsId ? symposiumDetails[session.detailsId] : null;
-              return (
-                <div 
-                  class={`schedule-item schedule-item--${session.type} ${isBreak ? 'schedule-item--is-break' : ''} fade-in-up`} 
-                  data-type={session.type} 
-                  style={`--s-color: ${cfg.color};`}
-                >
-                  <div class="schedule-item__time">
-                    <span class="schedule-item__hour">{session.time}</span>
-                    <span class="schedule-item__dur">{session.duration}</span>
-                  </div>
-                  <div class="schedule-item__bar" aria-hidden="true"></div>
-                  
-                  {isBreak ? (
-                    <div class="schedule-item__break-card">
-                      <span class="break-icon">{cfg.icon}</span>
-                      <div>
-                        <span class="break-title">{session.title}</span>
-                        {session.location && <span class="break-location"> — 📍 {session.location}</span>}
-                      </div>
-                    </div>
-                  ) : (
-                    <div class="schedule-item__card">
-                      <div class="schedule-item__card-header">
-                        <div class="schedule-item__type-badge" style={`color: ${cfg.color}; background: ${cfg.color}12; border-color: ${cfg.color}25;`}>
-                          {cfg.icon} {cfg.label}
-                        </div>
-                        {session.location && <span class="schedule-item__location-badge">📍 {session.location}</span>}
-                      </div>
-                      <h3 class="schedule-item__title">{session.title}</h3>
-                      {session.speaker && (
-                        <p class="schedule-item__speaker">
-                          <span class="speaker-icon">👤</span> 
-                          <span>{session.speaker}</span>
-                        </p>
-                      )}
-                      {session.moderator && (
-                        <p class="schedule-item__moderator">
-                          <span aria-hidden="true">🎙️</span>
-                          <strong>Moderación:</strong> {session.moderator}
-                        </p>
-                      )}
-                      {details && (
-                        <details class="symposium-details">
-                          <summary>{session.detailsLabel || 'Ver programa detallado'} ({details.length} intervenciones)</summary>
-                          <ol>
-                            {details.map(item => (
-                              <li>
-                                <span class="symposium-details__time">{item.time}</span>
-                                <span class="symposium-details__content">
-                                  <span>{item.title}</span>
-                                  {item.speaker && <small>{item.speaker}</small>}
-                                  {item.affiliation && <em>{item.affiliation}</em>}
-                                </span>
-                              </li>
-                            ))}
-                          </ol>
-                        </details>
-                      )}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      ))}
-    </div>
-  </section>
 </PageLayout>
 
 <script>
-  const tabs = document.querySelectorAll('.program-tab');
-  const panels = document.querySelectorAll('.program-panel');
-  const filterBtns = document.querySelectorAll('.filter-btn');
   const calendarDays = document.querySelectorAll('.calendar-day');
   const calendarPanels = document.querySelectorAll('.agenda-calendar__panel');
-  const calendarJumps = document.querySelectorAll('.calendar-jump');
 
   function activateCalendarDay(target: string) {
     calendarDays.forEach(day => {
@@ -736,84 +656,8 @@ const calendarColumns = calendarDayMeta.map(day => {
     day.addEventListener('click', () => {
       const target = (day as HTMLElement).dataset.calendarTarget || '';
       activateCalendarDay(target);
-      const matchingTab = document.querySelector(`.program-tab[data-tab="${target}"]`) as HTMLButtonElement | null;
-      matchingTab?.click();
     });
   });
-
-  calendarJumps.forEach(jump => {
-    jump.addEventListener('click', () => {
-      const target = (jump as HTMLElement).dataset.calendarTarget;
-      const matchingTab = document.querySelector(`.program-tab[data-tab="${target}"]`) as HTMLButtonElement | null;
-      matchingTab?.click();
-      document.querySelector('#program-tabs')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-  });
-
-  // Handle Tabs Switch
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const target = (tab as HTMLElement).dataset.tab;
-      tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
-      panels.forEach(p => p.classList.remove('active'));
-      tab.classList.add('active');
-      tab.setAttribute('aria-selected', 'true');
-      activateCalendarDay(target || '');
-      const targetPanel = document.getElementById(`panel-${target?.replace(' ','')}`);
-      if (targetPanel) {
-        targetPanel.classList.add('active');
-      }
-      
-      // Reset filter button to 'Todos' upon switching day tabs
-      resetFilters();
-    });
-  });
-
-  // Handle Category Filters
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const filter = (btn as HTMLElement).dataset.filter;
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      
-      filterSessions(filter || 'all');
-    });
-  });
-
-  function resetFilters() {
-    filterBtns.forEach(b => b.classList.remove('active'));
-    const allBtn = document.querySelector('.filter-btn[data-filter="all"]');
-    if (allBtn) allBtn.classList.add('active');
-    filterSessions('all');
-  }
-
-  function filterSessions(filter: string) {
-    const activePanel = document.querySelector('.program-panel.active');
-    if (!activePanel) return;
-
-    const items = activePanel.querySelectorAll('.schedule-item');
-    items.forEach((item, index) => {
-      const itemEl = item as HTMLElement;
-      const type = itemEl.dataset.type;
-
-      // Reset animation
-      itemEl.style.animation = 'none';
-      // Force reflow to restart animation
-      void itemEl.offsetWidth;
-
-      if (filter === 'all') {
-        itemEl.style.display = '';
-        itemEl.style.animation = `fadeInUp 0.3s ease forwards ${index * 0.03}s`;
-      } else {
-        if (type === filter) {
-          itemEl.style.display = '';
-          itemEl.style.animation = 'fadeInUp 0.3s ease forwards';
-        } else {
-          itemEl.style.display = 'none';
-        }
-      }
-    });
-  }
 </script>
 
 <style>
@@ -1319,7 +1163,6 @@ const calendarColumns = calendarDayMeta.map(day => {
     width: 100%;
     margin-bottom: 0.65rem;
     padding: 0.7rem 0.9rem;
-    cursor: pointer;
     border: 1px dashed rgba(45,106,79,0.35);
     border-radius: var(--radius-sm);
     background: rgba(116,198,157,0.12);
@@ -1342,13 +1185,7 @@ const calendarColumns = calendarDayMeta.map(day => {
     gap: 0.55rem;
   }
   .agenda-event {
-    display: grid;
-    grid-template-columns: 74px minmax(0, 1fr) 24px;
-    align-items: center;
-    gap: 0.85rem;
     width: 100%;
-    padding: 0.85rem 0.9rem;
-    cursor: pointer;
     border: 1px solid rgba(45,106,79,0.12);
     border-left: 4px solid var(--event-color, var(--earth-warm));
     border-radius: var(--radius-sm);
@@ -1358,11 +1195,31 @@ const calendarColumns = calendarDayMeta.map(day => {
     transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
   }
   .agenda-event:hover,
-  .agenda-event:focus-visible {
+  .agenda-event:focus-within {
     transform: translateX(3px);
     border-color: color-mix(in srgb, var(--event-color) 45%, transparent);
     box-shadow: 0 7px 18px rgba(69,52,28,0.1);
     outline: none;
+  }
+  .agenda-event[open] {
+    transform: none;
+    border-color: color-mix(in srgb, var(--event-color) 38%, transparent);
+    box-shadow: 0 10px 24px rgba(69,52,28,0.1);
+  }
+  .agenda-event summary {
+    display: grid;
+    grid-template-columns: 74px minmax(0, 1fr) 24px;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.85rem 0.9rem;
+    cursor: pointer;
+    list-style: none;
+  }
+  .agenda-event summary::-webkit-details-marker { display: none; }
+  .agenda-event summary:focus-visible {
+    border-radius: calc(var(--radius-sm) - 2px);
+    outline: 2px solid color-mix(in srgb, var(--event-color) 65%, white);
+    outline-offset: 2px;
   }
   .agenda-event__time { color: var(--forest-darkest); font-size: 0.77rem; font-weight: 900; }
   .agenda-event__body { display: grid; gap: 0.12rem; min-width: 0; }
@@ -1379,7 +1236,91 @@ const calendarColumns = calendarDayMeta.map(day => {
     line-height: 1.35;
   }
   .agenda-event small { color: var(--text-muted); font-size: 0.72rem; line-height: 1.35; }
-  .agenda-event__arrow { color: var(--event-color); font-size: 1.1rem; font-weight: 800; }
+  .agenda-event__arrow {
+    color: var(--event-color);
+    font-size: 1.2rem;
+    font-weight: 800;
+    text-align: center;
+    transition: transform 0.2s ease;
+  }
+  .agenda-event[open] .agenda-event__arrow { transform: rotate(45deg); }
+  .agenda-event__details {
+    padding: 0 0.95rem 1rem 5.95rem;
+    border-top: 1px solid color-mix(in srgb, var(--event-color) 16%, transparent);
+  }
+  .agenda-event__facts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.55rem;
+    padding-top: 0.85rem;
+  }
+  .agenda-event__facts span {
+    display: grid;
+    gap: 0.12rem;
+    padding: 0.55rem 0.65rem;
+    border-radius: 0.55rem;
+    color: var(--text-muted);
+    background: color-mix(in srgb, var(--event-color) 7%, transparent);
+    font-size: 0.75rem;
+    line-height: 1.35;
+  }
+  .agenda-event__facts b,
+  .agenda-event__speaker-detail b {
+    color: var(--event-color);
+    font-size: 0.64rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .agenda-event__speaker-detail {
+    display: grid;
+    gap: 0.28rem;
+    margin: 0.7rem 0 0;
+    padding: 0.65rem 0.75rem;
+    border-radius: 0.55rem;
+    color: var(--text-on-light);
+    background: rgba(255,255,255,0.72);
+    font-size: 0.78rem;
+    line-height: 1.45;
+  }
+  .agenda-event__program {
+    margin-top: 0.8rem;
+    padding: 0.85rem;
+    border-radius: 0.65rem;
+    background: color-mix(in srgb, var(--event-color) 5%, white);
+  }
+  .agenda-event__program h4 {
+    margin: 0 0 0.75rem;
+    color: var(--forest-darkest);
+    font-size: 0.8rem;
+  }
+  .agenda-event__program ol {
+    display: grid;
+    gap: 0.6rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .agenda-event__program li {
+    display: grid;
+    grid-template-columns: 92px minmax(0, 1fr);
+    gap: 0.5rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--event-color) 13%, transparent);
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    line-height: 1.45;
+  }
+  .agenda-event__program li:last-child { padding-bottom: 0; border-bottom: 0; }
+  .agenda-event__program em {
+    width: fit-content;
+    padding: 0.14rem 0.42rem;
+    border-radius: 999px;
+    color: var(--event-color);
+    background: color-mix(in srgb, var(--event-color) 10%, transparent);
+    font-size: 0.67rem;
+    font-style: normal;
+    font-weight: 800;
+  }
   .agenda-event--s1 { --event-color:#4f83a1; }
   .agenda-event--s2 { --event-color:#5b8d63; }
   .agenda-event--s3 { --event-color:#c47c52; }
@@ -1406,6 +1347,9 @@ const calendarColumns = calendarDayMeta.map(day => {
   :global([data-theme="dark"]) .calendar-day.active { background: linear-gradient(135deg, #204e3c, #2d6a4f); }
   :global([data-theme="dark"]) .agenda-calendar__content { background: rgba(0,0,0,0.08); }
   :global([data-theme="dark"]) .agenda-event { color: var(--text-on-dark); background: rgba(255,255,255,0.06); }
+  :global([data-theme="dark"]) .agenda-event__speaker-detail,
+  :global([data-theme="dark"]) .agenda-event__program { color: var(--text-on-dark); background: rgba(255,255,255,0.05); }
+  :global([data-theme="dark"]) .agenda-event__program h4 { color: var(--text-on-dark); }
 
   /* Break / Registration Special Styles */
   .schedule-item--is-break {
@@ -1468,40 +1412,12 @@ const calendarColumns = calendarDayMeta.map(day => {
     .agenda-calendar__days { padding: 0 1rem 1rem; }
     .agenda-calendar__content { padding: 1rem; }
     .agenda-calendar__day-heading { align-items: flex-start; flex-direction: column; gap: 0.3rem; }
-    .agenda-event { grid-template-columns: 62px minmax(0, 1fr) 18px; gap: 0.6rem; padding: 0.75rem 0.7rem; }
+    .agenda-event summary { grid-template-columns: 62px minmax(0, 1fr) 18px; gap: 0.6rem; padding: 0.75rem 0.7rem; }
+    .agenda-event__details { padding: 0 0.7rem 0.8rem; }
+    .agenda-event__facts { grid-template-columns: 1fr; }
+    .agenda-event__program li { grid-template-columns: 1fr; gap: 0.15rem; }
     .agenda-event strong { font-size: 0.78rem; }
     .agenda-event small { font-size: 0.68rem; }
     .symposium-details li { grid-template-columns: 1fr; gap: 0.15rem; }
-    .program-filters {
-      flex-direction: column;
-      align-items: flex-start;
-      border-radius: var(--radius-md);
-      padding: 1rem 1.25rem;
-      gap: 0.5rem;
-    }
-    .filter-buttons {
-      gap: 0.3rem;
-    }
-    .schedule-item {
-      grid-template-columns: 75px 16px 1fr;
-      gap: 0.75rem;
-    }
-    .schedule-item__hour {
-      font-size: 0.95rem;
-    }
-    .schedule-item__card {
-      padding: 1rem;
-    }
-    .schedule-item__card-header {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.4rem;
-    }
-    .program-tab {
-      padding: 0.6rem 0.9rem;
-    }
-    .program-tab__day {
-      font-size: 0.8rem;
-    }
   }
 </style>
