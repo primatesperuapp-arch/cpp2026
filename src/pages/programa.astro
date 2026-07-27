@@ -1,8 +1,6 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
 
-const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL + '/';
-
 const scientificTaxa: Array<[string, string]> = [
   ['Cacajao calvus ucayalii', '<i class="taxon">Cacajao calvus ucayalii</i>'],
   ['Aotus cf. nancymai', '<i class="taxon">Aotus</i> cf. <i class="taxon">nancymai</i>'],
@@ -44,7 +42,19 @@ const formatScientificNames = (text: string) => {
   return formatted;
 };
 
-const schedule = {
+type ScheduleSession = {
+  time: string;
+  duration: string;
+  type: string;
+  title: string;
+  location: string;
+  speaker: string;
+  detailsId?: string;
+  detailsLabel?: string;
+  moderator?: string;
+};
+
+const schedule: Record<string, { date: string; theme: string; sessions: ScheduleSession[] }> = {
   "Pre-Congreso": {
     date: "Miércoles 29 de Julio | Pre-Congreso",
     theme: "Talleres y Cursos Pre-Congreso",
@@ -81,15 +91,15 @@ const schedule = {
       },
       {
         time: "16:00",
-        duration: "30 min",
+        duration: "53 min",
         type: "apertura",
         title: "Inauguración del III Congreso Peruano de Primatología",
         location: "Auditorio principal",
         speaker: "Comité Organizador"
       },
       {
-        time: "16:30",
-        duration: "60 min",
+        time: "16:53",
+        duration: "37 min",
         type: "conferencia",
         title: "Ponencia Magistral 1 — La importancia de la ciencia básica y la colaboración interinstitucional para la conservación de primates: el caso de los estudios genéticos de monos aulladores",
         location: "Auditorio principal",
@@ -97,9 +107,9 @@ const schedule = {
       },
       {
         time: "17:30",
-        duration: "Por confirmar",
+        duration: "90 min",
         type: "social",
-        title: "Networking social y presentación de danza",
+        title: "Cierre protocolar, brindis, networking y refrigerio",
         location: "Jardines exteriores del Auditorio",
         speaker: ""
       }
@@ -139,7 +149,7 @@ const schedule = {
         type: "simposio",
         title: "Simposio 1: Políticas públicas, instrumentos de gestión para conservación de primates",
         detailsId: "S1",
-        moderator: "Por confirmar",
+        moderator: "Ana María Fernanda Hidalgo · SERFOR",
         location: "Auditorio principal",
         speaker: "Marco Arenas, Mirbel Alberto Epiquien Rivera, Patricia Ríos, Elizabeth Gonzáles y Fanny Cornejo."
       },
@@ -200,7 +210,7 @@ const schedule = {
     ]
   },
   "Día 3": {
-    date: "Sábado 1 de Agosto | Largo Plazo y Posters",
+    date: "Sábado 1 de Agosto | Largo Plazo, Pósteres y Fauna Fest",
     theme: "Investigación a Largo Plazo y Presentaciones de Trabajos",
     sessions: [
       {
@@ -233,7 +243,7 @@ const schedule = {
         time: "11:00",
         duration: "120 min",
         type: "simposio",
-        title: "Simposio 3: Estudios e iniciativas de conservación a largo plazo de primates en el Perú",
+        title: "Simposio 3: Primates del Perú: estudios e iniciativas de conservación a largo plazo",
         detailsId: "S3",
         moderator: "Liliana Cortés-Ortiz",
         location: "Auditorio principal",
@@ -281,6 +291,14 @@ const schedule = {
         title: "Asamblea General de la Asociación Peruana de Primatología (APP)",
         location: "Auditorio principal",
         speaker: "Exclusivo para miembros y asociados de la APP"
+      },
+      {
+        time: "21:00",
+        duration: "5 h",
+        type: "social",
+        title: "Fiesta del Congreso",
+        location: "Newkitsch Hdm · Av. Francisco Bolognesi 743, Miraflores",
+        speaker: ""
       }
     ]
   },
@@ -377,20 +395,6 @@ const schedule = {
       }
     ]
   },
-  "Post-Congreso": {
-    date: "Lunes 3 de Agosto | Post-Congreso",
-    theme: "Cursos y Talleres Post-Congreso",
-    sessions: [
-      {
-        time: "09:30",
-        duration: "Por confirmar",
-        type: "curso",
-        title: "Curso Post-Congreso — Conservación Comunitaria",
-        location: "Por confirmar",
-        speaker: "Por confirmar"
-      }
-    ]
-  }
 };
 
 const symposiumDetails: Record<string, Array<{ time: string; title: string; speaker?: string; affiliation?: string; track?: string }>> = {
@@ -416,7 +420,7 @@ const symposiumDetails: Record<string, Array<{ time: string; title: string; spea
   S2B: [
     { time: '17:00–17:08', title: 'Herramientas para el monitoreo de primates amenazados en el Parque Nacional Cerros de Amotape: protocolos participativos de monitoreo', speaker: 'Milton Marchan', affiliation: 'Parque Nacional Cerros de Amotape' },
     { time: '17:08–17:16', title: 'Fortalecimiento de la gestión mediante un protocolo de monitoreo para el mono choro de cola amarilla en el Bosque de Protección Alto Mayo', speaker: 'Alexander Amasifuen', affiliation: 'Bosque de Protección Alto Mayo' },
-    { time: '17:16–17:24', title: 'Vigilancia de fiebre amarilla de primates en ANPs', speaker: 'SERNANP', affiliation: 'SERNANP' },
+    { time: '17:16–17:24', title: 'Experiencia en implementación de vigilancia integrada de fiebre amarilla en platirrinos con enfoque Una Salud y participación comunitaria en el Perú', speaker: 'M.V. Iván Vargas Meneses', affiliation: 'CDC-MINSA' },
     { time: '17:24–17:32', title: 'Vigilancia de la fiebre amarilla en primates no humanos bajo el enfoque Una Salud en el Perú', speaker: 'Karl Plog', affiliation: 'SERFOR' },
     { time: '17:32–17:40', title: 'Vigilancia molecular de agentes virales en primates neotropicales provenientes del tráfico ilegal en Perú', speaker: 'Leticia Escobar', affiliation: 'Universidad Peruana Cayetano Heredia' },
     { time: '17:40–17:50', title: 'Ronda de preguntas' },
@@ -513,7 +517,7 @@ const typeConfig: Record<string, { color: string; label: string; icon: string }>
   break:         { color: '#aaa', label: 'Descanso', icon: '☕' },
   social:        { color: '#74c69d', label: 'Actividad Social', icon: '🌿' },
   inscripcion:   { color: '#aaa', label: 'Registro', icon: '📋' },
-  curso:         { color: '#52B788', label: 'Curso Pre/Post-Congreso', icon: '📖' },
+  curso:         { color: '#52B788', label: 'Curso Pre-Congreso', icon: '📖' },
 };
 
 const calendarDayMeta = [
@@ -522,11 +526,11 @@ const calendarDayMeta = [
   { key: 'Día 2', weekday: 'Viernes', date: '31 jul' },
   { key: 'Día 3', weekday: 'Sábado', date: '1 ago' },
   { key: 'Día 4', weekday: 'Domingo', date: '2 ago' },
-  { key: 'Post-Congreso', weekday: 'Lunes', date: '3 ago' },
 ] as const;
 
 const allDayEvents: Partial<Record<(typeof calendarDayMeta)[number]['key'], string>> = {
   'Día 2': 'Exhibición de pósteres · Sala de estudio',
+  'Día 3': 'Exhibición de pósteres · Sala de estudio · Fauna Fest · 10:00–18:00 · Zona de jardines',
   'Día 4': 'Exhibición de pósteres · Sala de estudio',
 };
 
@@ -587,15 +591,6 @@ const calendarColumns = calendarDayMeta.map(day => {
           </div>
           <div class="agenda-calendar__intro-actions">
             <p>Selecciona un día y abre cada actividad para consultar ponentes, moderación, afiliaciones y presentaciones.</p>
-            <a
-              class="agenda-download"
-              href={`${base}documentos/programa-detallado-cpp-2026.pdf`}
-              download="Programa-detallado-CPP-2026.pdf"
-              aria-label="Descargar programa detallado del congreso en PDF"
-            >
-              <span class="agenda-download__icon" aria-hidden="true">↓</span>
-              <span><strong>Descargar programa detallado</strong><small>PDF · 12 páginas</small></span>
-            </a>
           </div>
         </div>
 
