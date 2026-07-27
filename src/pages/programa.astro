@@ -94,6 +94,8 @@ const schedule: Record<string, { date: string; theme: string; sessions: Schedule
         duration: "53 min",
         type: "apertura",
         title: "Inauguración del III Congreso Peruano de Primatología",
+        detailsId: "INA",
+        detailsLabel: "Detalle de inauguración",
         location: "Auditorio principal",
         speaker: "Comité Organizador"
       },
@@ -396,6 +398,18 @@ const schedule: Record<string, { date: string; theme: string; sessions: Schedule
 };
 
 const symposiumDetails: Record<string, Array<{ time: string; title: string; speaker?: string; affiliation?: string; track?: string }>> = {
+  INA: [
+    { time: '16:00–16:05', title: 'Bienvenida inicial y apertura protocolar' },
+    { time: '16:05–16:10', title: 'Palabras de bienvenida', speaker: 'Fanny M. Cornejo', affiliation: 'Directora Ejecutiva de Yunkawasi y Presidenta del Comité Organizador' },
+    { time: '16:10–16:15', title: 'Palabras alusivas', speaker: 'Fernando Carcelén', affiliation: 'Decano de la Facultad de Medicina Veterinaria - UNMSM' },
+    { time: '16:20–16:25', title: 'Palabras alusivas', speaker: 'Mirbel Epiquién', affiliation: 'Director General de la Dirección General de Diversidad Biológica del MINAM' },
+    { time: '16:25–16:30', title: 'Palabras alusivas', speaker: 'Deyvis Huamán', affiliation: 'Director de Gestión Territorial de Áreas Naturales Protegidas del SERNANP' },
+    { time: '16:30–16:35', title: 'Palabras de apertura', speaker: 'Erasmo Otárola Acevedo', affiliation: 'Presidente Ejecutivo del SERNANP' },
+    { time: '16:35–16:50', title: 'Show artístico' },
+    { time: '16:50–16:53', title: 'Presentación de la ponencia magistral de apertura' },
+    { time: '17:30–17:35', title: 'Agradecimiento, reconocimiento a la ponente magistral y autoridades. Foto protocolar. Invitación a salir hacia jardín exterior.' },
+    { time: '17:45–17:55', title: 'Brindis' },
+  ],
   S1: [
     { time: '10:30–10:33', title: 'Introducción', speaker: 'Marco Arenas', affiliation: 'SERFOR' },
     { time: '10:33–10:41', title: 'Estrategia nacional de diversidad biológica y conservación de primates', speaker: 'Mirbel Alberto Epiquien Rivera', affiliation: 'MINAM' },
@@ -448,15 +462,15 @@ const symposiumDetails: Record<string, Array<{ time: string; title: string; spea
   ],
   S5: [
     { time: '15:30–15:35', title: 'Bienvenida e introducción al simposio' },
-    { time: '15:35–15:43', title: '', speaker: 'Julio Bramón', affiliation: 'SERNANP CENTRAL' },
-    { time: '15:43–15:51', title: '', speaker: 'Milagros Tazza', affiliation: 'DECA-MINAM' },
+    { time: '15:35–15:43', title: 'Confirmada', speaker: 'Julio Bramón', affiliation: 'SERNANP CENTRAL' },
+    { time: '15:43–15:51', title: 'Confirmada', speaker: 'Milagros Tazza', affiliation: 'DECA-MINAM' },
     { time: '15:51–15:59', title: 'Escalando la conservación de primates desde los gobiernos locales: el caso del kit “Achórate por el mono choro de cola amarilla”', speaker: 'Michela Olaya', affiliation: 'Yunkawasi' },
     { time: '15:59–16:07', title: 'Proyecto Tití: Creando conexiones significativas para la conservación del tití cabeciblanco', speaker: 'Rosamira Guillen', affiliation: 'Fundación Proyecto Tití' },
     { time: '16:07–16:15', title: 'Los programas de educación ambiental implementados por la Sociedad Zoológica de Fráncfort en el sudeste amazónico peruano. Balance y perspectivas (2002–2025', speaker: 'Enrique Herrera Sarmiento', affiliation: 'Gerente de Educación Ambiental Sociedad Zoológica de Fráncfort' },
     { time: '16:15–16:25', title: 'Ronda de preguntas' },
     { time: '16:25–16:33', title: 'Educar para conservar: el papel del Parque de las Leyendas en la sensibilización para la conservación de los primates del Perú', speaker: 'Ing. Raul Enrique Valdeiglesias Abarca', affiliation: 'Patronato del Parque de las Leyendas' },
-    { time: '16:33–16:41', title: '', speaker: 'César Flores', affiliation: 'Cosha Cashu - Manu' },
-    { time: '16:41–16:49', title: '', speaker: 'Peter Yarango Sánchez', affiliation: 'Proyecto Mono Tocón' },
+    { time: '16:33–16:41', title: 'Confirmada', speaker: 'César Flores', affiliation: 'Cosha Cashu - Manu' },
+    { time: '16:41–16:49', title: 'Confirmada', speaker: 'Peter Yarango Sánchez', affiliation: 'Proyecto Mono Tocón' },
     { time: '16:49–16:57', title: 'Educación ambiental basada en el monitoreo poblacional del mono choro de cola amarilla como herramienta para la gestión y conservación del Bosque de Protección Alto Mayo.', speaker: 'Alexander Amasifuen', affiliation: 'SERNANP-BPAM' },
     { time: '16:57–17:05', title: 'Ecoturismo y Ciencia para la conservación de la Amazonía', speaker: 'Jannet Benavides', affiliation: 'Rainforest Expeditions' },
     { time: '17:05–17:13', title: 'Conservación de Primates en Bosques Fragmentados: Acción Ciudadana y Custodia Voluntaria en la Finca Sarita Colonia, Uchiza', speaker: 'Andrea Zeballos Mora', affiliation: 'Asociación Equipo Primatológico' },
@@ -480,7 +494,7 @@ const symposiumDetails: Record<string, Array<{ time: string; title: string; spea
     { time: 'P-014', track: 'Eje 2: Reducción de la Caza y el Tráfico', title: 'Impacto de los incendios forestales en poblaciones del mono choro de cola amarilla (Lagothrix flavicauda) en Amazonas, Perú', speaker: 'Akemy Saire Valeriano', affiliation: 'Yunkawasi' },
     { time: 'P-015', track: 'Eje 3: Ciencia para la Acción', title: 'Registros preliminares de Ateles chamek en los bosques montanos del distrito de Chungui y Oronccoy, Ayacucho, Perú', speaker: 'Ana Rosa Gonzales Vargas', affiliation: 'ONG Yunkawasi' },
     { time: 'P-016', track: 'Eje 2: Reducción de la Caza y el Tráfico', title: 'Respuesta comportamental de dos individuos de mono tocón de San Martín (Plecturocebus oenanthe) durante la implementación de un programa piloto de enriquecimiento ambiental en un zoológico de Lima, Perú', speaker: 'Alessandra Calderon Palacios', affiliation: 'Facultad de Medicina Veterinaria y Zootecnia, Universidad Científica del Sur' },
-    { time: 'P-017', track: 'Eje 1: Bosques Conectados', title: 'Restauración ecológica del hábitat del mono tocón de San Martín (Plecturocebus oenanthe): lecciones aprendidas en el Morro de Calzada, Región San Martín, Perú', speaker: 'Darlene Valverde', affiliation: 'Proyecto Mono Tocón' },
+    { time: 'P-017', track: 'Eje 1: Bosques Conectados', title: 'Restauración ecológica del hábitat del mono tocón de San Martín (Plecturocebus oenanthe): Lecciones aprendidas en el Morro de Calzada, Región San Martín, Perú', speaker: 'Darlene Valverde', affiliation: 'Proyecto Mono Tocón' },
   ],
   O1: [
     { time: '15:30–15:40', title: 'Osteología radiológica del huapo colorado (Cacajao calvus ucayalii) bajo sedación, en semicautiverio en un centro de rescate, Iquitos, Perú', speaker: 'Ricardo Grandez · Eje 3' },
