@@ -1,6 +1,8 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
 
+const base = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL + '/';
+
 const scientificTaxa: Array<[string, string]> = [
   ['Cacajao calvus ucayalii', '<i class="taxon">Cacajao calvus ucayalii</i>'],
   ['Aotus cf. nancymai', '<i class="taxon">Aotus</i> cf. <i class="taxon">nancymai</i>'],
@@ -681,6 +683,15 @@ const calendarColumns = calendarDayMeta.map(day => {
                           {event.location && <span><b>📍 Lugar</b>{event.location}</span>}
                           {event.moderator && <span><b>🎙️ Moderación</b>{event.moderator}</span>}
                         </div>
+
+                        {event.title === 'Fiesta del Congreso' && (
+                          <img
+                            class="agenda-event__party-gif"
+                            src={`${base}images/programa/mono-bailando-fiesta.gif`}
+                            alt="Mono bailando para celebrar la fiesta del congreso"
+                            loading="lazy"
+                          />
+                        )}
 
                         {event.speaker && (
                           <p class="agenda-event__speaker-detail">
@@ -1390,6 +1401,15 @@ const calendarColumns = calendarDayMeta.map(day => {
   .agenda-event__details {
     padding: 0 0.95rem 1rem 5.95rem;
     border-top: 1px solid color-mix(in srgb, var(--event-color) 16%, transparent);
+  }
+
+  .agenda-event__party-gif {
+    display: block;
+    width: min(100%, 260px);
+    margin: 1.1rem auto 0;
+    border-radius: var(--radius-lg);
+    border: 2px solid rgba(217, 157, 85, 0.45);
+    box-shadow: 0 10px 24px rgba(18, 38, 30, 0.18);
   }
   .agenda-event__facts {
     display: grid;
